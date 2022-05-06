@@ -1,95 +1,133 @@
-import React, { useRef } from "react";
-import * as posenet from "@tensorflow-models/posenet";
-import Webcam from "react-webcam";
+import React, { useRef, useState, Component } from 'react'
+import * as posenet from '@tensorflow-models/posenet'
+import Webcam from 'react-webcam'
 
-import { drawKeypoints, drawSkeleton } from "../utilities";
+import { drawKeypoints, drawSkeleton } from '../utilities'
 
 function Posenet() {
-  const webcamRef = useRef(null);
-  const canvasRef = useRef(null);
+	const webcamRef = useRef(null)
+	const canvasRef = useRef(null)
+	const [image, setImage] = useState('')
 
-  const runPosenet = async () => {
-    const net = await posenet.load({
-      flipHorizontal: true,
-      inputResolution: { width: 640, height: 480 },
-      scale: 0.6,
-    });
-    setInterval(() => {
-      detect(net);
-    }, 100);
-  };
+	const runPosenet = async () => {
+		const net = await posenet.load({
+			flipHorizontal: true,
+			inputResolution: { width: 640, height: 480 },
+			scale: 0.6,
+		})
+		// setInterval(() => {
+		// 	detect(net)
+		// }, 100)
+		capture(net)
+	}
 
-  const detect = async (net) => {
-    if (
-      typeof webcamRef.current !== "undefined" &&
-      webcamRef.current !== null &&
-      webcamRef.current.video.readyState === 4
-    ) {
-      //video prop
-      const video = webcamRef.current.video;
-      const videoWidth = webcamRef.current.video.videoWidth;
-      const videoHeight = webcamRef.current.video.videoHeight;
-      //video width-height
-      webcamRef.current.video.width = videoWidth;
-      webcamRef.current.video.height = videoHeight;
+	const capture = React.useCallback(async (net) => {
+		const imageSrc = webcamRef.current.getScreenshot()
+		setImage(imageSrc)
+	})
 
-      // Make Detections
-      const pose = await net.estimateSinglePose(video);
-      //console.log(pose);
+	const poseCalculation = async () => {
+		const net = await posenet.load({
+			flipHorizontal: true,
+			inputResolution: { width: 640, height: 480 },
+			scale: 0.6,
+		})
 
-      drawCanvas(pose, videoWidth, videoHeight, canvasRef);
-    }
-  };
-  const drawCanvas = (pose, videoWidth, videoHeight, canvas) => {
-    const ctx = canvas.current.getContext("2d");
-    canvas.current.width = videoWidth;
-    canvas.current.height = videoHeight;
+		const imageElement = document.getElementById('base1')
+		const pose = await net.estimateSinglePose(imageElement)
+		console.log(pose)
+	}
 
-    drawKeypoints(pose["keypoints"], 0.6, ctx);
-    drawSkeleton(pose["keypoints"], 0.7, ctx);
-  };
+	const detect = async (net) => {
+		if (
+			typeof webcamRef.current !== 'undefined' &&
+			webcamRef.current !== null &&
+			webcamRef.current.video.readyState === 4
+		) {
+			//video prop
+			const video = webcamRef.current.video
+			console.log(video)
+			const videoWidth = webcamRef.current.video.videoWidth
+			const videoHeight = webcamRef.current.video.videoHeight
+			//video width-height
+			webcamRef.current.video.width = videoWidth
+			webcamRef.current.video.height = videoHeight
 
-  runPosenet();
+			// Make Detections
+			const pose = await net.estimateSinglePose(video)
+			//console.log(pose);
 
-  return (
-    <div className="posenet">
-      <header className="posenet-header">
-        <div>hello</div>
-        <Webcam
-          ref={webcamRef}
-          style={{
-            position: "absolute",
-            marginLeft: "auto",
-            marginRight: "auto",
-            left: 0,
-            right: 0,
-            textAlign: "center",
-            zindex: 9,
-            width: 640,
-            height: 480,
-          }}
-        />
+			drawCanvas(pose, videoWidth, videoHeight, canvasRef)
+		}
+	}
+	const drawCanvas = (pose, videoWidth, videoHeight, canvas) => {
+		const ctx = canvas.current.getContext('2d')
+		canvas.current.width = videoWidth
+		canvas.current.height = videoHeight
 
-        <canvas
-          ref={canvasRef}
-          style={{
-            position: "absolute",
-            marginLeft: "auto",
-            marginRight: "auto",
-            left: 0,
-            right: 0,
-            textAlign: "center",
-            zindex: 9,
-            width: 640,
-            height: 480,
-          }}
-        />
-      </header>
-    </div>
-  );
+		drawKeypoints(pose['keypoints'], 0.6, ctx)
+		drawSkeleton(pose['keypoints'], 0.7, ctx)
+	}
+
+	// runPosenet()
+	return (
+		<div className="posenet">
+			<header className="posenet-header">
+				<div>
+					<div>hello</div>
+					<Webcam
+						ref={webcamRef}
+						style={{
+							position: 'absolute',
+							marginLeft: 'auto',
+							marginRight: 'auto',
+							left: 0,
+							right: 0,
+							textAlign: 'center',
+							zindex: 9,
+							width: 640,
+							height: 480,
+						}}
+					/>
+
+					<canvas
+						ref={canvasRef}
+						style={{
+							position: 'absolute',
+							marginLeft: 'auto',
+							marginRight: 'auto',
+							left: 0,
+							right: 0,
+							textAlign: 'center',
+							zindex: 9,
+							width: 640,
+							height: 480,
+						}}
+					/>
+					<button
+						onClick={(e) => {
+							e.preventDefault()
+							runPosenet()
+						}}
+					>
+						Capture
+					</button>
+				</div>
+
+				<div>
+					{image ? (
+						<div>
+							<img id="base1" src={image} />{' '}
+							<button onClick={() => poseCalculation()}>calculate pose</button>
+						</div>
+					) : null}
+				</div>
+			</header>
+		</div>
+	)
 }
 
-export default Posenet;
+export default Posenet
 // class PoseNet extends Component {
 // 	static defaultProps = {
 // 		videoWidth: 900,
