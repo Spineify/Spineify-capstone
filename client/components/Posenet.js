@@ -21,11 +21,14 @@ function Posenet() {
 		capture(net)
 	}
 
-	const capture = React.useCallback(async (net) => {
+	//capture image
+	const capture = React.useCallback(async () => {
 		const imageSrc = webcamRef.current.getScreenshot()
+		console.log(imageSrc)
 		setImage(imageSrc)
 	})
 
+	//capture pose data
 	const poseCalculation = async () => {
 		const net = await posenet.load({
 			flipHorizontal: true,
@@ -34,6 +37,7 @@ function Posenet() {
 		})
 
 		const imageElement = document.getElementById('base1')
+		console.dir(imageElement)
 		const pose = await net.estimateSinglePose(imageElement)
 		console.log(pose)
 	}

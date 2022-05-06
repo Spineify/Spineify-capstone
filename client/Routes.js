@@ -5,6 +5,7 @@ import { Login, Signup } from './components/AuthForm'
 import Home from './components/Home'
 import { me } from './store'
 import Posenet from './components/Posenet'
+import BaseCalibration from '../client/components/BaseCalibration'
 
 /**
  * COMPONENT
@@ -23,11 +24,11 @@ class Routes extends Component {
 					<Switch>
 						<Route path="/home" component={Home} />
 						<Redirect to="/home" />
-						<Route path="/posenet" component={Posenet} />
+						{/* <Route path="/calibrations" component={BaseCalibration} /> */}
 					</Switch>
 				) : (
 					<Switch>
-						<Route path="/posenet" component={Posenet} />
+						{/* <Route path="/calibrations" component={BaseCalibration} /> */}
 						<Route path="/login" component={Login} />
 						<Route path="/signup" component={Signup} />
 					</Switch>
