@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
-
+import { addData } from "../store/surveyData";
+import { connect } from "react-redux";
 import "survey-core/modern.min.css";
-// import 'survey-core/survey.min.css';
 import { StylesManager, Model } from "survey-core";
 import { Survey } from "survey-react-ui";
 
@@ -16,7 +16,7 @@ const surveyJson = {
       elements: [
         {
           type: "rating",
-          name: "Discomfort level",
+          name: "discomfort_level",
           title:
             "Rate your current level of discomfort. (0 = no discomfort, 10=highest level of discomfort)",
           isRequired: true,
@@ -26,27 +26,27 @@ const surveyJson = {
         },
         {
           type: "checkbox",
-          name: "question1",
+          name: "pain_area",
           title: "Please select all current areas of discomfort.",
           choices: [
             {
-              value: "item1",
+              value: "neck",
               text: "Neck",
             },
             {
-              value: "item2",
+              value: "shoulders",
               text: "Shoulders",
             },
             {
-              value: "item3",
+              value: "upper-back",
               text: "Upper-back",
             },
             {
-              value: "item4",
+              value: "lower-back",
               text: "Lower-back",
             },
             {
-              value: "item5",
+              value: "hips",
               text: "Hips",
             },
           ],
@@ -56,11 +56,12 @@ const surveyJson = {
   ],
 };
 
-function App() {
+function App({ addData }) {
   const survey = new Model(surveyJson);
-  console.log("SURVEY", survey);
   const alertResults = useCallback((sender) => {
     const results = JSON.stringify(sender.data);
+    console.log("RESULTS", results);
+    addData(results);
     alert(results);
   }, []);
 
@@ -69,53 +70,10 @@ function App() {
   return <Survey model={survey} />;
 }
 
-export default App;
+const mapDispatch = (dispatch) => {
+  return {
+    addData: (data) => dispatch(addData(data)),
+  };
+};
 
-// import React from "react";
-// // import "survey-core/modern.min.css";
-// // Default theme
-// // import 'survey-core/survey.min.css';
-// import "survey-core/defaultV2.min.css";
-// import "survey-creator-core/survey-creator-core.min.css";
-// import { StylesManager, Model } from "survey-core";
-// import { SurveyCreator, SurveyCreatorComponent } from "survey-creator-react";
-
-// const creatorOptions = {
-//   showLogicTab: true,
-//   isAutoSave: true,
-// };
-
-// StylesManager.applyTheme("default");
-
-// const defaultJson = {
-//   elements: [
-//     {
-//       name: "FirstName",
-//       title: "Enter your first name:",
-//       type: "text",
-//     },
-//     {
-//       name: "LastName",
-//       title: "Enter your last name:",
-//       type: "text",
-//     },
-//   ],
-// };
-// export function Survey() {
-//   const creator = new SurveyCreator(creatorOptions);
-//   creator.text =
-//     window.localStorage.getItem("survey-json") || JSON.stringify(defaultJson);
-//   creator.saveSurveyFunc = (saveNo, callback) => {
-//     window.localStorage.setItem("survey-json", creator.text);
-//     callback(saveNo, true);
-//     // saveSurveyJson(
-//     //     "https://your-web-service.com/",
-//     //     creator.JSON,
-//     //     saveNo,
-//     //     callback
-//     // );
-//   };
-//   return <SurveyCreatorComponent creator={creator} />;
-// }
-
-// export default Survey;
+export default connect(null, mapDispatch)(App);

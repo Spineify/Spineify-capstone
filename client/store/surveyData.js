@@ -24,11 +24,19 @@ export const getAllData = () => {
 };
 export const addData = (surveyData) => {
   return async (dispatch) => {
+    const jsonData = JSON.parse(surveyData);
+
+    // if (jsonData.pain_area) {
+    //   const normalStringValue = jsonData.pain_area[0].split(",");
+    //   jsonData.pain_area = normalStringValue;
+    // }
+    // console.log("JSON", jsonData);
     try {
-      const { data } = await axios.post("/api/surveydata", surveyData);
+      const { data } = await axios.post("/api/surveydata", jsonData);
+      // console.log("DATA", data);
       dispatch(_addData(data));
     } catch (err) {
-      console.log(err);
+      console.log(err.response.data);
     }
   };
 };
