@@ -1,5 +1,4 @@
 import React from "react";
-
 import Navbar from "./components/Navbar";
 import Routes from "./Routes";
 import Posenet from "./components/Posenet";
@@ -9,7 +8,7 @@ const App = () => {
     <div>
       <Navbar />
       <Routes />
-      <Posenet />
+      {/* <Posenet /> */}
     </div>
   );
 };
