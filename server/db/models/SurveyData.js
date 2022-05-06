@@ -4,18 +4,11 @@ const axios = require("axios");
 
 const SurveyData = db.define("surveyData", {
   discomfort_level: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.STRING,
     allowNull: false,
   },
   pain_area: {
-    type: Sequelize.ENUM(
-      "neck",
-      "upper-back",
-      "lower-back",
-      "shoulders",
-      "hips"
-    ),
-    allowNull: true,
+    type: Sequelize.ARRAY(Sequelize.STRING),
   },
 });
 
