@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { logout } from "../store";
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
+
   <div>
     <h1>Spineify</h1>
     <nav>
@@ -28,6 +29,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
     <hr />
   </div>
 );
+
 
 /**
  * CONTAINER

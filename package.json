@@ -26,6 +26,7 @@
     "axios": "^0.21.1",
     "bcrypt": "^5.0.0",
     "compression": "^1.7.3",
+    "compute-cosine-similarity": "^1.0.0",
     "electron": "^18.2.0",
     "electron-reload": "^2.0.0-alpha.1",
     "express": "^4.16.4",
