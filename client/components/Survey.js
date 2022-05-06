@@ -62,7 +62,7 @@ function App({ addData }) {
     const results = JSON.stringify(sender.data);
     console.log("RESULTS", results);
     addData(results);
-    alert(results);
+    // alert(results);
   }, []);
 
   survey.onComplete.add(alertResults);
