@@ -21,9 +21,32 @@ async function seed() {
 	])
 
 	//Creating Stretches (static)
-	const stretches = await Promise.all([
-		//put stretches here. Check data types in db!
-	])
+ const stretches = await Promise.all([
+    Stretch.create({
+      name: "Shoulder Shrugs",
+      directions: `Shrug your shoulders by bringing them up towards your ears and holding for 3-5 seconds. Release and repeat 3-5 times`,
+      category: ['shoulders'],
+      imageURL: "https://vp.nyt.com/video/2020/05/12/86478_1_00sl-ergonomic-shrug_wg_720p.mp4"
+    }),
+    Stretch.create({
+      name: "Back and Chest Stretch",
+      directions: `Clasping your hands behind your head, squeeze your shoulder blades together.
+      Hold this squeeze for 5-6 seconds.
+      Take a breath, then repeat one more time.`,
+      category: ['upper-back', 'shoulders'],
+      imageURL: 'https://vp.nyt.com/video/2020/05/12/86481_1_00sl-ergonomics-shoulder_wg_720p.mp4'
+    }),
+    Stretch.create({
+      name: 'Seated Spinal Rotation',
+      directions: `While seated, cross your arms over your chest.
+      Grab your shoulders.
+      Rotate your upper body from the waist, turning gently from left to right as far as feels comfortable.
+      You should feel a tension on both sides of your lower back as it stretches out.`,
+      category: ['lower-back'],
+      imageURL: 'https://assets.bupa.co.uk/~/media/images/healthmanagement/blogs/desk-stretches-2020/seated-spinal-rotation-600-600.jpg'
+    })
+    //put stretches here. Check data types in db!
+  ])
 
 	await Promise.all(
 		healthlineStretches.map((stretch) => Stretch.create(stretch))
