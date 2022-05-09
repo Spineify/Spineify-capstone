@@ -4,8 +4,13 @@ import thunkMiddleware from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import auth from "./auth";
 import surveyReducer from "./surveyData";
+import surveyDataSetReducer from "./surveyDataSet";
 
-const reducer = combineReducers({ auth, surveyReducer });
+const reducer = combineReducers({
+  auth,
+  surveyReducer,
+  dataSet: surveyDataSetReducer,
+ });
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
 );

@@ -13,6 +13,19 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+router.get('/:id', async (req, res, next) => {
+  try{
+    const data = await SurveyData.findAll({
+      where: {
+        id: req.body.id
+      }
+    })
+    res.send(data)
+  } catch(err) {
+    next(err)
+  }
+})
+
 // POST request
 
 router.post("/", async (req, res, next) => {
