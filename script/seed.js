@@ -44,7 +44,7 @@ async function seed() {
       You should feel a tension on both sides of your lower back as it stretches out.`,
       category: ['lower-back'],
       imageURL: 'https://assets.bupa.co.uk/~/media/images/healthmanagement/blogs/desk-stretches-2020/seated-spinal-rotation-600-600.jpg'
-    })
+    }),
     //put stretches here. Check data types in db!
     Stretch.create({
       name: "Neck stretch",

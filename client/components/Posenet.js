@@ -1,7 +1,7 @@
 import React from 'react'
 import * as posenet from '@tensorflow-models/posenet'
 
-class PoseNet extends React.Component {
+export default class PoseNet extends React.Component {
   static defaultProps = {
     videoWidth: 900,
     videoHeight: 700,
