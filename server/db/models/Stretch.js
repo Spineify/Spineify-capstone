@@ -1,6 +1,6 @@
-const Sequelize = require("sequelize");
-const db = require("../db");
-const axios = require("axios");
+const Sequelize = require('sequelize')
+const db = require('../db')
+const axios = require('axios')
 
 const Stretch = db.define("stretch", {
   name: {
@@ -14,9 +14,9 @@ const Stretch = db.define("stretch", {
   category: {
     type: Sequelize.ARRAY(Sequelize.TEXT),
     allowNull: false,
-    validate: {
-      isIn: [["neck", "upper-back", "lower-back", "shoulders", "hips"]],
-    },
+    // validate: {
+    //   isIn: [["neck", "upper-back", "lower-back", "shoulders", "hips"]],
+    // },
   },
   imageURL: {
     type: Sequelize.STRING,
@@ -24,4 +24,4 @@ const Stretch = db.define("stretch", {
   },
 });
 
-module.exports = Stretch;
+module.exports = Stretch

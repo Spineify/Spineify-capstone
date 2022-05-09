@@ -1,10 +1,11 @@
 "use strict";
 
 const {
-  db,
-  models: { User, Stretch },
-} = require("../server/db");
+	db,
+	models: { User, Stretch },
+} = require('../server/db')
 
+const healthlineStretches = require('./stretches')
 /**
  * seed - this function clears the database, updates tables to
  *      match the models, and populates the database.
@@ -19,7 +20,31 @@ async function seed() {
     User.create({ username: "murphy", password: "123" }),
   ]);
 
-  const stretches = await Promise.all([
+	//Creating Stretches (static)
+ const stretches = await Promise.all([
+    Stretch.create({
+      name: "Shoulder Shrugs",
+      directions: `Shrug your shoulders by bringing them up towards your ears and holding for 3-5 seconds. Release and repeat 3-5 times`,
+      category: ['shoulders'],
+      imageURL: "https://vp.nyt.com/video/2020/05/12/86478_1_00sl-ergonomic-shrug_wg_720p.mp4"
+    }),
+    Stretch.create({
+      name: "Back and Chest Stretch",
+      directions: `Clasping your hands behind your head, squeeze your shoulder blades together.
+      Hold this squeeze for 5-6 seconds.
+      Take a breath, then repeat one more time.`,
+      category: ['upper-back', 'shoulders'],
+      imageURL: 'https://vp.nyt.com/video/2020/05/12/86481_1_00sl-ergonomics-shoulder_wg_720p.mp4'
+    }),
+    Stretch.create({
+      name: 'Seated Spinal Rotation',
+      directions: `While seated, cross your arms over your chest.
+      Grab your shoulders.
+      Rotate your upper body from the waist, turning gently from left to right as far as feels comfortable.
+      You should feel a tension on both sides of your lower back as it stretches out.`,
+      category: ['lower-back'],
+      imageURL: 'https://assets.bupa.co.uk/~/media/images/healthmanagement/blogs/desk-stretches-2020/seated-spinal-rotation-600-600.jpg'
+    })
     //put stretches here. Check data types in db!
     Stretch.create({
       name: "Neck stretch",
@@ -39,14 +64,18 @@ async function seed() {
     }),
   ]);
 
-  console.log(`seeded ${users.length} users`);
-  console.log(`seeded successfully`);
-  return {
-    users: {
-      cody: users[0],
-      murphy: users[1],
-    },
-  };
+	await Promise.all(
+		healthlineStretches.map((stretch) => Stretch.create(stretch))
+	)
+
+	console.log(`seeded ${users.length} users`)
+	console.log(`seeded successfully`)
+	return {
+		users: {
+			cody: users[0],
+			murphy: users[1],
+		},
+	}
 }
 
 /*
@@ -55,17 +84,17 @@ async function seed() {
  The `seed` function is concerned only with modifying the database.
 */
 async function runSeed() {
-  console.log("seeding...");
-  try {
-    await seed();
-  } catch (err) {
-    console.error(err);
-    process.exitCode = 1;
-  } finally {
-    console.log("closing db connection");
-    await db.close();
-    console.log("db connection closed");
-  }
+	console.log('seeding...')
+	try {
+		await seed()
+	} catch (err) {
+		console.error(err)
+		process.exitCode = 1
+	} finally {
+		console.log('closing db connection')
+		await db.close()
+		console.log('db connection closed')
+	}
 }
 
 /*
@@ -74,7 +103,7 @@ async function runSeed() {
   any errors that might occur inside of `seed`.
 */
 if (module === require.main) {
-  runSeed();
+	runSeed()
 }
 
 // we export the seed function for testing purposes (see `./seed.spec.js`)
