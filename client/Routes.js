@@ -8,6 +8,7 @@ import { me } from './store'
 import Posenet from './components/Posenet'
 import BaseCalibration from '../client/components/BaseCalibration'
 import Survey from "./components/Survey";
+import DataVis from './components/DataVis'
 
 /**
  * COMPONENT
@@ -36,6 +37,7 @@ class Routes extends Component {
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
             <Route path="/survey" component={Survey} />
+            <Route path="/data" component={DataVis} />
           </Switch>
         )}
       </div>

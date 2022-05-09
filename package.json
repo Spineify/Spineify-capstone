@@ -37,7 +37,8 @@
     "react-webcam": "^7.0.1",
     "sequelize": "^6.3.5",
     "survey-creator-react": "^1.9.28",
-    "survey-react-ui": "^1.9.28"
+    "survey-react-ui": "^1.9.28",
+    "victory": "^36.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",

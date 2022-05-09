@@ -11,7 +11,7 @@ const App = () => {
 		<div>
 			<Navbar />
 			<Routes />
-			<BaseCalibration />
+			{/* <BaseCalibration /> */}
 		</div>
 	)
 }
