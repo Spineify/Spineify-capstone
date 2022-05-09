@@ -1,6 +1,6 @@
-const Sequelize = require("sequelize");
-const db = require("../db");
-const axios = require("axios");
+const Sequelize = require('sequelize')
+const db = require('../db')
+const axios = require('axios')
 
 const Stretch = db.define("stretch", {
   name: {
@@ -24,4 +24,4 @@ const Stretch = db.define("stretch", {
   },
 });
 
-module.exports = Stretch;
+module.exports = Stretch
