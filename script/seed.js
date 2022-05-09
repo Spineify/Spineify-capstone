@@ -1,4 +1,4 @@
-'use strict'
+"use strict";
 
 const {
 	db,
@@ -11,14 +11,14 @@ const healthlineStretches = require('./stretches')
  *      match the models, and populates the database.
  */
 async function seed() {
-	await db.sync({ force: true }) // clears db and matches models to tables
-	console.log('db synced!')
+  await db.sync({ force: true }); // clears db and matches models to tables
+  console.log("db synced!");
 
-	// Creating Users
-	const users = await Promise.all([
-		User.create({ username: 'cody', password: '123' }),
-		User.create({ username: 'murphy', password: '123' }),
-	])
+  // Creating Users
+  const users = await Promise.all([
+    User.create({ username: "cody", password: "123" }),
+    User.create({ username: "murphy", password: "123" }),
+  ]);
 
 	//Creating Stretches (static)
  const stretches = await Promise.all([
@@ -46,7 +46,23 @@ async function seed() {
       imageURL: 'https://assets.bupa.co.uk/~/media/images/healthmanagement/blogs/desk-stretches-2020/seated-spinal-rotation-600-600.jpg'
     })
     //put stretches here. Check data types in db!
-  ])
+    Stretch.create({
+      name: "Neck stretch",
+      directions:
+        "1) Relax in your chair and lean your head forward\n2) Slowly roll toward one side and hold for 10 seconds\n3) Repeat on other side\n4) Relax again and lift your chin back to starting position\n5) Repeat 3 times in each direction",
+      category: ["neck"],
+      imageURL:
+        "https://www.performancehealth.com/media/wysiwyg/blog/articles/shutterstock_464539835.jpg",
+    }),
+    Stretch.create({
+      name: "Latissimus or Overhead Reach stretch",
+      directions:
+        "1) Extend your right arm overhead and reach to the opposite side\n2) Hold for 10 to 30 seconds\n3) Repeat on the other side using your left arm",
+      category: ["shoulders"],
+      imageURL:
+        "https://www.performancehealth.com/media/wysiwyg/blog/articles/shutterstock_1134004811.jpg",
+    }),
+  ]);
 
 	await Promise.all(
 		healthlineStretches.map((stretch) => Stretch.create(stretch))
@@ -91,4 +107,4 @@ if (module === require.main) {
 }
 
 // we export the seed function for testing purposes (see `./seed.spec.js`)
-module.exports = seed
+module.exports = seed;
