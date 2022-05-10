@@ -9,8 +9,6 @@ import {
 } from "victory";
 
 export default (props) => {
-  console.log(props, "pie props");
-
   const pieChartData = [
     { x: "neck", y: 0 },
     { x: "upper-back", y: 0 },
@@ -44,8 +42,8 @@ export default (props) => {
     entry.y = count;
   }
 
-  console.log(pieChartData, "ending pieChart?");
-  console.log("count", count);
+  // console.log(pieChartData, "ending pieChart?");
+  // console.log("count", count);
   const checkArray = pieChartData.filter((entry) => entry.y !== 0).length;
 
   return (

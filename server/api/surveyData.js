@@ -13,11 +13,12 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-router.get("/:id", async (req, res, next) => {
+router.get("/:userId", async (req, res, next) => {
+  console.log("api route hit");
   try {
     const data = await SurveyData.findAll({
       where: {
-        id: req.body.id,
+        userId: req.params.userId,
       },
     });
     res.send(data);

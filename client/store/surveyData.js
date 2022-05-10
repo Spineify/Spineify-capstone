@@ -12,7 +12,7 @@ export const addData = (surveyData) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.post("/api/surveydata", surveyData);
-      // console.log("DATA store", data);
+      console.log("DATA store", data);
       dispatch(_addData(data));
     } catch (err) {
       console.log(err.response.data);
