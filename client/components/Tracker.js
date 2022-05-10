@@ -1,55 +1,95 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Screenshot from "./Screenshot";
 import { addPose } from "../store/posture";
 import Webcam from "react-webcam";
 
+const GOOD_POSTURE = "/good_posture.jpeg";
 function Tracker() {
   const [start, setStart] = useState(false);
-  const [imageSrc, setImageSrc] = useState("/good_posture.jpeg");
-  const [intervalId, setIntervalId] = useState(null);
+  const [imageSrc, setImageSrc] = useState(GOOD_POSTURE);
+  const [model, setModel] = useState(null);
 
   const dispatch = useDispatch();
-  const userId = useSelector((state) => state.auth.id);
   const webcamRef = useRef(null);
+  const pictureRef = useRef(null);
 
-  const URL = "https://teachablemachine.withgoogle.com/models/TzVVyOfnc/";
-  let model;
-  const init = async () => {
-    const modelURL = URL + "model.json";
-    const metadataURL = URL + "metadata.json";
+  // useEffect(() => dispatch(modelThunk), []); //empty array is CDM, only runs once // init in root
 
-    model = await tmPose.load(modelURL, metadataURL);
+  // useEffect(() => dispatch(analyzeThunk),[imageSrc]) //where there are dependencies, its like CDU, runs everytime dependency changes
 
-    console.log("initialize model: ", model);
-  };
+  useEffect(() => {
+    const URL = "https://teachablemachine.withgoogle.com/models/TzVVyOfnc/";
+    const init = async () => {
+      const modelURL = URL + "model.json";
+      const metadataURL = URL + "metadata.json";
 
-  const startPoses = () => {
-    setIntervalId(
-      setInterval(function () {
-        capture();
-        analyze();
-      }, 5000)
-    );
-  };
+      const loadedModel = await tmPose.load(modelURL, metadataURL);
+      setModel(loadedModel);
 
-  const capture = React.useCallback(() => {
-    const imageSrc = webcamRef.current.getScreenshot();
-    setImageSrc(imageSrc);
-  });
+      console.log("initialize model: ", model);
+    };
+    init();
+  }, []);
+
+  console.log("rendering start", start);
+  useEffect(() => {
+    if (!model) {
+      return;
+    }
+    const captureInterval = setInterval(function () {
+      //console.log("about to capture", start);
+      //if there is no active webcam, it wont take screenshot
+      if (!webcamRef.current) {
+        return;
+      }
+      const imageSrc = webcamRef.current.getScreenshot();
+      setImageSrc(imageSrc);
+    }, 5000);
+    return () => {
+      //runs when you leave the page
+      clearInterval(captureInterval);
+    };
+  }, [model]);
+
+  useEffect(() => {
+    // console.log("image source", imageSrc);
+    // console.log("pictureRef", pictureRef.current);
+    // console.log("start", start);
+    if (start && imageSrc !== GOOD_POSTURE) {
+      analyze();
+    }
+    if (!start && imageSrc !== GOOD_POSTURE) {
+      setImageSrc(GOOD_POSTURE);
+    }
+  }, [imageSrc, start]);
+
+  //init in a thunk, set model in store --> thunk should be dispatched in a useEffect, use through useSelector
+
+  //another useEffect for setInterval, function that returns a function to end
+  // const startPoses = () => {
+  //   setIntervalId(
+  //     setInterval(function () {
+  //       capture();
+  //       // analyze();
+  //     }, 5000)
+  //   );
+  // };
+
+  //analyze should also be a thunk and should take pictureRef.current, and model as parameters. dispatched in useEffect
   const analyze = async () => {
-    let imageElement = document.getElementById("image");
+    let imageElement = pictureRef.current;
     console.log("Current image Element", imageElement);
     const flipHorizontal = false;
     let { pose, posenetOutput } = await model.estimatePose(
       imageElement,
       flipHorizontal
     );
-    console.log("postNet OUTPUT", posenetOutput);
+    //console.log("postNet OUTPUT", posenetOutput);
     let prediction = await model.predict(posenetOutput);
     console.log("prediction:", prediction);
 
-    dispatch(addPose({ id: userId, data: prediction }));
+    dispatch(addPose({ data: prediction }));
   };
 
   return (
@@ -61,16 +101,20 @@ function Tracker() {
       ) : null}
       <div>
         <img
+          ref={pictureRef}
           id="image"
-          style={{ width: 400, height: 300, zindex: 10 }}
+          style={{
+            width: 400,
+            height: 300,
+            zindex: 10,
+            ...(start && { display: "none" }),
+          }}
           src={imageSrc}
         />
       </div>
       <button
         onClick={() => {
           setStart(true);
-          init();
-          startPoses();
         }}
       >
         Start
@@ -78,8 +122,6 @@ function Tracker() {
       <button
         onClick={() => {
           setStart(false);
-          clearInterval(intervalId);
-          setIntervalId(null);
         }}
       >
         Stop

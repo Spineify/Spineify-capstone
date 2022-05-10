@@ -71,6 +71,7 @@ function Screenshot({ model, webcamRef }) {
               zindex: 9,
               width: 400,
               height: 400,
+              opacity: 0,
             }}
           />
           {/* <button
