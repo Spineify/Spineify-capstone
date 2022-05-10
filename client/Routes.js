@@ -7,10 +7,8 @@ import { me } from './store'
 import Posenet from './components/Posenet'
 import Survey from "./components/Survey";
 import DataVis from './components/DataVis'
-import Survey from './components/Survey'
 import Screenshot from './components/Screenshot'
-// import Posenet from './components/Posenet'
-// import BaseCalibration from './components/Calibrations_not_used/BaseCalibration'
+
 
 /**
  * COMPONENT
