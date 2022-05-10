@@ -4,9 +4,10 @@ import { withRouter, Route, Switch, Redirect } from 'react-router-dom'
 import { Login, Signup } from './components/AuthForm'
 import Home from './components/Home'
 import { me } from './store'
-// import Posenet from './components/Posenet'
-import BaseCalibration from '../client/components/BaseCalibration'
 import Survey from './components/Survey'
+import Screenshot from './components/Screenshot'
+// import Posenet from './components/Posenet'
+// import BaseCalibration from './components/Calibrations_not_used/BaseCalibration'
 
 /**
  * COMPONENT
@@ -26,6 +27,7 @@ class Routes extends Component {
 						<Route path="/home" component={Home} />
 						<Redirect to="/home" />
 						{/* <Route path="/posenet" component={Posenet} /> */}
+						<Route path="/pose" component={Screenshot} />
 						<Route path="/survey" component={Survey} />
 					</Switch>
 				) : (
