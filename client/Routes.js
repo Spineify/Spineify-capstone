@@ -1,13 +1,12 @@
-import React, { Component, Fragment } from "react";
-import { connect } from "react-redux";
-import { withRouter, Route, Switch, Redirect } from "react-router-dom";
-import { Login, Signup } from "./components/AuthForm";
-import Home from "./components/Home";
-import { me } from "./store";
-import Posenet from "./components/Posenet";
-import Survey from "./components/Survey";
+import React, { Component, Fragment } from 'react'
+import { connect } from 'react-redux'
+import { withRouter, Route, Switch, Redirect } from 'react-router-dom'
+import { Login, Signup } from './components/AuthForm'
+import Home from './components/Home'
+import { me } from './store'
+import Survey from './components/Survey'
+import Tracker from './components/Tracker'
 import DataVis from "./components/DataVis";
-import Screenshot from "./components/Screenshot";
 
 /**
  * COMPONENT
@@ -16,7 +15,7 @@ class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData();
   }
-
+  
   render() {
     const { isLoggedIn } = this.props;
     return (
@@ -24,17 +23,14 @@ class Routes extends Component {
         {isLoggedIn ? (
           <Switch>
             <Route path="/home" component={Home} />
-            <Route path="/posenet" component={Posenet} />
             <Route path="/survey" component={Survey} />
             <Route path="/data" component={DataVis} />
+            <Route path="/pose" component={Tracker} />
           </Switch>
         ) : (
           <Switch>
-            <Route path="/posenet" component={Posenet} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
-            <Route path="/survey" component={Survey} />
-            <Route path="/data" component={DataVis} />
           </Switch>
         )}
       </div>
