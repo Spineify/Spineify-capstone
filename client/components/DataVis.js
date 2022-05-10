@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme, VictoryStack } from 'victory'
 import { getUserData, getAllData } from '../store/surveyDataSet'
+import moment from 'moment'
 
 export default (props) => {
   const dispatch = useDispatch()
@@ -18,8 +19,25 @@ export default (props) => {
   }, [dispatch])
   //may need to put dispatch back into the square brackets
 
+  const graphData = [];
+  const graphDataMap = dataSet.map(survey => {
+    console.log(survey.createdAt, 'survey time')
+    const formatTime = Date.now()-Date.parse(survey.createdAt)
 
+    console.log(moment(survey.createdAt).fromNow(), 'time ago')
 
+    const dataObj = {
+      discomfort_level: Number(survey.discomfort_level),
+      time_taken: formatTime
+    }
+    graphData.push(dataObj)
+  })
+
+  console.log('graphData: ', graphData)
+  //I think this is what we need for the graphs! moment(time_taken).fromNow() will list how long ago it's been since the survey's been taken, but this version will be easy for the computer to parse! (it's the time since it's been taken in milliseconds)
+
+  //we'll need to use the moment library to display times dynamically
+  //moment(time_taken).fromNow();
 
 
 // test data, will be deleted //
