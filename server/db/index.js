@@ -6,7 +6,7 @@ const User = require('./models/User')
 const Posture = require('./models/Posture')
 const Stretch = require('./models/Stretch')
 const SurveyData = require('./models/SurveyData')
-const BaseCalibration = require('./models/BaseCalibration')
+// const BaseCalibration = require('./models/BaseCalibration')
 
 //associations could go here!
 
@@ -14,8 +14,8 @@ User.hasMany(Posture)
 Posture.belongsTo(User)
 User.hasMany(SurveyData)
 SurveyData.belongsTo(User)
-User.hasMany(BaseCalibration)
-BaseCalibration.belongsTo(User)
+// User.hasMany(BaseCalibration)
+// BaseCalibration.belongsTo(User)
 
 module.exports = {
 	db,
@@ -24,6 +24,6 @@ module.exports = {
 		Stretch,
 		Posture,
 		SurveyData,
-		BaseCalibration,
+		// BaseCalibration,
 	},
 }
