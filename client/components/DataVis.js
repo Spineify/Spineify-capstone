@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme, VictoryStack } from 'victory'
+import { VictoryLine, VictoryScatter, VictoryChart, VictoryAxis, VictoryTheme, VictoryStack } from 'victory'
 import { getUserData, getAllData } from '../store/surveyDataSet'
 import moment from 'moment'
 
@@ -9,7 +9,10 @@ export default (props) => {
   const [surveyData, setSurveyData] = useState([])
   const userId = useSelector((state) => state.auth.id)
   const dataSet = useSelector((state) => state.dataSet)
-  console.log(dataSet, 'dataSet state test?')
+
+  const sortedSet = dataSet.sort((a,b) => {
+    return a.id - b.id
+  })
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,15 +23,18 @@ export default (props) => {
   //may need to put dispatch back into the square brackets
 
   const graphData = [];
-  const graphDataMap = dataSet.map(survey => {
-    console.log(survey.createdAt, 'survey time')
-    const formatTime = Date.now()-Date.parse(survey.createdAt)
+  const graphDataMap = sortedSet.map(survey => {
+    //console.log(survey.createdAt, 'survey time')
 
-    console.log(moment(survey.createdAt).fromNow(), 'time ago')
+    const formatTime = Date.now() - Date.parse(survey.createdAt)
+    const negativeTime = Date.parse(survey.createdAt) - Date.now()
+    //console.log(negativeTime, 'time since survey taken')
+
+    //console.log(moment(survey.createdAt).fromNow(), 'time ago')
 
     const dataObj = {
-      discomfort_level: Number(survey.discomfort_level),
-      time_taken: formatTime
+      x: survey.createdAt,
+      y: Number(survey.discomfort_level),
     }
     graphData.push(dataObj)
   })
@@ -40,75 +46,45 @@ export default (props) => {
   //moment(time_taken).fromNow();
 
 
-// test data, will be deleted //
-  const data2012 = [
-    { quarter: 1, earnings: 13000 },
-    { quarter: 2, earnings: 16500 },
-    { quarter: 3, earnings: 14250 },
-    { quarter: 4, earnings: 19000 }
-  ];
-
-  const data2013 = [
-    { quarter: 1, earnings: 15000 },
-    { quarter: 2, earnings: 12500 },
-    { quarter: 3, earnings: 19500 },
-    { quarter: 4, earnings: 13000 }
-  ];
-
-  const data2014 = [
-    { quarter: 1, earnings: 11500 },
-    { quarter: 2, earnings: 13250 },
-    { quarter: 3, earnings: 20000 },
-    { quarter: 4, earnings: 15500 }
-  ];
-
-  const data2015 = [
-    { quarter: 1, earnings: 18000 },
-    { quarter: 2, earnings: 13250 },
-    { quarter: 3, earnings: 15000 },
-    { quarter: 4, earnings: 12000 }
-  ];
-
   return (
-    <VictoryChart
-      theme={VictoryTheme.material}
-      domainPadding={20}
-    >
-      <VictoryAxis
-        // tickValues specifies both the number of ticks and where
-        // they are placed on the axis
-        tickValues={[1, 2, 3, 4]}
-        tickFormat={["Quarter 1", "Quarter 2", "Quarter 3", "Quarter 4"]}
-      />
-      <VictoryAxis
-        dependentAxis
-        // tickFormat specifies how ticks should be displayed
-        tickFormat={(x) => (`$${x / 1000}k`)}
-      />
-      <VictoryStack
-        colorScale={"warm"}
-      >
-        <VictoryBar
-          data={data2012}
-          x="quarter"
-          y="earnings"
-        />
-        <VictoryBar
-          data={data2013}
-          x="quarter"
-          y="earnings"
-        />
-        <VictoryBar
-          data={data2014}
-          x="quarter"
-          y="earnings"
-        />
-        <VictoryBar
-          data={data2015}
-          x="quarter"
-          y="earnings"
-        />
-      </VictoryStack>
-    </VictoryChart>
+    <div>
+      {graphData.length === 0 ? <h1>Loading data, please wait</h1> :
+        <VictoryChart
+          theme={VictoryTheme.material}
+          domainPadding={20}
+        >
+          <VictoryAxis
+          label="Time Taken"
+          padding={50}
+          tickFormat={(x)=>moment(x).format("MMM Do")}
+          fixLabelOverlap={true}
+          // range={} this will be used when we filter time ranges
+          style={{
+            axisLabel: {fontSize:12, padding: 30},
+            tickLabels: {fontSize: 8, padding: 5}
+          }}
+          />
+          <VictoryAxis
+          label={"Discomfort Level"}
+            dependentAxis
+            domain={[0,10]}
+            padding={50}
+            style={{
+              axisLabel: {fontSize:12, padding: 30},
+              tickLabels: {fontSize: 8, padding: 5}
+            }}
+          />
+          <VictoryStack
+            colorScale={"warm"}
+          >
+            {console.log(graphData.length, graphData, 'data within return')}
+            <VictoryLine
+              data={graphData}
+            />
+          </VictoryStack>
+        </VictoryChart>
+      }
+    </div>
+
   )
 }
