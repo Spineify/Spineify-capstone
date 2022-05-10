@@ -1,7 +1,6 @@
-
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { addData } from "../store/surveyData";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import "survey-core/modern.min.css";
 import { StylesManager, Model } from "survey-core";
 import { Survey } from "survey-react-ui";
@@ -9,7 +8,7 @@ import { Survey } from "survey-react-ui";
 StylesManager.applyTheme("modern");
 
 const surveyJson = {
-  title: "Spinefy",
+  title: "Daily Check-in",
   logoPosition: "right",
   pages: [
     {
@@ -19,15 +18,17 @@ const surveyJson = {
           type: "rating",
           name: "discomfort_level",
           title:
-            "Rate your current level of discomfort. (0 = no discomfort, 10=highest level of discomfort)",
+            "Rate your current level of discomfort. (0 = no discomfort, 10 = highest level of discomfort)",
           isRequired: true,
           rateMin: 0,
           rateMax: 10,
-          minRateDescription: "No",
+          minRateDescription: "None",
+          maxRateDescription: "Max",
         },
         {
           type: "checkbox",
           name: "pain_area",
+          visibleIf: "{discomfort_level} >= 1",
           title: "Please select all current areas of discomfort.",
           choices: [
             {
@@ -51,6 +52,7 @@ const surveyJson = {
               text: "Hips",
             },
           ],
+          hasSelectAll: true,
         },
       ],
     },
@@ -58,13 +60,30 @@ const surveyJson = {
 };
 
 function App({ addData }) {
+  let userId = useSelector((state) => state.auth.id);
+  console.log("USERID", userId);
   const survey = new Model(surveyJson);
-  const alertResults = useCallback((sender) => {
-    const results = JSON.stringify(sender.data);
-    console.log("RESULTS", results);
-    addData(results);
-    // alert(results);
-  }, []);
+
+  let jsonData;
+
+  const alertResults = useCallback(
+    (sender) => {
+      const results = JSON.stringify(sender.data);
+      jsonData = JSON.parse(results);
+      jsonData.userId = userId;
+      console.log("JSONDATA", jsonData);
+      if (userId) {
+        addData(jsonData);
+      }
+    },
+    [userId]
+  );
+
+  useEffect(() => {
+    if (userId) {
+      jsonData.userId = userId;
+    }
+  }, [jsonData]);
 
   survey.onComplete.add(alertResults);
 
