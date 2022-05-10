@@ -2,19 +2,17 @@ import axios from "axios";
 
 const ADD_DATA = "ADD_DATA";
 
-
 const _addData = (surveyData) => ({
   type: ADD_DATA,
   surveyData,
 });
 
-
-
 export const addData = (surveyData) => {
+  console.log("SUVERDATA", surveyData);
   return async (dispatch) => {
-    const jsonData = JSON.parse(surveyData);
     try {
-      const { data } = await axios.post("/api/surveydata", jsonData);
+      const { data } = await axios.post("/api/surveydata", surveyData);
+      // console.log("DATA store", data);
       dispatch(_addData(data));
     } catch (err) {
       console.log(err.response.data);

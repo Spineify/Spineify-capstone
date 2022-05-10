@@ -13,24 +13,29 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-router.get('/:id', async (req, res, next) => {
-  try{
+router.get("/:id", async (req, res, next) => {
+  try {
     const data = await SurveyData.findAll({
       where: {
-        id: req.body.id
-      }
-    })
-    res.send(data)
-  } catch(err) {
-    next(err)
+        id: req.body.id,
+      },
+    });
+    res.send(data);
+  } catch (err) {
+    next(err);
   }
-})
+});
 
 // POST request
 
 router.post("/", async (req, res, next) => {
+  console.log("BODY", req.body);
   try {
-    const newData = await SurveyData.create(req.body);
+    const newData = await SurveyData.create({
+      userId: req.body.userId,
+      discomfort_level: req.body.discomfort_level,
+      pain_area: req.body.pain_area,
+    });
     console.log("REQ", req.body);
     //   {
     //   where: {
