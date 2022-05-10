@@ -4,10 +4,10 @@ import { withRouter, Route, Switch, Redirect } from "react-router-dom";
 import { Login, Signup } from "./components/AuthForm";
 import Home from "./components/Home";
 import { me } from "./store";
+import Posenet from "./components/Posenet";
 import Survey from "./components/Survey";
+import DataVis from "./components/DataVis";
 import Screenshot from "./components/Screenshot";
-// import Posenet from './components/Posenet'
-// import BaseCalibration from './components/Calibrations_not_used/BaseCalibration'
 
 /**
  * COMPONENT
@@ -19,23 +19,22 @@ class Routes extends Component {
 
   render() {
     const { isLoggedIn } = this.props;
-
     return (
       <div>
         {isLoggedIn ? (
           <Switch>
             <Route path="/home" component={Home} />
-            <Redirect to="/home" />
-            {/* <Route path="/posenet" component={Posenet} /> */}
-            <Route path="/pose" component={Screenshot} />
+            <Route path="/posenet" component={Posenet} />
             <Route path="/survey" component={Survey} />
+            <Route path="/data" component={DataVis} />
           </Switch>
         ) : (
           <Switch>
-            {/* <Route path="/posenet" component={Posenet} /> */}
+            <Route path="/posenet" component={Posenet} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
             <Route path="/survey" component={Survey} />
+            <Route path="/data" component={DataVis} />
           </Switch>
         )}
       </div>
