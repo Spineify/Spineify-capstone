@@ -7,6 +7,7 @@ import surveyReducer from './surveyData'
 import surveyDataSetReducer from "./surveyDataSet";
 import posesReducer from './posture'
 import modelReducer from './tmModel'
+import stretchReducer from './stretch'
 
 const reducer = combineReducers({
 	auth,
@@ -14,6 +15,7 @@ const reducer = combineReducers({
 	posesReducer,
 	modelReducer,
   dataSet: surveyDataSetReducer,
+	stretch: stretchReducer
 })
 
 const middleware = composeWithDevTools(
