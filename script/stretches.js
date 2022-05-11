@@ -74,14 +74,14 @@ let stretches = [
 		directions: `Clasping your hands behind your head, squeeze your shoulder blades together.\nHold this squeeze for 5-6 seconds.\nTake a breath, then repeat one more time.`,
 		category: ["upper-back", "shoulders"],
 		imageURL:
-			'/stretches/wslBackandChest.git',
+			'/stretches/wslBackandChest.gif',
 	},
 	{
 		name: "Seated Spinal Rotation",
 		directions: `While seated, cross your arms over your chest.\nGrab your shoulders.\nRotate your upper body from the waist, turning gently from left to right as far as feels comfortable.\nYou should feel a tension on both sides of your lower back as it stretches out.`,
 		category: ["lower-back"],
 		imageURL:
-			'stretches/seated-spinal-rotation.jpg',
+			'/stretches/seated-spinal-rotation.png',
 	},
 	{
 		name: "Neck stretch",
