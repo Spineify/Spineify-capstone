@@ -14,8 +14,8 @@ router.get("/", async (req, res, next) => {
 });
 
 router.get("/:userId", async (req, res, next) => {
-  console.log("api route hit");
   try {
+
     const data = await SurveyData.findAll({
       where: {
         userId: req.params.userId,

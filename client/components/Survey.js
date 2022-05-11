@@ -68,12 +68,10 @@ function App({ addData }) {
 
   const alertResults = useCallback(
     (sender) => {
-      const results = JSON.stringify(sender.data);
-      jsonData = JSON.parse(results);
-      jsonData.userId = userId;
-      console.log("JSONDATA", jsonData);
+      const results = sender.data;
+      results.userId = userId;
       if (userId) {
-        addData(jsonData);
+        addData(results);
       }
     },
     [userId]
