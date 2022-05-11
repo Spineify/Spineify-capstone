@@ -10,6 +10,7 @@ import {
 import { getUserData, getAllData } from "../store/surveyDataSet";
 import moment from "moment";
 import PainAreaChart from "./PainAreaChart";
+import PostureTypePie from "./PostureTypePie";
 
 export default (props) => {
   const dispatch = useDispatch();
@@ -74,6 +75,7 @@ export default (props) => {
         </VictoryChart>
       )}
       <PainAreaChart dataSet={sortedSet} />
+      <PostureTypePie />
     </div>
   );
 };

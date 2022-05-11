@@ -28,7 +28,6 @@ export const getUserData = (userId) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.get(`/api/surveydata/${userId}`);
-      console.log("DATA", data);
       dispatch(_getUserData(data));
     } catch (err) {
       console.log(err);

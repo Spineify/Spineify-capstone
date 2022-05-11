@@ -79,12 +79,6 @@ function App({ addData }) {
     [userId]
   );
 
-  useEffect(() => {
-    if (userId) {
-      jsonData.userId = userId;
-    }
-  }, [jsonData]);
-
   survey.onComplete.add(alertResults);
 
   return <Survey model={survey} />;
