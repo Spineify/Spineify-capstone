@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect } from "react";
 import { addData } from "../store/surveyData";
+import { suggestStretch } from "../store/stretch";
 import { connect, useSelector } from "react-redux";
 import "survey-core/modern.min.css";
 import { StylesManager, Model } from "survey-core";
@@ -59,31 +60,24 @@ const surveyJson = {
   ],
 };
 
-function App({ addData }) {
+function App({ addData, suggestStretch }) {
   let userId = useSelector((state) => state.auth.id);
-  console.log("USERID", userId);
   const survey = new Model(surveyJson);
-
-  let jsonData;
 
   const alertResults = useCallback(
     (sender) => {
-      const results = JSON.stringify(sender.data);
-      jsonData = JSON.parse(results);
-      jsonData.userId = userId;
-      console.log("JSONDATA", jsonData);
+      const results = sender.data;
+      results.userId = userId;
+      console.log('results: ' , results)
       if (userId) {
-        addData(jsonData);
+        addData(results);
+      }
+      if(results.pain_area){
+        suggestStretch(results.pain_area)
       }
     },
     [userId]
   );
-
-  useEffect(() => {
-    if (userId) {
-      jsonData.userId = userId;
-    }
-  }, [jsonData]);
 
   survey.onComplete.add(alertResults);
 
@@ -93,6 +87,7 @@ function App({ addData }) {
 const mapDispatch = (dispatch) => {
   return {
     addData: (data) => dispatch(addData(data)),
+    suggestStretch: (pain_area) => dispatch(suggestStretch(pain_area))
   };
 };
 

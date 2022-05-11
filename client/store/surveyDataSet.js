@@ -14,9 +14,14 @@ const _getUserData = (survey) => ({
 });
 
 export const getAllData = () => {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
     try {
-      const { data } = await axios.get("/api/surveydata");
+      const auth = getState().auth
+      const { data } = await axios.get("/api/surveydata", {
+        headers: {
+          authorization: auth.token
+        }
+      });
       dispatch(_getAllData(data));
     } catch (err) {
       console.log(err);
@@ -25,10 +30,14 @@ export const getAllData = () => {
 };
 
 export const getUserData = (userId) => {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
     try {
-      const { data } = await axios.get(`/api/surveydata/${userId}`);
-      console.log("DATA", data);
+      const auth = getState().auth
+      const { data } = await axios.get(`/api/surveydata/${userId}`, {
+        headers: {
+          authorization: auth.token
+        }
+      });
       dispatch(_getUserData(data));
     } catch (err) {
       console.log(err);
