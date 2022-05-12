@@ -4,6 +4,7 @@ import { connect, useSelector } from "react-redux";
 import "survey-core/modern.min.css";
 import { StylesManager, Model } from "survey-core";
 import { Survey } from "survey-react-ui";
+import { Modal, Button } from "react-bootstrap";
 
 StylesManager.applyTheme("modern");
 
@@ -59,8 +60,35 @@ const surveyJson = {
   ],
 };
 
+function MyVerticallyCenteredModal(props) {
+  const survey = new Model(surveyJson);
+
+  return (
+    <Modal
+      {...props}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">
+          Daily Check-In
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <Survey model={survey} />
+      </Modal.Body>
+      <Modal.Footer>
+        <Button onClick={props.onHide}>Close</Button>
+      </Modal.Footer>
+    </Modal>
+  );
+}
+
 const SurveyModal = (props) => {
   let userId = useSelector((state) => state.auth.id);
+  const [modalShow, setModalShow] = React.useState(false);
+
   const survey = new Model(surveyJson);
 
   let jsonData;
@@ -71,7 +99,9 @@ const SurveyModal = (props) => {
       jsonData = JSON.parse(results);
       jsonData.userId = userId;
       console.log("JSONDATA", jsonData);
+      console.log("USERID", userId);
       if (userId) {
+        console.log("if statement for add");
         addData(jsonData);
         // here we can have a if jsonData.discomfort_level > 0
         // getStretches() api call
@@ -83,57 +113,16 @@ const SurveyModal = (props) => {
   survey.onComplete.add(alertResults);
 
   return (
-    <div className="modal-container">
-      <button
-        type="button"
-        class="btn btn-primary"
-        data-toggle="modal"
-        data-target="#exampleModalCenter"
-      >
-        Take Daily Survey
-      </button>
-      <div
-        class="modal fade"
-        id="exampleModalCenter"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="exampleModalCenterTitle"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">
-                Daily Survey
-              </h5>
-              <button
-                type="button"
-                class="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <Survey model={survey} />
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-dismiss="modal"
-              >
-                Close
-              </button>
-              <button type="button" class="btn btn-primary">
-                Save changes
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <>
+      <Button variant="primary" onClick={() => setModalShow(true)}>
+        Take Daily Check-In Survey
+      </Button>
+
+      <MyVerticallyCenteredModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
+    </>
   );
 };
 
@@ -144,3 +133,57 @@ const mapDispatch = (dispatch) => {
 };
 
 export default connect(null, mapDispatch)(SurveyModal);
+
+{
+  /* <div className="modal-container">
+<button
+  type="button"
+  class="btn btn-primary"
+  data-toggle="modal"
+  data-target="#exampleModalCenter"
+>
+  Take Daily Survey
+</button>
+<div
+  class="modal fade"
+  id="exampleModalCenter"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">
+          Daily Survey
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <Survey model={survey} />
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-dismiss="modal"
+        >
+          Close
+        </button>
+        <button type="button" value="Complete" class="btn btn-primary">
+          Save changes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+</div> */
+}

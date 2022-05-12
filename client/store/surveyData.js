@@ -10,7 +10,9 @@ const _addData = (surveyData) => ({
 export const addData = (surveyData) => {
   console.log("SUVERDATA", surveyData);
   return async (dispatch) => {
+    console.log("after return");
     try {
+      console.log("inside try block of store");
       const { data } = await axios.post("/api/surveydata", surveyData);
       console.log("DATA store", data);
       dispatch(_addData(data));

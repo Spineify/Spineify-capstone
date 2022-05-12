@@ -22,6 +22,7 @@ const App = () => {
       <Navbar />
       <Routes />
       <Tracker />
+
       <SurveyModal />
     </div>
   );
