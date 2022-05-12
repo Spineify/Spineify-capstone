@@ -15,7 +15,7 @@ const reducer = combineReducers({
 	posesReducer,
 	modelReducer,
   dataSet: surveyDataSetReducer,
-	stretch: stretchReducer
+	stretchList: stretchReducer
 })
 
 const middleware = composeWithDevTools(

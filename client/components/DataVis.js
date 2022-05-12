@@ -11,6 +11,7 @@ import { getUserData, getAllData } from "../store/surveyDataSet";
 import moment from "moment";
 import PainAreaChart from "./PainAreaChart";
 import PostureTypePie from "./PostureTypePie";
+import StretchList from "./StretchList";
 
 export default (props) => {
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ export default (props) => {
   });
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = () => {
       if (userId) {
         dispatch(getUserData(userId));
       }
@@ -73,6 +74,7 @@ export default (props) => {
       )}
       <PainAreaChart dataSet={sortedSet} />
       <PostureTypePie />
+      <StretchList />
     </div>
   );
 };

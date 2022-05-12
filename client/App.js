@@ -21,7 +21,7 @@ const App = () => {
     <div>
       <Navbar />
       <Routes />
-      <Tracker />
+      {/* <Tracker /> */}
 
       <SurveyModal />
     </div>

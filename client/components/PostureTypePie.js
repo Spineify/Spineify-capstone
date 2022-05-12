@@ -17,7 +17,6 @@ const PostureTypePie = (props) => {
     fetchPoses();
   }, [userId]);
 
-  console.log("PIEDATA", pieData);
   const posturePieData = [
     { x: "Good Posture", y: 0 },
     { x: "Bad Posture", y: 0 },
@@ -43,7 +42,6 @@ const PostureTypePie = (props) => {
     entry.y = poseCount;
   }
   const checkArray = posturePieData.filter((entry) => entry.y !== 0).length;
-  console.log("PosturePieData", posturePieData);
 
   return (
     <div>

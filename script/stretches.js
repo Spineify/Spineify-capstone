@@ -32,7 +32,7 @@ let stretches = [
 		directions:
 			'Raise your arm and bend it so that your hand reaches toward the opposite side. \nUse your other hand and pull the elbow toward your head. \nHold for 10 to 30 seconds. \nRepeat on the other side.',
 		category: ['upper-back'],
-		imageURL: '/stretches/Tricept_Stretch.gif',
+		imageURL: '/stretches/Tripcep_Stretch.gif',
 	},
 	{
 		name: 'Torso Stretch, or Trunk Rotation',
