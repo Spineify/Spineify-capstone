@@ -4,7 +4,6 @@ import { withRouter, Route, Switch, Redirect } from "react-router-dom";
 import { Login, Signup } from "./components/AuthForm";
 import Home from "./components/Home";
 import { me } from "./store";
-import Survey from "./components/Survey";
 import Tracker from "./components/Tracker";
 import DataVis from "./components/DataVis";
 
@@ -23,7 +22,6 @@ class Routes extends Component {
         {isLoggedIn ? (
           <Switch>
             <Route path="/home" component={Home} />
-            <Route path="/survey" component={Survey} />
             <Route path="/data" component={DataVis} />
             <Route path="/pose" component={Tracker} />
           </Switch>

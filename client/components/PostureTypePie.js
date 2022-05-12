@@ -45,6 +45,11 @@ const PostureTypePie = (props) => {
   const checkArray = posturePieData.filter((entry) => entry.y !== 0).length;
   console.log("PosturePieData", posturePieData);
 
+  const colors = {
+    pink: ["#CB5599", "#5E6063"],
+    teal: ["#00FFFF", "#5E6063", "#49C6B7"],
+  };
+
   return (
     <div>
       {checkArray.length === 0 ? (
@@ -55,7 +60,7 @@ const PostureTypePie = (props) => {
           <VictoryPie
             data={posturePieData}
             name="Areas of Discomfort"
-            colorScale={"warm"}
+            colorScale={colors["teal"]}
             innerRadius={80}
             padAngle={3}
             width={900}

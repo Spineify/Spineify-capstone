@@ -70,9 +70,8 @@ function MyVerticallyCenteredModal(props) {
     (sender) => {
       const results = sender.data;
       results.userId = userId;
-      console.log("results: ", results);
+
       if (userId) {
-        console.log("in the addData section");
         dispatch(addData(results));
       }
       if (results.pain_area) {
@@ -119,13 +118,9 @@ const SurveyModal = (props) => {
       const results = JSON.stringify(sender.data);
       jsonData = JSON.parse(results);
       jsonData.userId = userId;
-      console.log("JSONDATA", jsonData);
-      console.log("USERID", userId);
       if (userId) {
         console.log("if statement for add");
         addData(jsonData);
-        // here we can have a if jsonData.discomfort_level > 0
-        // getStretches() api call
       }
     },
     [userId]
@@ -145,12 +140,6 @@ const SurveyModal = (props) => {
       />
     </>
   );
-};
-
-const mapDispatch = (dispatch) => {
-  return {
-    addData: (data) => dispatch(addData(data)),
-  };
 };
 
 export default SurveyModal;
