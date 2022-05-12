@@ -9,9 +9,9 @@ const PostureTypePie = (props) => {
   const pieData = useSelector((state) => state.posesReducer);
 
   useEffect(() => {
-    const fetchPoses = async () => {
+    const fetchPoses = () => {
       if (userId) {
-        await dispatch(getPoses());
+        dispatch(getPoses());
       }
     };
     fetchPoses();

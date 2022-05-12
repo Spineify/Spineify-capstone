@@ -25,20 +25,18 @@ export default (props) => {
   useEffect(() => {
     const fetchData = async () => {
       if (userId) {
-        console.log("USERID", userId);
-        await dispatch(getUserData(userId));
+        dispatch(getUserData(userId));
       }
     };
     fetchData();
   }, [userId]);
-  //may need to put dispatch back into the square brackets
 
   const graphDataMap = sortedSet.map((survey) => {
     const dataObj = {
       x: survey.createdAt,
       y: Number(survey.discomfort_level),
     };
-    return dataObj
+    return dataObj;
   });
 
   return (

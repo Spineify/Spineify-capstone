@@ -68,12 +68,12 @@ function App({ addData, suggestStretch }) {
     (sender) => {
       const results = sender.data;
       results.userId = userId;
-      console.log('results: ' , results)
+      // console.log("results: ", results);
       if (userId) {
         addData(results);
       }
-      if(results.pain_area){
-        suggestStretch(results.pain_area)
+      if (results.pain_area) {
+        suggestStretch(results.pain_area);
       }
     },
     [userId]
@@ -87,7 +87,7 @@ function App({ addData, suggestStretch }) {
 const mapDispatch = (dispatch) => {
   return {
     addData: (data) => dispatch(addData(data)),
-    suggestStretch: (pain_area) => dispatch(suggestStretch(pain_area))
+    suggestStretch: (pain_area) => dispatch(suggestStretch(pain_area)),
   };
 };
 

@@ -15,7 +15,6 @@ router.get("/", async (req, res, next) => {
 
 router.get("/:userId", async (req, res, next) => {
   try {
-
     const data = await SurveyData.findAll({
       where: {
         userId: req.params.userId,
@@ -30,6 +29,7 @@ router.get("/:userId", async (req, res, next) => {
 // POST request
 
 router.post("/", async (req, res, next) => {
+  console.log("in addData api route");
   try {
     const newData = await SurveyData.create({
       userId: req.body.userId,

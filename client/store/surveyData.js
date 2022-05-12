@@ -14,8 +14,9 @@ export const addData = (surveyData) => {
       const { data } = await axios.post("/api/surveydata", surveyData, {
         headers: {
           authorization: auth.token,
-        }
+        },
       });
+      console.log("in the addData thunk");
       dispatch(_addData(data));
     } catch (err) {
       console.log(err.response.data);
