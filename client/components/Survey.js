@@ -1,9 +1,12 @@
-import React, { useCallback, useEffect } from 'react'
-import { addData } from '../store/surveyData'
-import { connect, useSelector } from 'react-redux'
-import 'survey-core/modern.min.css'
-import { StylesManager, Model } from 'survey-core'
-import { Survey } from 'survey-react-ui'
+
+import React, { useCallback, useEffect } from "react";
+import { addData } from "../store/surveyData";
+import { suggestStretch } from "../store/stretch";
+import { connect, useSelector } from "react-redux";
+import "survey-core/modern.min.css";
+import { StylesManager, Model } from "survey-core";
+import { Survey } from "survey-react-ui";
+
 
 StylesManager.applyTheme('modern')
 
@@ -59,35 +62,37 @@ const surveyJson = {
 	],
 }
 
-function App({ addData }) {
-	let userId = useSelector((state) => state.auth.id)
-	console.log('USERID', userId)
-	const survey = new Model(surveyJson)
+function App({ addData, suggestStretch }) {
+  let userId = useSelector((state) => state.auth.id);
+  const survey = new Model(surveyJson);
 
-	let jsonData
+  const alertResults = useCallback(
+    (sender) => {
+      const results = sender.data;
+      results.userId = userId;
+      console.log('results: ' , results)
+      if (userId) {
+        addData(results);
+      }
+      if(results.pain_area){
+        suggestStretch(results.pain_area)
+      }
+    },
+    [userId]
+  );
 
-	const alertResults = useCallback(
-		(sender) => {
-			const results = JSON.stringify(sender.data)
-			jsonData = JSON.parse(results)
-			jsonData.userId = userId
-			console.log('JSONDATA', jsonData)
-			if (userId) {
-				addData(jsonData)
-			}
-		},
-		[userId]
-	)
+  survey.onComplete.add(alertResults);
 
-	survey.onComplete.add(alertResults)
 
 	return <Survey model={survey} />
 }
 
 const mapDispatch = (dispatch) => {
-	return {
-		addData: (data) => dispatch(addData(data)),
-	}
-}
+  return {
+    addData: (data) => dispatch(addData(data)),
+    suggestStretch: (pain_area) => dispatch(suggestStretch(pain_area))
+  };
+};
+
 
 export default connect(null, mapDispatch)(App)

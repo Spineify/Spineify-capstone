@@ -10,6 +10,7 @@ import {
 import { getUserData, getAllData } from "../store/surveyDataSet";
 import moment from "moment";
 import PainAreaChart from "./PainAreaChart";
+import PostureTypePie from "./PostureTypePie";
 
 export default (props) => {
   const dispatch = useDispatch();
@@ -32,18 +33,17 @@ export default (props) => {
   }, [userId]);
   //may need to put dispatch back into the square brackets
 
-  const lineGraphData = [];
   const graphDataMap = sortedSet.map((survey) => {
     const dataObj = {
       x: survey.createdAt,
       y: Number(survey.discomfort_level),
     };
-    lineGraphData.push(dataObj);
+    return dataObj
   });
 
   return (
     <div>
-      {lineGraphData.length === 0 ? (
+      {graphDataMap.length === 0 ? (
         <h1>Loading data, please wait</h1>
       ) : (
         <VictoryChart theme={VictoryTheme.material} domainPadding={20}>
@@ -69,11 +69,12 @@ export default (props) => {
             }}
           />
           <VictoryStack colorScale={"warm"}>
-            <VictoryLine data={lineGraphData} />
+            <VictoryLine data={graphDataMap} />
           </VictoryStack>
         </VictoryChart>
       )}
       <PainAreaChart dataSet={sortedSet} />
+      <PostureTypePie />
     </div>
   );
 };

@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  VictoryLine,
-  VictoryChart,
-  VictoryAxis,
-  VictoryTheme,
-  VictoryStack,
-  VictoryPie,
-} from "victory";
+import { VictoryPie } from "victory";
 
 export default (props) => {
   const pieChartData = [
@@ -42,13 +35,11 @@ export default (props) => {
     entry.y = count;
   }
 
-  // console.log(pieChartData, "ending pieChart?");
-  // console.log("count", count);
   const checkArray = pieChartData.filter((entry) => entry.y !== 0).length;
 
   return (
     <div>
-      {checkArray === 0 ? (
+      {checkArray.length === 0 ? (
         <p>Loading data</p>
       ) : (
         <div className="pie-chart-container">
@@ -61,6 +52,9 @@ export default (props) => {
             padAngle={3}
             width={900}
             sortOrder={"ascending"}
+            style={{
+              labels: { fontSize: 18, padding: 35 },
+            }}
             labels={({ datum }) =>
               `${datum.x}: ${((datum.y / count) * 100).toFixed(0)}% `
             }
