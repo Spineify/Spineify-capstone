@@ -59,7 +59,7 @@ const surveyJson = {
   ],
 };
 
-function App({ addData }) {
+const SurveyModal = (props) => {
   let userId = useSelector((state) => state.auth.id);
   const survey = new Model(surveyJson);
 
@@ -82,8 +82,60 @@ function App({ addData }) {
 
   survey.onComplete.add(alertResults);
 
-  return <Survey model={survey} />;
-}
+  return (
+    <div className="modal-container">
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-toggle="modal"
+        data-target="#exampleModalCenter"
+      >
+        Take Daily Survey
+      </button>
+      <div
+        class="modal fade"
+        id="exampleModalCenter"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">
+                Daily Survey
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <Survey model={survey} />
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="button" class="btn btn-primary">
+                Save changes
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const mapDispatch = (dispatch) => {
   return {
@@ -91,4 +143,4 @@ const mapDispatch = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatch)(App);
+export default connect(null, mapDispatch)(SurveyModal);

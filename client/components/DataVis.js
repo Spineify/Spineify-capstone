@@ -25,16 +25,23 @@ export default (props) => {
   useEffect(() => {
     const fetchData = async () => {
       if (userId) {
-        console.log("USERID", userId);
-        await dispatch(getUserData(userId));
+        dispatch(getUserData(userId));
       }
     };
     fetchData();
   }, [userId]);
-  //may need to put dispatch back into the square brackets
 
+  // const lineGraphData = [];
+  // const graphDataMap = sortedSet.map((survey) => {
+  //   const dataObj = {
+  //     x: survey.createdAt,
+  //     y: Number(survey.discomfort_level),
+  //   };
+  //   lineGraphData.push(dataObj);
+  // });
   const lineGraphData = [];
-  const graphDataMap = sortedSet.map((survey) => {
+
+  sortedSet.map((survey) => {
     const dataObj = {
       x: survey.createdAt,
       y: Number(survey.discomfort_level),
