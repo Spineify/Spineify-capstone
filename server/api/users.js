@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const {
-  models: { User, Posture },
+  models: { User, Posture, PetPlant },
 } = require("../db");
 module.exports = router;
 
@@ -18,8 +18,8 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-//GET /users/:id/poses (get all)
-router.get("/:id/poses", async (req, res, next) => {
+//GET /users/poses (get all)
+router.get("/poses", async (req, res, next) => {
   try {
     //token check, in axios, set authorization header
     const user = await User.findByToken(req.headers.authorization);
@@ -30,19 +30,11 @@ router.get("/:id/poses", async (req, res, next) => {
   }
 });
 
-//POST /users/:id/pose (add pose)
-router.post("/:id/pose", async (req, res, next) => {
+//POST /users/pose (add pose)
+router.post("/pose", async (req, res, next) => {
   try {
     const user = await User.findByToken(req.headers.authorization);
-    const data = req.body.data;
-    let max = 0;
-    let type;
-    for (let i = 0; i < Object.keys(data).length; i++) {
-      if (data[i].probability > max) {
-        max = data[i].probability;
-        type = data[i].className;
-      }
-    }
+    const { data, type } = req.body;
     const pose = Posture.create({ data, type, userId: user.id });
     res.send(pose);
   } catch (error) {
@@ -50,12 +42,23 @@ router.post("/:id/pose", async (req, res, next) => {
   }
 });
 
-const requireToken = async (req, res, next) => {
+//GET /users/plant (get single plant)
+router.get("/plant", async (req, res, next) => {
   try {
-    const token = req.headers.authorization;
-    const user = await User.findByToken(token);
-    next();
-  } catch (e) {
-    next(e);
+    const user = await User.findByToken(req.headers.authorization);
+    const petPlant = await PetPlant.findOne({ where: { userId: user.id } });
+    console.log("Plant in route", petPlant);
+    res.send(petPlant);
+  } catch (error) {
+    next(error);
   }
-};
+});
+
+// router.put("/plant", async(req, res, next) => {
+// 	try {
+// 		const user = await User.findByToken(req.headers.authorization)
+// 		const petPlant = await PetPlant.findOne({ where: { userId: user.id } });
+// 	} catch (error) {
+
+// 	}
+// })

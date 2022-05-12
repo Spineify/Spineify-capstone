@@ -1,3 +1,4 @@
+
 import React, { useCallback, useEffect } from "react";
 import { addData } from "../store/surveyData";
 import { suggestStretch } from "../store/stretch";
@@ -6,59 +7,60 @@ import "survey-core/modern.min.css";
 import { StylesManager, Model } from "survey-core";
 import { Survey } from "survey-react-ui";
 
-StylesManager.applyTheme("modern");
+
+StylesManager.applyTheme('modern')
 
 const surveyJson = {
-  title: "Daily Check-in",
-  logoPosition: "right",
-  pages: [
-    {
-      name: "page1",
-      elements: [
-        {
-          type: "rating",
-          name: "discomfort_level",
-          title:
-            "Rate your current level of discomfort. (0 = no discomfort, 10 = highest level of discomfort)",
-          isRequired: true,
-          rateMin: 0,
-          rateMax: 10,
-          minRateDescription: "None",
-          maxRateDescription: "Max",
-        },
-        {
-          type: "checkbox",
-          name: "pain_area",
-          visibleIf: "{discomfort_level} >= 1",
-          title: "Please select all current areas of discomfort.",
-          choices: [
-            {
-              value: "neck",
-              text: "Neck",
-            },
-            {
-              value: "shoulders",
-              text: "Shoulders",
-            },
-            {
-              value: "upper-back",
-              text: "Upper-back",
-            },
-            {
-              value: "lower-back",
-              text: "Lower-back",
-            },
-            {
-              value: "hips",
-              text: "Hips",
-            },
-          ],
-          hasSelectAll: true,
-        },
-      ],
-    },
-  ],
-};
+	title: 'Daily Check-in',
+	logoPosition: 'right',
+	pages: [
+		{
+			name: 'page1',
+			elements: [
+				{
+					type: 'rating',
+					name: 'discomfort_level',
+					title:
+						'Rate your current level of discomfort. (0 = no discomfort, 10 = highest level of discomfort)',
+					isRequired: true,
+					rateMin: 0,
+					rateMax: 10,
+					minRateDescription: 'None',
+					maxRateDescription: 'Max',
+				},
+				{
+					type: 'checkbox',
+					name: 'pain_area',
+					visibleIf: '{discomfort_level} >= 1',
+					title: 'Please select all current areas of discomfort.',
+					choices: [
+						{
+							value: 'neck',
+							text: 'Neck',
+						},
+						{
+							value: 'shoulders',
+							text: 'Shoulders',
+						},
+						{
+							value: 'upper-back',
+							text: 'Upper-back',
+						},
+						{
+							value: 'lower-back',
+							text: 'Lower-back',
+						},
+						{
+							value: 'hips',
+							text: 'Hips',
+						},
+					],
+					hasSelectAll: true,
+				},
+			],
+		},
+	],
+}
 
 function App({ addData, suggestStretch }) {
   let userId = useSelector((state) => state.auth.id);
@@ -81,7 +83,8 @@ function App({ addData, suggestStretch }) {
 
   survey.onComplete.add(alertResults);
 
-  return <Survey model={survey} />;
+
+	return <Survey model={survey} />
 }
 
 const mapDispatch = (dispatch) => {
@@ -91,4 +94,5 @@ const mapDispatch = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatch)(App);
+
+export default connect(null, mapDispatch)(App)
