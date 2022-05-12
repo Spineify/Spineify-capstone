@@ -1,11 +1,11 @@
-import React, { Component, Fragment } from 'react'
-import { connect } from 'react-redux'
-import { withRouter, Route, Switch, Redirect } from 'react-router-dom'
-import { Login, Signup } from './components/AuthForm'
-import Home from './components/Home'
-import { me } from './store'
-import Survey from './components/Survey'
-import Tracker from './components/Tracker'
+import React, { Component, Fragment } from "react";
+import { connect } from "react-redux";
+import { withRouter, Route, Switch, Redirect } from "react-router-dom";
+import { Login, Signup } from "./components/AuthForm";
+import Home from "./components/Home";
+import { me } from "./store";
+import Survey from "./components/Survey";
+import Tracker from "./components/Tracker";
 import DataVis from "./components/DataVis";
 
 /**
@@ -15,7 +15,7 @@ class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData();
   }
-  
+
   render() {
     const { isLoggedIn } = this.props;
     return (
