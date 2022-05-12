@@ -7,11 +7,12 @@ import {
   VictoryTheme,
   VictoryStack,
 } from "victory";
-import { getUserData, getAllData } from "../store/surveyDataSet";
+import { getUserData } from "../store/surveyDataSet";
 import moment from "moment";
 import PainAreaChart from "./PainAreaChart";
 import PostureTypePie from "./PostureTypePie";
 import TimePeriodFilter from "./LineGraphTimeFilter";
+import StretchList from "./StretchList";
 
 export default (props) => {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ export default (props) => {
   });
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = () => {
       if (userId) {
         dispatch(getUserData(userId));
       }
@@ -76,6 +77,17 @@ export default (props) => {
 
   return (
     <div>
+      <form>
+        <label>See charts : </label>
+        <select>
+          <option value="all"> - </option>
+          <option value="discomfort_level">Discomfort Levels</option>
+          <option value="discomfort_areas">Discomfort Areas</option>
+          <option value="posture_breakdown">Posture Breakdown</option>
+        </select>
+
+        <input type="submit" value="Submit" />
+      </form>
       {graphDataMap.length === 0 ? (
         <h1>Loading data, please wait</h1>
       ) : (
@@ -114,6 +126,7 @@ export default (props) => {
       )}
       <PainAreaChart dataSet={sortedSet} />
       <PostureTypePie />
+      <StretchList />
     </div>
   );
 };
