@@ -19,3 +19,29 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+.homeContent{
+  display: flex;
+  flex-direction: row;
+}
+
+
+
+.gameFrame {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  background-color: rgb(179, 249, 249);
+  border-radius: 5rem;
+}
+
+.tree {
+  width: 360;
+  height: auto
+}
+
+.progress{
+  width: 60%
+}
