@@ -20,7 +20,7 @@ export const getPoses = () => {
 	return async (dispatch, getState) => {
 		try {
 			const auth = getState().auth
-			const { data: poses } = await axios.get(`/api/users/${auth.id}/poses`, {
+			const { data: poses } = await axios.get(`/api/users/poses`, {
 				headers: {
 					authorization: auth.token,
 				},
@@ -36,15 +36,11 @@ export const addPose = (poseData) => {
 	return async (dispatch, getState) => {
 		try {
 			const auth = getState().auth
-			const { data: pose } = await axios.post(
-				`/api/users/${auth.id}/pose`,
-				poseData,
-				{
-					headers: {
-						authorization: auth.token,
-					},
-				}
-			)
+			const { data: pose } = await axios.post(`/api/users/pose`, poseData, {
+				headers: {
+					authorization: auth.token,
+				},
+			})
 			dispatch(_addPose(pose))
 		} catch (error) {
 			console.log('Could not add pose', error)
