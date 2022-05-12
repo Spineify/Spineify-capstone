@@ -36,7 +36,7 @@ export default (props) => {
 
   const graphDataMap = sortedSet.map((survey) => {
     let surveyTime = new Date(survey.createdAt);
-    // console.log("SURVEYITEM", surveyTime.getDate());
+    console.log("SURVEYITEM", surveyTime.getDate());
     const dataObj = {
       x: survey.createdAt,
       y: Number(survey.discomfort_level),
@@ -57,16 +57,17 @@ export default (props) => {
     if (filterStatus === "Today") {
       let currentDay = new Date().getDate();
       return graphDataMap.filter((survey) => {
-        let surveyTime = new Date(survey.createdAt).getDate();
-        console.log("Survey DATE", surveyTime);
-        surveyTime === currentDay;
+        let surveyTime = new Date(survey.x);
+        // formatedSurvey = surveyTime.getDate();
+        console.log("Survey DATE", surveyTime.getDate());
+        surveyTime.getDate() === currentDay;
       });
     }
-    // } else if(filterStatus === 'Past Month'){
-    //   let currentWeek = new Date().getMonth()
-    //   return graphDataMap.filter(survey => {
-    //     let surveyMonth = new Date(survey.createdAt)
-    //   })
+    // else if (filterStatus === "Past Month") {
+    //   let currentWeek = new Date().getMonth();
+    //   return graphDataMap.filter((survey) => {
+    //     let surveyMonth = new Date(survey.createdAt);
+    //   });
     // }
     else {
       return graphDataMap;
@@ -102,7 +103,6 @@ export default (props) => {
               padding={50}
               tickFormat={(x) => moment(x).format("MMM Do")}
               fixLabelOverlap={true}
-              // range={} this will be used when we filter time ranges
               style={{
                 axisLabel: { fontSize: 12, padding: 30 },
                 tickLabels: { fontSize: 8, padding: 5 },

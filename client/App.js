@@ -34,7 +34,7 @@ const App = () => {
               </Alert>
             ) : null}
             <SurveyModal />
-            <Tracker />
+            {/* <Tracker /> */}
           </div>
         )}
       </div>

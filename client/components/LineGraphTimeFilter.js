@@ -11,7 +11,7 @@ const TimePeriodFilter = (props) => {
         name="status"
         // onChange={dropDownChangeHandler}
         onChange={(e) => props.onChange(e.target.value)}
-        // value={props.selected}
+        value={props.selected}
       >
         <option value="">Select time period</option>
         <option value="Today">Today</option>
