@@ -17,9 +17,9 @@ const reducer = combineReducers({
   posesReducer,
   modelReducer,
   dataSet: surveyDataSetReducer,
+	stretchList: stretchReducer,
   plantReducer,
-  stretch: stretchReducer
-});
+})
 
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))

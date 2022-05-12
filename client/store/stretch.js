@@ -1,9 +1,9 @@
 import axios from 'axios'
 
-const GET_SINGLE_STRETCH = 'GET_SINGLE_STRETCH';
+const GET_RELEVANT_STRETCH = 'GET_RELEVANT_STRETCH';
 
 const _getSingleStretch = (stretch) => ({
-  type: GET_SINGLE_STRETCH,
+  type: GET_RELEVANT_STRETCH,
   stretch
 })
 
@@ -15,9 +15,8 @@ export const suggestStretch = (pain_area) => {
         headers: {
           authorization: auth.token
         }
-      }
-      );
-      console.log(data, 'data in the thunk?')
+      });
+
       dispatch(_getSingleStretch(data))
     } catch (err) {
       console.log(err)
@@ -27,8 +26,7 @@ export const suggestStretch = (pain_area) => {
 
 export default function stretchReducer (state = [], action) {
   switch(action.type) {
-    case GET_SINGLE_STRETCH:
-      console.log("ACTION STRETCH", action.stretch)
+    case GET_RELEVANT_STRETCH:
       return action.stretch;
     default:
       return state
