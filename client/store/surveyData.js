@@ -8,13 +8,14 @@ const _addData = (surveyData) => ({
 });
 
 export const addData = (surveyData) => {
-  console.log("SUVERDATA", surveyData);
-  return async (dispatch) => {
-    console.log("after return");
+  return async (dispatch, getState) => {
     try {
-      console.log("inside try block of store");
-      const { data } = await axios.post("/api/surveydata", surveyData);
-      console.log("DATA store", data);
+      const auth = getState().auth;
+      const { data } = await axios.post("/api/surveydata", surveyData, {
+        headers: {
+          authorization: auth.token,
+        },
+      });
       dispatch(_addData(data));
     } catch (err) {
       console.log(err.response.data);

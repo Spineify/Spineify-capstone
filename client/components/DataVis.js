@@ -31,27 +31,17 @@ export default (props) => {
     fetchData();
   }, [userId]);
 
-  // const lineGraphData = [];
-  // const graphDataMap = sortedSet.map((survey) => {
-  //   const dataObj = {
-  //     x: survey.createdAt,
-  //     y: Number(survey.discomfort_level),
-  //   };
-  //   lineGraphData.push(dataObj);
-  // });
-  const lineGraphData = [];
-
-  sortedSet.map((survey) => {
+  const graphDataMap = sortedSet.map((survey) => {
     const dataObj = {
       x: survey.createdAt,
       y: Number(survey.discomfort_level),
     };
-    lineGraphData.push(dataObj);
+    return dataObj;
   });
 
   return (
     <div>
-      {lineGraphData.length === 0 ? (
+      {graphDataMap.length === 0 ? (
         <h1>Loading data, please wait</h1>
       ) : (
         <VictoryChart theme={VictoryTheme.material} domainPadding={20}>
@@ -77,7 +67,7 @@ export default (props) => {
             }}
           />
           <VictoryStack colorScale={"warm"}>
-            <VictoryLine data={lineGraphData} />
+            <VictoryLine data={graphDataMap} />
           </VictoryStack>
         </VictoryChart>
       )}

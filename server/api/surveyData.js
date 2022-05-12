@@ -14,8 +14,8 @@ router.get("/", async (req, res, next) => {
 });
 
 router.get("/:userId", async (req, res, next) => {
-  console.log("api route hit");
   try {
+
     const data = await SurveyData.findAll({
       where: {
         userId: req.params.userId,
@@ -30,14 +30,12 @@ router.get("/:userId", async (req, res, next) => {
 // POST request
 
 router.post("/", async (req, res, next) => {
-  console.log("BODY", req.body);
   try {
     const newData = await SurveyData.create({
       userId: req.body.userId,
       discomfort_level: req.body.discomfort_level,
       pain_area: req.body.pain_area,
     });
-    console.log("REQ", req.body);
     //   {
     //   where: {
     //     discomfort_level: req.body.discomfort_level,
