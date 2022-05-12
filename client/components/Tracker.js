@@ -12,6 +12,7 @@ function Tracker() {
 	const model = useSelector((state) => state.modelReducer)
 	const poses = useSelector((state) => state.posesReducer)
 	const [count, setCount] = useState(0)
+	const [system, setSystem] = useState('')
 
 	const dispatch = useDispatch()
 	const webcamRef = useRef(null)
@@ -26,13 +27,20 @@ function Tracker() {
 		if (!model) {
 			return
 		}
-		const captureInterval = setInterval(function () {
+
+		const captureInterval = setInterval(async function () {
 			//if there is no active webcam, it wont take screenshot
 			if (!webcamRef.current) {
 				return
 			}
-			const imageSrc = webcamRef.current.getScreenshot()
-			setImageSrc(imageSrc)
+			const system = await electron.systemState.getSystemState()
+			setSystem(system)
+			console.log('systemState:', system)
+
+			if (system === 'active') {
+				const imageSrc = webcamRef.current.getScreenshot()
+				setImageSrc(imageSrc)
+			}
 		}, 5000)
 		return () => {
 			//runs when you leave the page
@@ -42,13 +50,15 @@ function Tracker() {
 
 	//analyze pose after taking a picture & when the start button is clicked
 	useEffect(() => {
-		if (start && imageSrc !== GOOD_POSTURE) {
-			analyze()
-			dispatch(getPoses())
-			setCount(count + 1)
-		}
-		if (!start && imageSrc !== GOOD_POSTURE) {
-			setImageSrc(GOOD_POSTURE)
+		if (system === 'active') {
+			if (start && imageSrc !== GOOD_POSTURE) {
+				analyze()
+				dispatch(getPoses())
+				setCount(count + 1)
+			}
+			if (!start && imageSrc !== GOOD_POSTURE) {
+				setImageSrc(GOOD_POSTURE)
+			}
 		}
 	}, [imageSrc, start])
 

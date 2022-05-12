@@ -1,4 +1,10 @@
-const { BrowserWindow, app, ipcMain, Notification } = require('electron')
+const {
+	BrowserWindow,
+	app,
+	ipcMain,
+	Notification,
+	powerMonitor,
+} = require('electron')
 const path = require('path')
 require('./server/app')
 
@@ -44,6 +50,13 @@ if (isDev) {
 
 ipcMain.on('notify', (_, message) => {
 	new Notification({ title: 'Spineify', body: message }).show()
+})
+
+ipcMain.handle('getState', () => {
+	console.log('icpMain')
+	let state = powerMonitor.getSystemIdleState(2)
+	console.log('state', state)
+	return state
 })
 
 app.whenReady().then(createWindow)

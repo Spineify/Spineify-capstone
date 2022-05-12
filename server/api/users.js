@@ -18,8 +18,8 @@ router.get('/', async (req, res, next) => {
 	}
 })
 
-//GET /users/:id/poses (get all)
-router.get('/:id/poses', async (req, res, next) => {
+//GET /users/poses (get all)
+router.get('/poses', async (req, res, next) => {
 	try {
 		//token check, in axios, set authorization header
 		const user = await User.findByToken(req.headers.authorization)
@@ -30,19 +30,19 @@ router.get('/:id/poses', async (req, res, next) => {
 	}
 })
 
-//POST /users/:id/pose (add pose)
-router.post('/:id/pose', async (req, res, next) => {
+//POST /users/pose (add pose)
+router.post('/pose', async (req, res, next) => {
 	try {
 		const user = await User.findByToken(req.headers.authorization)
-		const data = req.body.data
-		let max = 0
-		let type
-		for (let i = 0; i < Object.keys(data).length; i++) {
-			if (data[i].probability > max) {
-				max = data[i].probability
-				type = data[i].className
-			}
-		}
+		const { data, type } = req.body
+		// let max = 0
+		// let type
+		// for (let i = 0; i < Object.keys(data).length; i++) {
+		// 	if (data[i].probability > max) {
+		// 		max = data[i].probability
+		// 		type = data[i].className
+		// 	}
+		// }
 		const pose = Posture.create({ data, type, userId: user.id })
 		res.send(pose)
 	} catch (error) {

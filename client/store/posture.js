@@ -32,16 +32,35 @@ export const getPoses = () => {
 	}
 }
 
+//poseData = {data: prediction}
 export const addPose = (poseData) => {
 	return async (dispatch, getState) => {
 		try {
 			const auth = getState().auth
-			const { data: pose } = await axios.post(`/api/users/pose`, poseData, {
-				headers: {
-					authorization: auth.token,
-				},
-			})
-			dispatch(_addPose(pose))
+			//determine data type
+			const { data } = poseData
+			let type
+			let max = 0
+			for (let i = 0; i < Object.keys(data).length; i++) {
+				if (data[i].probability > max) {
+					max = data[i].probability
+					type = data[i].className
+				}
+			}
+			console.log('type', type)
+
+			if (type !== 'No Posture') {
+				const { data: pose } = await axios.post(
+					`/api/users/pose`,
+					{ ...poseData, type },
+					{
+						headers: {
+							authorization: auth.token,
+						},
+					}
+				)
+				dispatch(_addPose(pose))
+			}
 		} catch (error) {
 			console.log('Could not add pose', error)
 		}

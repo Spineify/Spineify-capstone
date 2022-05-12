@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { connect, useDispatch } from 'react-redux'
 import { getPoses } from '../store/posture'
+import Tracker from './Tracker'
 /**
  * COMPONENT
  */
@@ -16,13 +17,7 @@ export const Home = (props) => {
 	return (
 		<div>
 			<h3>Welcome, {username}</h3>
-			<button
-				onClick={() => {
-					electron.notificationApi.sendNotification('fix ur posture pls')
-				}}
-			>
-				Notify
-			</button>
+			<Tracker />
 		</div>
 	)
 }
