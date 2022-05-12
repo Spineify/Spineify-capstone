@@ -68,7 +68,7 @@ function App({ addData, suggestStretch }) {
     (sender) => {
       const results = sender.data;
       results.userId = userId;
-      console.log("results: ", results);
+      // console.log("results: ", results);
       if (userId) {
         addData(results);
       }

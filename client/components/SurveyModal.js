@@ -1,10 +1,11 @@
 import React, { useCallback, useEffect } from "react";
 import { addData } from "../store/surveyData";
-import { connect, useSelector } from "react-redux";
+import { connect, useSelector, useDispatch } from "react-redux";
 import "survey-core/modern.min.css";
 import { StylesManager, Model } from "survey-core";
 import { Survey } from "survey-react-ui";
 import { Modal, Button } from "react-bootstrap";
+import { suggestStretch } from "../store/stretch";
 
 StylesManager.applyTheme("modern");
 
@@ -61,7 +62,28 @@ const surveyJson = {
 };
 
 function MyVerticallyCenteredModal(props) {
+  let userId = useSelector((state) => state.auth.id);
+  const dispatch = useDispatch();
   const survey = new Model(surveyJson);
+
+  const alertResults = useCallback(
+    (sender) => {
+      const results = sender.data;
+      results.userId = userId;
+      console.log("results: ", results);
+      if (userId) {
+        console.log("in the addData section");
+        dispatch(addData(results));
+      }
+      if (results.pain_area) {
+        dispatch(suggestStretch(results.pain_area));
+      }
+    },
+    [userId]
+  );
+
+  survey.onComplete.add(alertResults);
+  // const onSubmitHandler = survey.doComplete(alertResults);
 
   return (
     <Modal
@@ -79,6 +101,7 @@ function MyVerticallyCenteredModal(props) {
         <Survey model={survey} />
       </Modal.Body>
       <Modal.Footer>
+        {/* <Button onClick={onSubmitHandler}>Close</Button> */}
         <Button onClick={props.onHide}>Close</Button>
       </Modal.Footer>
     </Modal>
@@ -131,8 +154,11 @@ const mapDispatch = (dispatch) => {
     addData: (data) => dispatch(addData(data)),
   };
 };
-
-export default connect(null, mapDispatch)(SurveyModal);
+// export const MyConnectedCenteredModal = connect(
+//   null,
+//   mapDispatch
+// )(MyVerticallyCenteredModal);
+export default SurveyModal;
 
 {
   /* <div className="modal-container">
