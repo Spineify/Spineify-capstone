@@ -63,9 +63,10 @@ const PostureTypePie = (props) => {
             padAngle={3}
             width={900}
             height={800}
+
             sortOrder={"ascending"}
             style={{
-              labels: { fontSize: 30, padding: 35 },
+              labels: { fontSize: 35, padding: 35 },
             }}
             labelRadius={({ outerRadius }) => outerRadius + 20}
             labels={({ datum }) =>

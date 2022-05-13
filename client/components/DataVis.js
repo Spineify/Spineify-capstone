@@ -54,16 +54,16 @@ export default (props) => {
         return (
           <>
             <Container className="graphs-container">
-              <Row>
-                <Col className="h-100 d-inline-block">
+              <Row className="graph-row">
+                <Col className="graph-column">
                   <PainAreaChart dataSet={sortedSet} />
                 </Col>
-                <Col className="h-100 d-inline-block">
+                <Col className="graph-column">
                   <PostureTypePie />
                 </Col>
               </Row>
 
-              <Row>
+              <Row className="graph-row">
                 <DiscomfortLevelLineGraph
                   className="graphs-container"
                   dataSet={sortedSet}

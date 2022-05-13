@@ -87,6 +87,22 @@ form div {
   margin: 3px;
 }
 
+/* these might be helpful or they might break the graphs
 .graphs-container {
   height: 20rem;
 }
+
+.graph-row {
+  padding: 50px;
+}
+
+div.graphs-container.container {
+  padding-bottom: 100px;
+}
+
+.pie-chart-container {
+  height: 30rem;
+  width: 0rem;
+} */
+
+

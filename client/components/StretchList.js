@@ -5,8 +5,6 @@ import { Button, Card, Container, Row, Col } from 'react-bootstrap';
 export default (props) => {
   const dispatch = useDispatch();
   const stretchList = useSelector((state) => state.stretchList)
-  console.log('STRETCH LIST', stretchList)
-  //This only works if you come from the survey rn
 
   let example = stretchList[0]
   return (

@@ -11,7 +11,8 @@ export const suggestStretch = (pain_area) => {
   return async (dispatch, getState) => {
     try {
       const auth = getState().auth;
-      const { data } = await axios.get(`/api/stretches/${pain_area[0]}`, {
+      const randomPain = Math.floor(Math.random()*pain_area.length)
+      const { data } = await axios.get(`/api/stretches/${pain_area[randomPain]}`, {
         headers: {
           authorization: auth.token
         }

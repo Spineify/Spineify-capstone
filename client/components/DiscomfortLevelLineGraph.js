@@ -65,7 +65,7 @@ const DiscomfortLevelLineGraph = (props) => {
           <VictoryChart theme={VictoryTheme.material} domainPadding={20}>
             <VictoryAxis
               label="Time Taken"
-              padding={50}
+              // padding={50}
               tickCount={12}
               tickFormat={(x) => {
                 switch (filterStatus) {
@@ -89,7 +89,7 @@ const DiscomfortLevelLineGraph = (props) => {
               label={"Discomfort Level"}
               dependentAxis
               domain={[0, 10]}
-              padding={50}
+              // padding={50}
               style={{
                 axisLabel: { fontSize: 12, padding: 30 },
                 tickLabels: { fontSize: 8, padding: 5 },
@@ -99,7 +99,7 @@ const DiscomfortLevelLineGraph = (props) => {
               <VictoryLine
                 data={finalLineArray}
                 width={400}
-                style={{ data: { stroke: "#49C6B7" } }}
+                style={{ data: { stroke: "#49C6B7"} }}
               />
             </VictoryStack>
           </VictoryChart>
