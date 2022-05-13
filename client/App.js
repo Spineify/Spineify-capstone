@@ -11,13 +11,13 @@ const App = () => {
   useEffect(() => {
     dispatch(getModel());
   }, []);
-
-  return (
-    <div>
-      <Navbar />
-      <Routes />
-    </div>
-  );
-};
+  
+	return (
+		<div>
+			<Navbar />
+			<Routes />
+		</div>
+	)
+}
 
 export default App;
