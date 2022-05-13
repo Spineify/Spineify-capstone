@@ -6,7 +6,7 @@ const PetPlant = db.define('petPlant', {
 	level: {
 		type: Sequelize.INTEGER(),
 		allowNull: false,
-		defaultValue: 0,
+		defaultValue: 1,
 	},
 	points: {
 		type: Sequelize.INTEGER(),
