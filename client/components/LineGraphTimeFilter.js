@@ -1,15 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 
 const TimePeriodFilter = (props) => {
-  // const dropDownChangeHandler = (event) => {
-  //   props.onChange(event.target.value);
-  // };
-
   return (
     <div>
       <select
         name="status"
-        // onChange={dropDownChangeHandler}
         onChange={(e) => props.onChange(e.target.value)}
         value={props.selected}
       >
