@@ -56,7 +56,7 @@ const DiscomfortLevelLineGraph = (props) => {
 
   return (
     <div>
-      {graphDataMap.length === 0 ? (
+      {finalLineArray.length === 0 ? (
         <h1>Loading data, please wait</h1>
       ) : (
         <div>
@@ -70,7 +70,6 @@ const DiscomfortLevelLineGraph = (props) => {
               padding={50}
               tickCount={12}
               tickFormat={(x) => {
-                console.log("X", x);
                 if (!filterStatus) {
                   return moment(x).format("MMM Do");
                 } else if (filterStatus === "Today") {
@@ -78,7 +77,6 @@ const DiscomfortLevelLineGraph = (props) => {
                 } else if (filterStatus === "Past Month") {
                   return moment(x).format("Do");
                 } else if (filterStatus === "Past Year") {
-                  console.log("HITTTT");
                   return moment(x).format("MMMM");
                 }
               }}
