@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import { connect, useDispatch, useSelector } from 'react-redux'
-import { getPoses } from '../store/posture'
-import Tracker from './Tracker'
-import PetPlant from './PetPlant'
-import SurveyModal from './SurveyModal'
-import { getPlant } from '../store/petPlant'
-import { Alert } from 'react-bootstrap'
+import React, { useEffect, useState } from "react";
+import { connect, useDispatch, useSelector } from "react-redux";
+import { getPoses } from "../store/posture";
+import Tracker from "./Tracker";
+import PetPlant from "./PetPlant";
+import SurveyModal from "./SurveyModal";
+import StretchList from "./StretchList";
+import { getPlant } from "../store/petPlant";
+import { Alert } from "react-bootstrap";
+
 /**
  * COMPONENT
  */
@@ -22,31 +24,33 @@ export const Home = (props) => {
 		dispatch(getPlant())
 	}, [])
 
-	return (
-		<div id="home">
-			<h3>Hello, {username}</h3>
-			<SurveyModal />
-			<div>
-				{userId && (
-					<div>
-						{show ? (
-							<Alert color="primary" variant="success" closeLabel="Close alert">
-								Don't forget to take your daily survey! 🌱
-								<button type="button" onClick={() => setShow(false)}>
-									Close
-								</button>
-							</Alert>
-						) : null}
-					</div>
-				)}
-			</div>
-			<div className="homeContent">
-				<Tracker />
-				{Object.keys(plant).length && <PetPlant />}
-			</div>
-		</div>
-	)
-}
+  return (
+    <div id="home">
+      <h3>Hello, {username}</h3>
+      <SurveyModal />
+      <div>
+        {userId && (
+          <div>
+            {show ? (
+              <Alert color="primary" variant="success" closeLabel="Close alert">
+                Don't forget to take your daily survey! 🌱
+                <button type="button" onClick={() => setShow(false)}>
+                  Close
+                </button>
+              </Alert>
+            ) : null}
+          </div>
+        )}
+      </div>
+      <div className="homeContent">
+        <Tracker />
+        {Object.keys(plant).length && <PetPlant />}
+      </div>
+      <br/> <br/>
+      <StretchList />
+    </div>
+  );
+};
 
 /**
  * CONTAINER

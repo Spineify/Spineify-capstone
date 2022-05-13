@@ -2,6 +2,7 @@ import axios from 'axios'
 
 const GET_RELEVANT_STRETCH = 'GET_RELEVANT_STRETCH';
 
+
 const _getSingleStretch = (stretch) => ({
   type: GET_RELEVANT_STRETCH,
   stretch
@@ -11,7 +12,8 @@ export const suggestStretch = (pain_area) => {
   return async (dispatch, getState) => {
     try {
       const auth = getState().auth;
-      const { data } = await axios.get(`/api/stretches/${pain_area[0]}`, {
+      const randomPain = Math.floor(Math.random()*pain_area.length)
+      const { data } = await axios.get(`/api/stretches/${pain_area[randomPain]}`, {
         headers: {
           authorization: auth.token
         }
@@ -23,6 +25,7 @@ export const suggestStretch = (pain_area) => {
     }
   }
 }
+
 
 export default function stretchReducer (state = [], action) {
   switch(action.type) {
