@@ -6,6 +6,7 @@ import Home from "./components/Home";
 import { me } from "./store";
 import Tracker from "./components/Tracker";
 import DataVis from "./components/DataVis";
+import { FavoriteStretches } from "./components/FavoriteStretches";
 
 /**
  * COMPONENT
@@ -25,6 +26,7 @@ class Routes extends Component {
             <Redirect from="/login" to="/home" />
             <Redirect from="/signup" to="/home" />
             <Route path="/data" component={DataVis} />
+            <Route path='/favorites' component={FavoriteStretches} />
           </Switch>
         ) : (
           <Switch>

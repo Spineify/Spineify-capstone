@@ -16,7 +16,6 @@ export const addData = (surveyData) => {
           authorization: auth.token,
         },
       });
-      console.log("in the addData thunk");
       dispatch(_addData(data));
     } catch (err) {
       console.log(err.response.data);
