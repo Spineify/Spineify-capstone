@@ -2,8 +2,20 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 
 const PetPlant = () => {
-	const plant = useSelector((state) => state.plantReducer)
 	const [chest, setChest] = useState('closed')
+	//plant data
+	const plant = useSelector((state) => state.plantReducer)
+	const { inventory } = plant
+	const [water, setWater] = useState(inventory.water)
+	const [nutritiousWater, setNutritiousWater] = useState(
+		inventory.nutritiousWater
+	)
+	const [fertilizer, setFertilizer] = useState(inventory.fertilizer)
+
+	//add setInterval to dispatch(getPlant())
+	//cron job nodejs to schedule and handle notification
+	//add notification when received reward
+
 	const level = String(plant.level)
 	const points = String(plant.points)
 	const date = new Date()
@@ -47,12 +59,23 @@ const PetPlant = () => {
 					/>
 					{chest === 'opened' ? (
 						<div className="rewards">
-							<img className="item" src={'./gamification/dirt.png'} />
-							<img
-								className="item"
-								src={'./gamification/nutritious_water.png'}
-							/>
-							<img className="item" src={'./gamification/water.png'} />
+							<div className="item">
+								<img className="img" src={'./gamification/dirt.png'} />
+								<span>{`${inventory.fertilizer}`}</span>
+							</div>
+
+							<div className="item">
+								<img
+									className="img"
+									src={'./gamification/nutritious_water.png'}
+								/>
+								<span>{`${inventory.nutritiousWater}`}</span>
+							</div>
+
+							<div className="item">
+								<img className="img" src={'./gamification/water.png'} />
+								<span>{`${inventory.water}`}</span>
+							</div>
 						</div>
 					) : null}
 				</div>

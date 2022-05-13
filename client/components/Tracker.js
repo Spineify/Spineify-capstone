@@ -14,6 +14,12 @@ function Tracker() {
 	const [count, setCount] = useState(0)
 	const [system, setSystem] = useState('')
 
+	//get today's date
+	const today = new Date()
+	let date = today.toISOString()
+	date = date.substr(0, 10) // format: YYYY-MM-DD
+	console.log('date:', date)
+
 	const dispatch = useDispatch()
 	const webcamRef = useRef(null)
 	const pictureRef = useRef(null)
@@ -33,6 +39,7 @@ function Tracker() {
 			if (!webcamRef.current) {
 				return
 			}
+
 			const system = await electron.systemState.getSystemState()
 			setSystem(system)
 			console.log('systemState:', system)

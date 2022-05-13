@@ -20,9 +20,14 @@ form div {
   display: inline-block;
 }
 
+#home {
+  height: 100%
+}
+
 .homeContent{
   display: flex;
   flex-direction: row;
+  height: 100%
 }
 
 .gameFrame {
@@ -32,7 +37,6 @@ form div {
   align-items: center;
   width: 25%;
   height: 1200;
-  background: linear-gradient(180deg, #e3f2fd 70%, #ccd5ae 30%);
   border: solid #d1d1d0 1px;
   border-radius: 50% / 30%;
 }
@@ -83,6 +87,15 @@ form div {
 }
 
 .inventory .item {
+  display:flex;
+  flex-direction: row;
+}
+
+.inventory .img {
   width: 40px;
   margin: 3px
+}
+
+.inventory span {
+  font-size: 7px;
 }
