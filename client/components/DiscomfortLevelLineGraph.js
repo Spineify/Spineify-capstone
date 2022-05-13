@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import {
   VictoryLine,
   VictoryChart,
@@ -7,7 +6,6 @@ import {
   VictoryTheme,
   VictoryStack,
 } from "victory";
-
 import moment from "moment";
 import TimePeriodFilter from "./LineGraphTimeFilter";
 
@@ -30,8 +28,8 @@ const DiscomfortLevelLineGraph = (props) => {
   let filteredGraphData = () => {
     let currentDate = new Date();
     console.log("CURRENT DATE", currentDate.getDate());
-    console.log("FILTER", filterStatus); // number 12
-    //getMonth() = number 4 (January = 0)
+    console.log("FILTER", filterStatus);
+
     if (filterStatus === "Today") {
       let currentDay = new Date().getDate();
       return graphDataMap.filter((survey) => {
@@ -111,7 +109,11 @@ const DiscomfortLevelLineGraph = (props) => {
               }}
             />
             <VictoryStack colorScale={"warm"}>
-              <VictoryLine data={finalLineArray} width={400} />
+              <VictoryLine
+                data={finalLineArray}
+                width={400}
+                style={{ data: { stroke: "#49C6B7" } }}
+              />
             </VictoryStack>
           </VictoryChart>
         </div>
