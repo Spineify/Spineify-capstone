@@ -20,7 +20,7 @@ form div {
   display: inline-block;
 }
 
-.homeContent{
+.homeContent {
   display: flex;
   flex-direction: row;
 }
@@ -47,7 +47,7 @@ form div {
   background: linear-gradient(180deg, #031d44 70%, #41521f 30%);
 }
 
-.gameFrame .progress{
+.gameFrame .progress {
   width: 60%;
 }
 
@@ -60,13 +60,13 @@ form div {
 .tree {
   width: 75%;
   height: auto;
-  flex-grow: 3
+  flex-grow: 3;
 }
 
-.inventory{
+.inventory {
   margin: 15px;
   align-self: flex-start;
-  display:flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -78,11 +78,15 @@ form div {
 }
 
 .inventory .rewards {
-  display:flex;
+  display: flex;
   flex-direction: column;
 }
 
 .inventory .item {
   width: 40px;
-  margin: 3px
+  margin: 3px;
+}
+
+.graphs-container {
+  height: 20rem;
 }

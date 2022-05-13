@@ -54,17 +54,18 @@ const PostureTypePie = (props) => {
         <p>Loading data</p>
       ) : (
         <div className="pie-chart-container">
-          <h3>Posture Type Breakdown</h3>
+          <h5>Posture Type Breakdown</h5>
           <VictoryPie
             data={posturePieData}
             name="Areas of Discomfort"
             colorScale={colors["teal"]}
-            innerRadius={80}
+            innerRadius={150}
             padAngle={3}
             width={900}
+            height={800}
             sortOrder={"ascending"}
             style={{
-              labels: { fontSize: 18, padding: 35 },
+              labels: { fontSize: 30, padding: 35 },
             }}
             labelRadius={({ outerRadius }) => outerRadius + 20}
             labels={({ datum }) =>

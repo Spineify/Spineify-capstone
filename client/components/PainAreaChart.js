@@ -43,17 +43,18 @@ export default (props) => {
         <p>Loading data</p>
       ) : (
         <div className="pie-chart-container">
-          <h3>Areas of discomfort</h3>
+          <h5>Areas of discomfort</h5>
           <VictoryPie
             data={pieChartData}
             name="Areas of Discomfort"
             colorScale={"warm"}
-            innerRadius={80}
+            innerRadius={150}
             padAngle={3}
             width={900}
+            height={800}
             sortOrder={"ascending"}
             style={{
-              labels: { fontSize: 18, padding: 35 },
+              labels: { fontSize: 30, padding: 35 },
             }}
             labels={({ datum }) =>
               `${datum.x}: ${((datum.y / count) * 100).toFixed(0)}% `

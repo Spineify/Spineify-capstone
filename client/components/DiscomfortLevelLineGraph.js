@@ -26,29 +26,30 @@ const DiscomfortLevelLineGraph = (props) => {
   };
 
   let filteredGraphData = () => {
-    if (filterStatus === "Today") {
-      let currentDay = new Date().getDate();
-      return graphDataMap.filter((survey) => {
-        let surveyTime = new Date(survey.x);
-        let formatedSurvey = surveyTime.getDate();
-        return formatedSurvey === currentDay;
-      });
-    } else if (filterStatus === "Past Month") {
-      let currentMonth = new Date().getMonth();
-      return graphDataMap.filter((survey) => {
-        let surveyMonth = new Date(survey.x);
-        let formatedMonth = surveyMonth.getMonth();
-        return formatedMonth === currentMonth;
-      });
-    } else if (filterStatus === "Past Year") {
-      let currentYear = new Date().getYear();
-      return graphDataMap.filter((survey) => {
-        let surveyYear = new Date(survey.x);
-        let formatedYear = surveyYear.getYear();
-        return formatedYear === currentYear;
-      });
-    } else {
-      return graphDataMap;
+    switch (filterStatus) {
+      case "Today":
+        let currentDay = new Date().getDate();
+        return graphDataMap.filter((survey) => {
+          let surveyTime = new Date(survey.x);
+          let formatedSurvey = surveyTime.getDate();
+          return formatedSurvey === currentDay;
+        });
+      case "Past Month":
+        let currentMonth = new Date().getMonth();
+        return graphDataMap.filter((survey) => {
+          let surveyMonth = new Date(survey.x);
+          let formatedMonth = surveyMonth.getMonth();
+          return formatedMonth === currentMonth;
+        });
+      case "Past Year":
+        let currentYear = new Date().getYear();
+        return graphDataMap.filter((survey) => {
+          let surveyYear = new Date(survey.x);
+          let formatedYear = surveyYear.getYear();
+          return formatedYear === currentYear;
+        });
+      default:
+        return graphDataMap;
     }
   };
 
@@ -60,24 +61,22 @@ const DiscomfortLevelLineGraph = (props) => {
         <h1>Loading data, please wait</h1>
       ) : (
         <div>
-          <TimePeriodFilter
-            selected={filterStatus}
-            onChange={filterChangeHandler}
-          />
+          <h5>Discomfort Levels Over Time</h5>
           <VictoryChart theme={VictoryTheme.material} domainPadding={20}>
             <VictoryAxis
               label="Time Taken"
               padding={50}
               tickCount={12}
               tickFormat={(x) => {
-                if (!filterStatus) {
-                  return moment(x).format("MMM Do");
-                } else if (filterStatus === "Today") {
-                  return moment(x).format("LT");
-                } else if (filterStatus === "Past Month") {
-                  return moment(x).format("Do");
-                } else if (filterStatus === "Past Year") {
-                  return moment(x).format("MMMM");
+                switch (filterStatus) {
+                  case "Today":
+                    return moment(x).format("LT");
+                  case "Past Month":
+                    return moment(x).format("Do");
+                  case "Past Year":
+                    return moment(x).format("MMMM");
+                  default:
+                    return moment(x).format("MMM Do");
                 }
               }}
               fixLabelOverlap={true}
@@ -104,6 +103,10 @@ const DiscomfortLevelLineGraph = (props) => {
               />
             </VictoryStack>
           </VictoryChart>
+          <TimePeriodFilter
+            selected={filterStatus}
+            onChange={filterChangeHandler}
+          />
         </div>
       )}
     </div>

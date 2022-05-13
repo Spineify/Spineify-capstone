@@ -5,6 +5,7 @@ import PainAreaChart from "./PainAreaChart";
 import PostureTypePie from "./PostureTypePie";
 import DiscomfortLevelLineGraph from "./DiscomfortLevelLineGraph";
 import StretchList from "./StretchList";
+import { Row, Col, Container } from "react-bootstrap";
 
 export default (props) => {
   const dispatch = useDispatch();
@@ -52,9 +53,23 @@ export default (props) => {
       default:
         return (
           <>
-            <DiscomfortLevelLineGraph dataSet={sortedSet} />
-            <PainAreaChart dataSet={sortedSet} />
-            <PostureTypePie />
+            <Container className="graphs-container">
+              <Row>
+                <Col className="h-100 d-inline-block">
+                  <PainAreaChart dataSet={sortedSet} />
+                </Col>
+                <Col className="h-100 d-inline-block">
+                  <PostureTypePie />
+                </Col>
+              </Row>
+
+              <Row>
+                <DiscomfortLevelLineGraph
+                  className="graphs-container"
+                  dataSet={sortedSet}
+                />
+              </Row>
+            </Container>
           </>
         );
     }
