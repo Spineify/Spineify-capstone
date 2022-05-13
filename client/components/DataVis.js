@@ -65,13 +65,11 @@ export default (props) => {
       <form>
         <label>See charts : </label>
         <select onChange={onChangeHandler}>
-          <option value="all"> All Graphs </option>
+          <option value="all"> All </option>
           <option value="discomfort_level">Discomfort Levels</option>
           <option value="discomfort_areas">Discomfort Areas</option>
           <option value="posture_breakdown">Posture Breakdown</option>
         </select>
-
-        <input type="submit" value="Submit" />
       </form>
       {renderGraphs()}
       {/* <DiscomfortLevelLineGraph dataSet={sortedSet} />
