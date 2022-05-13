@@ -70,9 +70,8 @@ function MyVerticallyCenteredModal(props) {
     (sender) => {
       const results = sender.data;
       results.userId = userId;
-      console.log("results: ", results);
+
       if (userId) {
-        console.log("in the addData section");
         dispatch(addData(results));
       }
       if (results.pain_area) {
@@ -83,7 +82,6 @@ function MyVerticallyCenteredModal(props) {
   );
 
   survey.onComplete.add(alertResults);
-  // const onSubmitHandler = survey.doComplete(alertResults);
 
   return (
     <Modal
@@ -101,7 +99,6 @@ function MyVerticallyCenteredModal(props) {
         <Survey model={survey} />
       </Modal.Body>
       <Modal.Footer>
-        {/* <Button onClick={onSubmitHandler}>Close</Button> */}
         <Button onClick={props.onHide}>Close</Button>
       </Modal.Footer>
     </Modal>
@@ -121,13 +118,9 @@ const SurveyModal = (props) => {
       const results = JSON.stringify(sender.data);
       jsonData = JSON.parse(results);
       jsonData.userId = userId;
-      console.log("JSONDATA", jsonData);
-      console.log("USERID", userId);
       if (userId) {
         console.log("if statement for add");
         addData(jsonData);
-        // here we can have a if jsonData.discomfort_level > 0
-        // getStretches() api call
       }
     },
     [userId]
@@ -149,67 +142,4 @@ const SurveyModal = (props) => {
   );
 };
 
-const mapDispatch = (dispatch) => {
-  return {
-    addData: (data) => dispatch(addData(data)),
-  };
-};
-// export const MyConnectedCenteredModal = connect(
-//   null,
-//   mapDispatch
-// )(MyVerticallyCenteredModal);
 export default SurveyModal;
-
-{
-  /* <div className="modal-container">
-<button
-  type="button"
-  class="btn btn-primary"
-  data-toggle="modal"
-  data-target="#exampleModalCenter"
->
-  Take Daily Survey
-</button>
-<div
-  class="modal fade"
-  id="exampleModalCenter"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="exampleModalCenterTitle"
-  aria-hidden="true"
->
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">
-          Daily Survey
-        </h5>
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <Survey model={survey} />
-      </div>
-      <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-secondary"
-          data-dismiss="modal"
-        >
-          Close
-        </button>
-        <button type="button" value="Complete" class="btn btn-primary">
-          Save changes
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-</div> */
-}
