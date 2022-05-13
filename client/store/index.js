@@ -5,6 +5,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import auth from "./auth";
 import surveyReducer from "./surveyData";
 import surveyDataSetReducer from "./surveyDataSet";
+import favoriteReducer from './favorite'
 
 import posesReducer from "./posture";
 import modelReducer from "./tmModel";
@@ -19,6 +20,7 @@ const reducer = combineReducers({
   dataSet: surveyDataSetReducer,
 	stretchList: stretchReducer,
   plantReducer,
+  favorite: favoriteReducer
 })
 
 const middleware = composeWithDevTools(

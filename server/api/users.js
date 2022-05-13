@@ -2,6 +2,8 @@ const router = require("express").Router();
 const {
   models: { User, Posture, PetPlant },
 } = require("../db");
+const Stretch = require("../db/models/Stretch");
+const UserStretch = require("../db/models/UserStretch");
 module.exports = router;
 
 router.get("/", async (req, res, next) => {
@@ -53,6 +55,23 @@ router.get("/plant", async (req, res, next) => {
     next(error);
   }
 });
+
+router.get('/:id/favorites', async (req, res, next) => {
+
+  try {
+    const favorites = await UserStretch.findAll({
+      where: {
+        userId: req.params.id
+      },
+      include: {
+        model: Stretch,
+      }
+    })
+    res.send(favorites)
+  } catch (err) {
+    next(err)
+  }
+})
 
 // router.put("/plant", async(req, res, next) => {
 // 	try {

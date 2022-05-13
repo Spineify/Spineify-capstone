@@ -90,7 +90,7 @@ export default (props) => {
       {/* <DiscomfortLevelLineGraph dataSet={sortedSet} />
       <PainAreaChart dataSet={sortedSet} />
       <PostureTypePie /> */}
-      <StretchList />
+      {/* <StretchList /> */}
     </div>
   );
 };

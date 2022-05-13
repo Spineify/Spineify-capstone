@@ -2,6 +2,7 @@ import axios from 'axios'
 
 const GET_RELEVANT_STRETCH = 'GET_RELEVANT_STRETCH';
 
+
 const _getSingleStretch = (stretch) => ({
   type: GET_RELEVANT_STRETCH,
   stretch
@@ -24,6 +25,7 @@ export const suggestStretch = (pain_area) => {
     }
   }
 }
+
 
 export default function stretchReducer (state = [], action) {
   switch(action.type) {

@@ -4,6 +4,7 @@ import { getPoses } from "../store/posture";
 import Tracker from "./Tracker";
 import PetPlant from "./PetPlant";
 import SurveyModal from "./SurveyModal";
+import StretchList from "./StretchList";
 import { getPlant } from "../store/petPlant";
 import { Alert } from "react-bootstrap";
 /**
@@ -43,6 +44,8 @@ export const Home = (props) => {
         <Tracker />
         <PetPlant />
       </div>
+      <br/> <br/>
+      <StretchList />
     </div>
   );
 };
