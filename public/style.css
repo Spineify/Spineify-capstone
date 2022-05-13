@@ -25,23 +25,64 @@ form div {
   flex-direction: row;
 }
 
-
-
 .gameFrame {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 30%;
-  background-color: rgb(179, 249, 249);
-  border-radius: 5rem;
+  width: 25%;
+  height: 1200;
+  background: linear-gradient(180deg, #e3f2fd 70%, #ccd5ae 30%);
+  border: solid #d1d1d0 1px;
+  border-radius: 50% / 30%;
+}
+
+.gameFrame.morning {
+  background: linear-gradient(180deg, #bde0fe 70%, #008000 30%);
+}
+.gameFrame.afternoon {
+  background: linear-gradient(180deg, #e3f2fd 70%, #aacc00 30%);
+}
+.gameFrame.evening {
+  background: linear-gradient(180deg, #031d44 70%, #41521f 30%);
+}
+
+.gameFrame .progress{
+  width: 60%;
+}
+
+.gameFrame .game {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
 }
 
 .tree {
-  width: 360;
-  height: auto
+  width: 75%;
+  height: auto;
+  flex-grow: 3
 }
 
-.progress{
-  width: 60%
+.inventory{
+  margin: 15px;
+  align-self: flex-start;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.inventory .chest {
+  width: 50px;
+}
+
+.inventory .rewards {
+  display:flex;
+  flex-direction: column;
+}
+
+.inventory .item {
+  width: 40px;
+  margin: 3px
 }
