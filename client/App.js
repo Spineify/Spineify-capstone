@@ -2,25 +2,22 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Navbar from "./components/Navbar";
 import Routes from "./Routes";
-import Screenshot from "./components/Screenshot";
-import Tracker from "./components/Tracker";
 import { getModel } from "./store/tmModel";
 
 const App = () => {
-	const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-	//load teachable machine model
-	useEffect(() => {
-		dispatch(getModel())
-	}, [])
+  //load teachable machine model
+  useEffect(() => {
+    dispatch(getModel());
+  }, []);
 
-	return (
-		<div>
-			<Navbar />
-			<Routes />
-			<SurveyModal />
-		</div>
-	)
-}
+  return (
+    <div>
+      <Navbar />
+      <Routes />
+    </div>
+  );
+};
 
-export default App
+export default App;

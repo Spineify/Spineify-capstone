@@ -26,35 +26,26 @@ const DiscomfortLevelLineGraph = (props) => {
   };
 
   let filteredGraphData = () => {
-    let currentDate = new Date();
-    console.log("CURRENT DATE", currentDate.getDate());
-    console.log("FILTER", filterStatus);
-
     if (filterStatus === "Today") {
       let currentDay = new Date().getDate();
       return graphDataMap.filter((survey) => {
         let surveyTime = new Date(survey.x);
         let formatedSurvey = surveyTime.getDate();
-        console.log("Survey DATE", formatedSurvey);
-        formatedSurvey === currentDay;
+        return formatedSurvey === currentDay;
       });
     } else if (filterStatus === "Past Month") {
       let currentMonth = new Date().getMonth();
-      console.log("CURRENT MONTH: ", currentMonth);
       return graphDataMap.filter((survey) => {
         let surveyMonth = new Date(survey.x);
         let formatedMonth = surveyMonth.getMonth();
-        console.log("SurveyMONTH", formatedMonth);
-        formatedMonth === currentMonth;
+        return formatedMonth === currentMonth;
       });
     } else if (filterStatus === "Past Year") {
       let currentYear = new Date().getYear();
-      console.log("CURRENT YEAR:", currentYear);
       return graphDataMap.filter((survey) => {
         let surveyYear = new Date(survey.x);
         let formatedYear = surveyYear.getYear();
-        console.log("SURVEY YEAR: ", formatedYear);
-        formatedYear === currentYear;
+        return formatedYear === currentYear;
       });
     } else {
       return graphDataMap;
@@ -78,9 +69,8 @@ const DiscomfortLevelLineGraph = (props) => {
               label="Time Taken"
               padding={50}
               tickCount={12}
-              // tickFormat={(x) => moment(x).format("MMM Do")}
-              tickValues={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}
               tickFormat={(x) => {
+                console.log("X", x);
                 if (!filterStatus) {
                   return moment(x).format("MMM Do");
                 } else if (filterStatus === "Today") {
