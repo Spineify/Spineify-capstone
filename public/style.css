@@ -134,3 +134,11 @@ div.graphs-container.container {
   /* align-self: flex-end; */
   /* margin-bottom: auto; */
 }
+
+/*  Pir Chart Styling*/
+
+.pie-chart-container {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}

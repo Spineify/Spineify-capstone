@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getPoses } from "../store/posture";
-import { VictoryPie } from "victory";
+import { VictoryPie, VictoryLegend, VictoryChart } from "victory";
 
 const PostureTypePie = (props) => {
   const dispatch = useDispatch();
@@ -54,7 +54,20 @@ const PostureTypePie = (props) => {
         <p>Loading data</p>
       ) : (
         <div className="pie-chart-container">
-          <h5>Posture Type Breakdown</h5>
+          <VictoryLegend
+            title="Posture Type Breakdown"
+            centerTitle
+            orientation="horizontal"
+            height="auto"
+            style={
+              ({ border: { stroke: "black" } }, { title: { fontSize: 35 } })
+            }
+            data={[
+              { name: "Good Posture", symbol: { fill: "#00FFFF" } },
+              { name: "OK Posture", symbol: { fill: "#49C6B7" } },
+              { name: "Bad Posture", symbol: { fill: "#5E6063" } },
+            ]}
+          />
           <VictoryPie
             data={posturePieData}
             name="Areas of Discomfort"
@@ -63,15 +76,12 @@ const PostureTypePie = (props) => {
             padAngle={3}
             width={900}
             height={800}
-
             sortOrder={"ascending"}
             style={{
               labels: { fontSize: 35, padding: 35 },
             }}
-            labelRadius={({ outerRadius }) => outerRadius + 20}
-            labels={({ datum }) =>
-              `${datum.x}: ${((datum.y / count) * 100).toFixed(0)}% `
-            }
+            // labelRadius={({ outerRadius }) => outerRadius + 20}
+            labels={({ datum }) => `${((datum.y / count) * 100).toFixed(0)}% `}
           />
         </div>
       )}

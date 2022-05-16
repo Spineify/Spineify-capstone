@@ -1,5 +1,5 @@
 import React from "react";
-import { VictoryPie } from "victory";
+import { VictoryPie, VictoryLegend } from "victory";
 
 export default (props) => {
   const pieChartData = [
@@ -37,29 +37,49 @@ export default (props) => {
 
   const checkArray = pieChartData.filter((entry) => entry.y !== 0).length;
 
+  const colors = {
+    pink: ["#CB5599", "#5E6063"],
+    teal: ["#3C6E71", "#284B63", "#D9D9D9", "#353535", "#A4C3B2"],
+  };
+
   return (
     <div>
       {checkArray.length === 0 ? (
         <p>Loading data</p>
       ) : (
         <div className="pie-chart-container">
-          <h5>Areas of discomfort</h5>
+          <VictoryLegend
+            title="Areas of discomfort"
+            centerTitle
+            orientation="horizontal"
+            height="auto"
+            style={
+              ({ border: { stroke: "black" } }, { title: { fontSize: 35 } })
+            }
+            data={[
+              { name: "neck", symbol: { fill: "#3C6E71" } },
+              {
+                name: "upper-back",
+                symbol: { fill: "#284B63" },
+              },
+              { name: "lower-back", symbol: { fill: "#D9D9D9" } },
+              { name: "shoulders", symbol: { fill: "#353535" } },
+              { name: "hips", symbol: { fill: "#A4C3B2" } },
+            ]}
+          />
           <VictoryPie
             data={pieChartData}
             name="Areas of Discomfort"
-            colorScale={"warm"}
+            colorScale={colors["teal"]}
             innerRadius={150}
             padAngle={3}
             width={900}
             height={800}
-
             sortOrder={"ascending"}
             style={{
               labels: { fontSize: 35, padding: 35 },
             }}
-            labels={({ datum }) =>
-              `${datum.x}: ${((datum.y / count) * 100).toFixed(0)}% `
-            }
+            labels={({ datum }) => `${((datum.y / count) * 100).toFixed(0)}% `}
           />
         </div>
       )}
