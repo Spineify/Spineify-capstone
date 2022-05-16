@@ -26,7 +26,6 @@ export const FavoriteStretches = props => {
     }
   },[stretchToDelete])
 
-  console.log('favorites array', favoritesArray)
   return (
   <div>
     <Container>

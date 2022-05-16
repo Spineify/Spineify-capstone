@@ -9,9 +9,7 @@ export default (props) => {
   const [favorite, setFavorite] = useState({})
 
   useEffect(()=> {
-    console.log('clicked', favorite)
     if(favorite.id){
-      console.log('got into if')
       dispatch(addFavoriteStretch(favorite))
     }
   },[favorite])
@@ -31,8 +29,7 @@ export default (props) => {
                       <Card.Title>{stretch.name}</Card.Title>
                       <Card.Text>{stretch.directions}</Card.Text>
                       <Button onClick={()=>
-                        {setFavorite(stretch)
-                          console.log('ONCLICK', favorite)}
+                        {setFavorite(stretch)}
                         }>Add to Favorites</Button>
                     </Card>
                   </Col>
