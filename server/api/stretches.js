@@ -26,3 +26,4 @@ router.get('/:painArea', async (req, res, next) => {
     next(err)
   }
 })
+
