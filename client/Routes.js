@@ -23,11 +23,12 @@ class Routes extends Component {
 				{isLoggedIn ? (
 					<Switch>
 						<Route exact path="/home" component={Home} />
+						<Route exact path="/data" component={DataVis} />
+						<Route exact path="/favorites" component={FavoriteStretches} />
 						<Redirect from="/login" to="/home" />
 						<Redirect from="/" to="/home" />
 						<Redirect from="/signup" to="/home" />
-						<Route exact path="/data" component={DataVis} />
-						<Route exact path="/favorites" component={FavoriteStretches} />
+
 					</Switch>
 				) : (
 					<Switch>
