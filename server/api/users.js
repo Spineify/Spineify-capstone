@@ -93,6 +93,20 @@ router.post('/:id/favorites', async (req, res, next) => {
   }
 })
 
+router.delete('/:userId/favorites/:stretchId', async (req, res, next) => {
+  try {
+    const deletedFavorite = await UserStretch.destroy({
+      where: {
+        userId: req.params.userId,
+        stretchId: req.params.stretchId
+      }
+    })
+    res.sendStatus(204)
+  } catch (err) {
+    next(err)
+  }
+})
+
 
 // router.put("/plant", async(req, res, next) => {
 // 	try {

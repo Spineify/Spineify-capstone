@@ -8,10 +8,10 @@ const _addFavoriteStretch = (stretch) => ({
 })
 
 export const addFavoriteStretch = (stretch) => {
-  return async(dispatch, getState) => {
+  return async (dispatch, getState) => {
     try {
       const auth = getState().auth
-      const {data} = await axios.post(`/api/users/${auth.id}/favorites/`, stretch)
+      const { data } = await axios.post(`/api/users/${auth.id}/favorites/`, stretch)
       dispatch(_addFavoriteStretch(data))
     } catch (err) {
       console.log(err)
@@ -19,10 +19,11 @@ export const addFavoriteStretch = (stretch) => {
   }
 }
 
-export default function favoriteChangeReducer (state = [], action) {
-  switch(action.type) {
+export default function favoriteChangeReducer(state = {}, action) {
+  switch (action.type) {
     case ADD_FAVORITE_STRETCH:
       return action.stretch
+
     default:
       return state
   }

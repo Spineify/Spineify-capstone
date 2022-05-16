@@ -1,12 +1,15 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getFavoriteStretch } from '../store/favoriteList'
 import { Button, Card, Container, Row, Col } from 'react-bootstrap';
+import { deleteFavoriteStretch } from '../store/favoriteList';
 
 export const FavoriteStretches = props => {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.auth.id);
   const favoritesArray = useSelector((state) => state.favoriteList)
+  const [stretchToDelete, deleteStretch] = useState({})
+
 
   useEffect(() => {
     const fetchFavorites = () => {
@@ -16,6 +19,12 @@ export const FavoriteStretches = props => {
     }
     fetchFavorites()
   },[userId])
+
+  useEffect(()=> {
+    if(stretchToDelete.id){
+      dispatch(deleteFavoriteStretch(stretchToDelete))
+    }
+  },[stretchToDelete])
 
   console.log('favorites array', favoritesArray)
   return (
@@ -30,7 +39,10 @@ export const FavoriteStretches = props => {
             <Card.Img variant="top" src={stretch.imageURL} />
             <Card.Title>{stretch.name}</Card.Title>
             <Card.Text>{stretch.directions}</Card.Text>
-            <Button>Remove from Favorites</Button>
+            <Button onClick={()=> {
+              deleteStretch(stretch)
+            }}>
+              Remove from Favorites</Button>
           </Card>
         </Col>
       )
