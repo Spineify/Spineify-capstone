@@ -18,7 +18,6 @@ function Tracker() {
 	const today = new Date()
 	let date = today.toISOString()
 	date = date.substr(0, 10) // format: YYYY-MM-DD
-	console.log('date:', date)
 
 	const dispatch = useDispatch()
 	const webcamRef = useRef(null)

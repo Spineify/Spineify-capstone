@@ -18,6 +18,9 @@ const PetPlant = db.define('petPlant', {
 		allowNull: false,
 		defaultValue: { water: 0, nutritiousWater: 0, fertilizer: 0 },
 	},
+	lastPointIncrease: {
+		type: Sequelize.JSON,
+	},
 })
 
 module.exports = PetPlant

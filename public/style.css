@@ -115,6 +115,47 @@ div.graphs-container.container {
   width: 0rem;
 } */
 
+/*Login / Signup*/
+.signin {
+  display: flex;
+  flex-direction: row;
+  margin: 75px 30px 30px 30px;
+  height: 500px;
+  border: solid rgb(178, 178, 178) .5px;
+  border-radius: .5rem;
+}
+
+.signin.login{
+  background: linear-gradient(90deg, #FFFFFF 50%, #84A98C 50%);
+}
+
+.signin.signup{
+  background: linear-gradient(90deg, #FFFFFF 50%, #3C6E71 50%);
+}
+
+.signin-info {
+  width: 50%;
+  padding: 20px;
+  display:flex;
+  flex-direction:column;
+  justify-content: center;
+  align-items: center;
+  font-weight: 300;
+}
+
+.signin-info h1{
+  font-size: 30px;
+  align-self: flex-start;
+}
+
+.signin-info form {
+  display: flex;
+  flex-direction: column;
+}
+
+.pretty-intro {
+  width: 50%
+
 /*  StrecthList styling*/
 
 .stretchlist-card {
@@ -145,8 +186,7 @@ div.graphs-container.container {
   /* margin-bottom: auto; */
 }
 
-/*  Pir Chart Styling*/
-
+/*  Pie Chart Styling*/
 .pie-chart-container {
   display: flex;
   flex-direction: column;

@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import Navbar from "./components/Navbar";
-import Routes from "./Routes";
-import { getModel } from "./store/tmModel";
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import Navbar from './components/Navbar'
+import Routes from './Routes'
+import { getModel } from './store/tmModel'
 
 const App = () => {
-  const dispatch = useDispatch();
+	const dispatch = useDispatch()
 
-  //load teachable machine model
-  useEffect(() => {
-    dispatch(getModel());
-  }, []);
-  
+	//load teachable machine model
+	useEffect(() => {
+		dispatch(getModel())
+	}, [])
+
 	return (
 		<div>
 			<Navbar />
@@ -20,4 +20,4 @@ const App = () => {
 	)
 }
 
-export default App;
+export default App
