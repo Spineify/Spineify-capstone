@@ -58,3 +58,6 @@ ipcMain.handle("getState", () => {
 });
 
 app.whenReady().then(createWindow);
+
+//set up cron and ipcRenderer in main
+//cron to send message to bridge

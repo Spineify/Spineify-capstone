@@ -7,20 +7,22 @@ import SurveyModal from "./SurveyModal";
 import StretchList from "./StretchList";
 import { getPlant } from "../store/petPlant";
 import { Alert } from "react-bootstrap";
+
 /**
  * COMPONENT
  */
 export const Home = (props) => {
-  const { username } = props;
-  const dispatch = useDispatch();
-  const [show, setShow] = useState(true);
-  const userId = useSelector((state) => state.auth.id);
+	const { username } = props
+	const dispatch = useDispatch()
+	const [show, setShow] = useState(true)
+	const userId = useSelector((state) => state.auth.id)
+	const plant = useSelector((state) => state.plantReducer)
 
-  //get all poses
-  useEffect(() => {
-    dispatch(getPoses());
-    dispatch(getPlant());
-  }, []);
+	//get all poses
+	useEffect(() => {
+		dispatch(getPoses())
+		dispatch(getPlant())
+	}, [])
 
   return (
     <div id="home">
@@ -42,7 +44,7 @@ export const Home = (props) => {
       </div>
       <div className="homeContent">
         <Tracker />
-        <PetPlant />
+        {Object.keys(plant).length && <PetPlant />}
       </div>
       <br/> <br/>
       <StretchList />
@@ -54,9 +56,9 @@ export const Home = (props) => {
  * CONTAINER
  */
 const mapState = (state) => {
-  return {
-    username: state.auth.username,
-  };
-};
+	return {
+		username: state.auth.username,
+	}
+}
 
-export default connect(mapState)(Home);
+export default connect(mapState)(Home)

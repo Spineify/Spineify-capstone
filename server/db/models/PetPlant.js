@@ -13,6 +13,11 @@ const PetPlant = db.define('petPlant', {
 		allowNull: false,
 		defaultValue: 0,
 	},
+	inventory: {
+		type: Sequelize.JSON,
+		allowNull: false,
+		defaultValue: { water: 0, nutritiousWater: 0, fertilizer: 0 },
+	},
 })
 
 module.exports = PetPlant
