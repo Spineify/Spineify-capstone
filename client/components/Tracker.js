@@ -40,14 +40,16 @@ function Tracker() {
 				return
 			}
 
+
 			const system = await electron.systemState.getSystemState()
 			setSystem(system)
 			console.log('systemState:', system)
 
-			if (system === 'active') {
+
+			// if (system === 'active') {
 				const imageSrc = webcamRef.current.getScreenshot()
 				setImageSrc(imageSrc)
-			}
+			// }
 		}, 5000)
 		return () => {
 			//runs when you leave the page
@@ -57,7 +59,7 @@ function Tracker() {
 
 	//analyze pose after taking a picture & when the start button is clicked
 	useEffect(() => {
-		if (system === 'active') {
+		// if (system === 'active') {
 			if (start && imageSrc !== GOOD_POSTURE) {
 				analyze()
 				dispatch(getPoses())
@@ -66,7 +68,7 @@ function Tracker() {
 			if (!start && imageSrc !== GOOD_POSTURE) {
 				setImageSrc(GOOD_POSTURE)
 			}
-		}
+		// }
 	}, [imageSrc, start])
 
 	//notification

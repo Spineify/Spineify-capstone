@@ -73,6 +73,41 @@ router.get('/:id/favorites', async (req, res, next) => {
   }
 })
 
+router.post('/:id/favorites', async (req, res, next) => {
+  try {
+    const checkFavorite = await UserStretch.findOne({
+      where: {
+        userId: req.params.id,
+        stretchId: req.body.id
+      }
+    })
+    if (!checkFavorite) {
+      const newFavorite = await UserStretch.create({
+        userId: req.params.id,
+        stretchId: req.body.id
+      })
+      res.send(newFavorite)
+    } else console.log('already in favorites!')
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.delete('/:userId/favorites/:stretchId', async (req, res, next) => {
+  try {
+    const deletedFavorite = await UserStretch.destroy({
+      where: {
+        userId: req.params.userId,
+        stretchId: req.params.stretchId
+      }
+    })
+    res.sendStatus(204)
+  } catch (err) {
+    next(err)
+  }
+})
+
+
 // router.put("/plant", async(req, res, next) => {
 // 	try {
 // 		const user = await User.findByToken(req.headers.authorization)

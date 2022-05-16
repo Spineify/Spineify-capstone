@@ -115,3 +115,41 @@ div.graphs-container.container {
   width: 0rem;
 } */
 
+/*  StrecthList styling*/
+
+.stretchlist-card {
+  height: 100%;
+  justify-content: space-between;
+  align-content: space-between;
+  padding: 10px;
+}
+
+/*  Favorite Stretches Styling */
+
+.favorites-card {
+  justify-content: space-between;
+  align-content: space-between;
+  padding: 15px;
+  height: 100%;
+}
+#favorites-title {
+  text-align: center;
+  font-weight: bold;
+  padding-bottom: 15px;
+}
+
+.favorites-remove-button {
+  justify-self: flex-end;
+  margin-top: auto;
+  /* align-self: flex-end; */
+  /* margin-bottom: auto; */
+}
+
+/*  Pir Chart Styling*/
+
+.pie-chart-container {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
