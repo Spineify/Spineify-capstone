@@ -5,12 +5,13 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import auth from "./auth";
 import surveyReducer from "./surveyData";
 import surveyDataSetReducer from "./surveyDataSet";
-import favoriteReducer from './favorite'
+import favoriteReducer from './favoriteList'
 
 import posesReducer from "./posture";
 import modelReducer from "./tmModel";
 import plantReducer from "./petPlant";
 import stretchReducer from './stretch'
+import favoriteChangeReducer from "./favoriteChange";
 
 const reducer = combineReducers({
   auth,
@@ -20,7 +21,8 @@ const reducer = combineReducers({
   dataSet: surveyDataSetReducer,
 	stretchList: stretchReducer,
   plantReducer,
-  favorite: favoriteReducer
+  favoriteList: favoriteReducer,
+  favoriteChange: favoriteChangeReducer
 })
 
 const middleware = composeWithDevTools(

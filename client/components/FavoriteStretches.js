@@ -1,12 +1,12 @@
 import React, {useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { getFavoriteStretch } from '../store/favorite'
+import { getFavoriteStretch } from '../store/favoriteList'
 import { Button, Card, Container, Row, Col } from 'react-bootstrap';
 
 export const FavoriteStretches = props => {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.auth.id);
-  const favoritesArray = useSelector((state) => state.favorite)
+  const favoritesArray = useSelector((state) => state.favoriteList)
 
   useEffect(() => {
     const fetchFavorites = () => {

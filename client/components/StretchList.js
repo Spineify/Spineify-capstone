@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Button, Card, Container, Row, Col } from 'react-bootstrap';
-import {addFavoriteStretch} from '../store/favorite'
+import {addFavoriteStretch} from '../store/favoriteChange'
 
 export default (props) => {
   const dispatch = useDispatch();
