@@ -122,14 +122,7 @@ div.graphs-container.container {
   height: 500px;
   border: solid rgb(178, 178, 178) 0.5px;
   border-radius: 0.5rem;
-}
-
-.signin.login {
-  background: linear-gradient(90deg, #ffffff 50%, #84a98c 50%);
-}
-
-.signin.signup {
-  background: linear-gradient(90deg, #ffffff 50%, #3c6e71 50%);
+  background: linear-gradient(62deg, #ff99cc 0%, #ffcccc 100%);
 }
 
 .signin-info {
