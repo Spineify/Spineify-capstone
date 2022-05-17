@@ -13,7 +13,7 @@ import Sidebar from "./Sidebar";
  * COMPONENT
  */
 export const Home = (props) => {
-  const { username } = props;
+  const { firstName } = props;
   const dispatch = useDispatch();
   const [show, setShow] = useState(true);
   const userId = useSelector((state) => state.auth.id);
@@ -31,10 +31,9 @@ export const Home = (props) => {
 
   return (
     <div id="home">
-      <h3>Hello, {username}</h3>
+      <h3>Hello, {firstName}</h3>
       <Sidebar />
       <SurveyModal setModalShow={setModalShow} modalShow={modalShow} />
-      {console.log("modalShow at home", modalShow)}
       <div>
         {userId && (
           <div>
@@ -64,7 +63,7 @@ export const Home = (props) => {
  */
 const mapState = (state) => {
   return {
-    username: state.auth.username,
+    firstName: state.auth.firstName,
   };
 };
 

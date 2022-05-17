@@ -119,7 +119,7 @@ const SurveyModal = (props) => {
 			jsonData = JSON.parse(results)
 			jsonData.userId = userId
 			if (userId) {
-				console.log('if statement for add')
+				console.log('(in SurveyModal) if statement for add')
 				addData(jsonData)
 			}
 		},

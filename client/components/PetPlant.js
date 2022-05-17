@@ -29,19 +29,18 @@ const PetPlant = (props) => {
 			}
 			const prevInventory = prevPlant.inventory
 			const { inventory } = plant
+
 			if (
 				prevInventory.fertilizer < inventory.fertilizer ||
 				prevInventory.nutritiousWater < inventory.nutritiousWater ||
 				prevInventory.water < inventory.water
 			) {
-				console.log('RECEIVED MORE PRIZESSSS')
 				electron.notificationApi.sendNotification(
 					`Great Job you got more prizes!`
 				)
 			}
 
 			if (prevPlant.points > plant.points && prevPlant.level === plant.level) {
-				console.log('LOST POINTTSS')
 				electron.notificationApi.sendNotification(
 					`You haven't fed your tree in a while`
 				)
@@ -57,15 +56,11 @@ const PetPlant = (props) => {
 	const onDrag = (event, item) => {
 		event.preventDefault()
 		setDraggedItem(item)
-		console.log('draggedItem onDrag', draggedItem)
 	}
 
 	const onDrop = () => {
-		console.log('draggedItem:', draggedItem)
 		dispatch(updatePlant(draggedItem))
 		setDraggedItem('')
-		console.log('updated plant after drop', plant)
-
 		//add animation when tree is fed
 	}
 

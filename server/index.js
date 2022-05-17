@@ -58,8 +58,7 @@ cron.schedule('0 17 * * *', async () => {
 			item = 'water'
 		}
 
-		let newPlant = await currentUser.updateInventory(item)
-		console.log('Saved plant', newPlant)
+		await currentUser.updateInventory(item)
 	}
 })
 
@@ -81,8 +80,7 @@ cron.schedule('0 17 */2 * *', async () => {
 		let differenceInDays = (today - lastUpdatedDate) / (1000 * 3600 * 24)
 
 		if (differenceInDays >= 2) {
-			let updatedPlant = await currentUser.deductPoints()
-			console.log('updatedPlant', updatedPlant)
+			await currentUser.deductPoints()
 		}
 	}
 })

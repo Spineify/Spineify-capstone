@@ -2,29 +2,28 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
-const axios = require('axios')
 const PetPlant = require('./PetPlant')
 
 const SALT_ROUNDS = 5
 
 const User = db.define('user', {
-	name: {
+	firstName: {
 		type: Sequelize.STRING,
-		unique: true,
-		// allowNull: false,
+		allowNull: false,
 	},
-	username: {
+	lastName: {
 		type: Sequelize.STRING,
-		unique: true,
 		allowNull: false,
 	},
 	email: {
 		type: Sequelize.STRING,
 		unique: true,
-		// allowNull: false,
+		allowNull: false,
+		validate: { isEmail: true },
 	},
 	password: {
 		type: Sequelize.STRING,
+		allowNull: false,
 	},
 })
 
@@ -72,10 +71,10 @@ User.prototype.generateToken = function () {
 /**
  * classMethods
  */
-User.authenticate = async function ({ username, password }) {
-	const user = await this.findOne({ where: { username } })
+User.authenticate = async function ({ email, password }) {
+	const user = await this.findOne({ where: { email } })
 	if (!user || !(await user.correctPassword(password))) {
-		const error = Error('Incorrect username/password')
+		const error = Error('Incorrect email/password')
 		error.status = 401
 		throw error
 	}
