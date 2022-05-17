@@ -7,6 +7,7 @@ import SurveyModal from "./SurveyModal";
 import StretchList from "./StretchList";
 import { getPlant } from "../store/petPlant";
 import { Alert } from "react-bootstrap";
+import Sidebar from "./Sidebar";
 
 /**
  * COMPONENT
@@ -31,6 +32,7 @@ export const Home = (props) => {
   return (
     <div id="home">
       <h3>Hello, {username}</h3>
+      <Sidebar />
       <SurveyModal setModalShow={setModalShow} modalShow={modalShow} />
       {console.log("modalShow at home", modalShow)}
       <div>
