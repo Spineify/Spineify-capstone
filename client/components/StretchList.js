@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Card, Container, Row, Col } from "react-bootstrap";
+import { Modal, Button, Card, Container, Row, Col } from "react-bootstrap";
 import { addFavoriteStretch } from "../store/favoriteChange";
 
-export default (props) => {
+function SuggestedStretchesGrid(props) {
   const dispatch = useDispatch();
   const stretchList = useSelector((state) => state.stretchList);
   const [favorite, setFavorite] = useState({});
@@ -13,17 +13,22 @@ export default (props) => {
       dispatch(addFavoriteStretch(favorite));
     }
   }, [favorite]);
-
   return (
-    <div>
-      {stretchList.length !== 0 ? (
-        <div>
-          <h2>Suggested Stretches: </h2>
-          <Container className="h-50 d-inline-block">
-            <Row>
-              {stretchList.map((stretch) => {
+    <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter">
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">
+          Suggested Stretches
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body className="show-grid">
+        <Container>
+          <Row>
+            {stretchList.length === 0 ? (
+              <p>Please take your daily survey to see suggested stretches!</p>
+            ) : (
+              stretchList.map((stretch) => {
                 return (
-                  <Col xs key={stretch.id}>
+                  <Col md={3} key={stretch.id}>
                     <Card className="stretchlist-card">
                       <Card.Img variant="top" src={stretch.imageURL} />
                       <Card.Title>{stretch.name}</Card.Title>
@@ -38,14 +43,32 @@ export default (props) => {
                     </Card>
                   </Col>
                 );
-              })}
-            </Row>
-          </Container>
-        </div>
-      ) : (
-        ""
-      )}
-      <br />
-    </div>
+              })
+            )}
+          </Row>
+        </Container>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button onClick={props.onHide}>Close</Button>
+      </Modal.Footer>
+    </Modal>
+  );
+}
+
+const StretchList = (props) => {
+  const [modalShow, setModalShow] = useState(false);
+
+  return (
+    <>
+      <Button variant="primary" onClick={() => setModalShow(true)}>
+        Click to see your suggested stretches!
+      </Button>
+      <SuggestedStretchesGrid
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
+    </>
   );
 };
+
+export default StretchList;
