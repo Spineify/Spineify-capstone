@@ -4,17 +4,20 @@ import React, { useRef, useState } from "react";
 function Screenshot({ webcamRef }) {
   const [webcamOn, setWebcamOn] = useState(false);
 
-  // const canvasRef = useRef(null)
+  // let ctx;
+
+  // const canvasRef = useRef(null);
+
   // function drawPose(pose) {
-  // 	if (webcam.canvas) {
-  // 			ctx.drawImage(webcam.canvas, 0, 0);
-  // 			// draw the keypoints and skeleton
-  // 			if (pose) {
-  // 					const minPartConfidence = 0.5;
-  // 					tmPose.drawKeypoints(pose.keypoints, minPartConfidence, ctx);
-  // 					tmPose.drawSkeleton(pose.keypoints, minPartConfidence, ctx);
-  // 			}
-  // 	}
+  //   if (webcamRef.canvas) {
+  //     ctx.drawImage(webcamRef.canvas, 0, 0);
+  //     // draw the keypoints and skeleton
+  //     if (pose) {
+  //       const minPartConfidence = 0.5;
+  //       tmPose.drawKeypoints(pose.keypoints, minPartConfidence, ctx);
+  //       tmPose.drawSkeleton(pose.keypoints, minPartConfidence, ctx);
+  //     }
+  //   }
   // }
   return (
     <div>
