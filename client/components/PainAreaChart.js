@@ -43,11 +43,27 @@ export default (props) => {
 
   const checkArray = pieChartData.filter((entry) => entry.y !== 0);
 
-
   const colors = {
     pink: ["#CB5599", "#5E6063"],
-    teal: ["#3C6E71", "#284B63", "#D9D9D9", "#353535", "#A4C3B2"],
+    teal: ["#3C6E71", "#284B63", "#FFFFFF", "#353535", "#A4C3B2"],
   };
+
+  let index = 0
+  const colorsArray = checkArray.map((category) => {
+    const colorObj = {
+      name: category.x,
+      symbol: {
+        fill: colors.teal[index]
+      }
+    }
+    index++
+    return colorObj
+  })
+
+  let colorScaleArray = []
+  for (let i = 0; i < checkArray.length; i++) {
+    colorScaleArray.push(colors.teal[i])
+  }
 
   return (
     <div>
@@ -56,79 +72,34 @@ export default (props) => {
       )
         : checkArray.length === 0 && loadingState === false
           ? <p id="pain-area-loading-message">You can view tracking data on your areas of discomfort after you take a daily quiz</p>
-          : checkArray.length < 5
-            ? <div className="pie-chart-container">
-              <VictoryLegend
-                title="Areas of discomfort"
-                centerTitle
-                orientation="horizontal"
-                height="auto"
-                style={
-                  ({ border: { stroke: "black" } }, { title: { fontSize: 35 } })
-                }
-                data={[
-                  { name: "neck", symbol: { fill: "#3C6E71" } },
-                  {
-                    name: "upper-back",
-                    symbol: { fill: "#284B63" },
-                  },
-                  { name: "lower-back", symbol: { fill: "#D9D9D9" } },
-                  { name: "shoulders", symbol: { fill: "#353535" } },
-                  { name: "hips", symbol: { fill: "#A4C3B2" } },
-                ]}
-              />
-              <VictoryPie
-                data={checkArray}
-                name="Areas of Discomfort"
-                colorScale={colors["teal"]}
-                innerRadius={150}
-                padAngle={3}
-                width={900}
-                height={800}
-                sortOrder={"ascending"}
-                style={{
-                  labels: { fontSize: 35, padding: 35 },
-                }}
-                labels={({ datum }) => `${((datum.y / count) * 100).toFixed(0)}% `}
-              />
-            </div>
-            : (
-              <div className="pie-chart-container">
-                <VictoryLegend
-                  title="Areas of discomfort"
-                  centerTitle
-                  orientation="horizontal"
-                  height="auto"
-                  style={
-                    ({ border: { stroke: "black" } }, { title: { fontSize: 35 } })
-                  }
-                  data={[
-                    { name: "neck", symbol: { fill: "#3C6E71" } },
-                    {
-                      name: "upper-back",
-                      symbol: { fill: "#284B63" },
-                    },
-                    { name: "lower-back", symbol: { fill: "#D9D9D9" } },
-                    { name: "shoulders", symbol: { fill: "#353535" } },
-                    { name: "hips", symbol: { fill: "#A4C3B2" } },
-                  ]}
-                />
-                <VictoryPie
-                  data={pieChartData}
-                  name="Areas of Discomfort"
-                  colorScale={colors["teal"]}
-                  innerRadius={150}
-                  padAngle={3}
-                  width={900}
-                  height={800}
-                  sortOrder={"ascending"}
-                  style={{
-                    labels: { fontSize: 35, padding: 35 },
-                  }}
-                  labels={({ datum }) => `${((datum.y / count) * 100).toFixed(0)}% `}
-                />
-              </div>
-            )}
+          :
+          <div className="pie-chart-container">
+            <VictoryLegend
+              title="Areas of discomfort"
+              centerTitle
+              height="auto"
+              style={
+                ({ border: { stroke: "black" } }, { title: { fontSize: 25 } })
+              }
+              data={colorsArray}
+              itemsPerRow={3}
+            />
+            <VictoryPie
+              data={checkArray}
+              name="Areas of Discomfort"
+              colorScale={colorScaleArray}
+              innerRadius={150}
+              padAngle={3}
+              width={900}
+              height={800}
+              sortOrder={"ascending"}
+              style={{
+                labels: { fontSize: 35, padding: 35 },
+              }}
+              labels={({ datum }) => `${((datum.y / count) * 100).toFixed(0)}% `}
+            />
+          </div>
+      }
     </div>
   );
 };

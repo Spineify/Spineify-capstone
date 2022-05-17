@@ -129,4 +129,59 @@ const PostureTypePie = (props) => {
 	)
 }
 
-export default PostureTypePie
+  let index = 0
+  const colorsArray = checkArray.map((category) => {
+    const colorObj = {
+      name: category.x,
+      symbol: {
+        fill: colors.teal[index]
+      }
+    }
+    index++
+    return colorObj
+  })
+
+  let colorScaleArray = []
+  for (let i = 0; i < checkArray.length; i++) {
+    colorScaleArray.push(colors.teal[i])
+  }
+
+  return (
+    <div >
+      {checkArray.length === 0 && loadingState === true ? (
+        <p>Loading data</p>
+      )
+        : checkArray.length === 0 && loadingState === false
+          ? <p id="posture-pie-loading-message">You can view data on your posture after tracking has started</p>
+          :
+          <div className="pie-chart-container">
+            <VictoryLegend
+              title="Posture Types"
+              centerTitle
+              height="auto"
+              style={
+                ({ border: { stroke: "black" } }, { title: { fontSize: 25 } })
+              }
+              data={colorsArray}
+            />
+            <VictoryPie
+              data={checkArray}
+              name="Areas of Discomfort"
+              colorScale={colorScaleArray}
+              innerRadius={150}
+              padAngle={3}
+              width={900}
+              height={800}
+              sortOrder={"ascending"}
+              style={{
+                labels: { fontSize: 35, padding: 35 },
+              }}
+              labels={({ datum }) => `${((datum.y / count) * 100).toFixed(0)}% `}
+            />
+          </div>
+      }
+    </div>
+  );
+};
+
+export default PostureTypePie;
