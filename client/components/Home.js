@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect, useDispatch, useSelector } from "react-redux";
 import { getPoses } from "../store/posture";
-import Tracker from "./Tracker";
+//import Tracker from './Tracker'
 import PetPlant from "./PetPlant";
 import SurveyModal from "./SurveyModal";
 import StretchList from "./StretchList";
@@ -12,22 +12,27 @@ import { Alert } from "react-bootstrap";
  * COMPONENT
  */
 export const Home = (props) => {
-	const { username } = props
-	const dispatch = useDispatch()
-	const [show, setShow] = useState(true)
-	const userId = useSelector((state) => state.auth.id)
-	const plant = useSelector((state) => state.plantReducer)
+  const { username } = props;
+  const dispatch = useDispatch();
+  const [show, setShow] = useState(true);
+  const userId = useSelector((state) => state.auth.id);
+  const plant = useSelector((state) => state.plantReducer);
+  const [modalShow, setModalShow] = React.useState(false);
 
-	//get all poses
-	useEffect(() => {
-		dispatch(getPoses())
-		dispatch(getPlant())
-	}, [])
+  //get all poses
+  useEffect(() => {
+    dispatch(getPoses());
+    dispatch(getPlant());
+  }, []);
+
+  //rerender home component when user takes/completes survey. ModalShow is used in PetPlant componenet so it doesnt refresh the survey at intervals when user is taking survey. see line 27 of petplant component
+  useEffect(() => {}, [modalShow]);
 
   return (
     <div id="home">
       <h3>Hello, {username}</h3>
-      <SurveyModal />
+      <SurveyModal setModalShow={setModalShow} modalShow={modalShow} />
+      {console.log("modalShow at home", modalShow)}
       <div>
         {userId && (
           <div>
@@ -43,10 +48,10 @@ export const Home = (props) => {
         )}
       </div>
       <div className="homeContent">
-        <Tracker />
-        {Object.keys(plant).length && <PetPlant />}
+        {/* <Tracker /> */}
+        {Object.keys(plant).length && <PetPlant modalShow={modalShow} />}
       </div>
-      <br/> <br/>
+      <br /> <br />
       <StretchList />
     </div>
   );
@@ -56,9 +61,9 @@ export const Home = (props) => {
  * CONTAINER
  */
 const mapState = (state) => {
-	return {
-		username: state.auth.username,
-	}
-}
+  return {
+    username: state.auth.username,
+  };
+};
 
-export default connect(mapState)(Home)
+export default connect(mapState)(Home);

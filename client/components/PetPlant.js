@@ -2,9 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getPlant, updatePlant } from '../store/petPlant'
 
-const PetPlant = () => {
+const PetPlant = (props) => {
 	const [chest, setChest] = useState('closed')
 
+	useEffect(() => {
+		dispatch(getPlant())
+	}, [])
 	//plant data
 	const plant = useSelector((state) => state.plantReducer)
 	const { inventory } = plant
@@ -12,12 +15,18 @@ const PetPlant = () => {
 	const [prevPlant, setPrevPlant] = useState(plant)
 	const dispatch = useDispatch()
 
+	const inventoryTotal =
+		inventory.fertilizer + inventory.nutritiousWater + inventory.water
+	let prizesTotal = inventoryTotal > 0 ? true : false
+
 	//add setInterval to dispatch(getPlant())
 	//cron job nodejs to schedule and handle notification
 	//notification when received reward/got points deducted
 	useEffect(() => {
 		const getPlantInterval = setInterval(async function () {
-			dispatch(getPlant())
+			if (!props.modalShow) {
+				dispatch(getPlant())
+			}
 			const prevInventory = prevPlant.inventory
 			const { inventory } = plant
 			if (
@@ -31,7 +40,7 @@ const PetPlant = () => {
 				)
 			}
 
-			if (prevPlant.points > plant.points) {
+			if (prevPlant.points > plant.points && prevPlant.level === plant.level) {
 				console.log('LOST POINTTSS')
 				electron.notificationApi.sendNotification(
 					`You haven't fed your tree in a while`
@@ -40,11 +49,10 @@ const PetPlant = () => {
 
 			setPrevPlant(plant)
 		}, 5000)
-
 		return () => {
 			clearInterval(getPlantInterval)
 		}
-	}, [plant])
+	}, [plant, props.modalShow])
 
 	const onDrag = (event, item) => {
 		event.preventDefault()
@@ -89,76 +97,89 @@ const PetPlant = () => {
 		}
 	}
 
-	return (
-		<div className={`gameFrame ${timeOfDay}`}>
-			<div className="progress">
-				<div
-					className="progress-bar progress-bar-striped progress-bar-animated"
-					role="progressbar"
-					aria-valuenow={`${points}`}
-					aria-valuemin="0"
-					aria-valuemax="12"
-					style={{ width: `${Math.floor((points / 12) * 100)}%` }}
-				></div>
-			</div>
-			<div className="game">
-				<img
-					className="tree"
-					src={`./gamification/tree_${level}.png`}
-					onDrop={() => onDrop()}
-					onDragOver={(event) => onDragOver(event)}
-				/>
-				<div className="inventory">
+	if (Object.keys(plant).length) {
+		return (
+			<div className={`gameFrame ${timeOfDay}`}>
+				<div className="progress">
+					<div
+						className="progress-bar progress-bar-striped progress-bar-animated"
+						role="progressbar"
+						aria-valuenow={`${points}`}
+						aria-valuemin="0"
+						aria-valuemax="12"
+						style={{ width: `${Math.floor((points / 12) * 100)}%` }}
+					></div>
+				</div>
+				<div className="game">
 					<img
-						className="chest"
-						onClick={() => toggleChest()}
-						src={`./gamification/chest_${chest}.png`}
+						className="tree"
+						src={`./gamification/tree_${level}.png`}
+						onDrop={() => onDrop()}
+						onDragOver={(event) => onDragOver(event)}
 					/>
-					{chest === 'opened' ? (
-						//if inventory is empty, show nothing or send message
-						<div className="rewards">
-							{/* if inventory of item is 0, dont render */}
-							<div className="item">
-								<img
-									value="fertilizer"
-									draggable="true"
-									onDrag={(event) => onDrag(event, 'fertilizer')}
-									className="img"
-									src={'./gamification/dirt.png'}
-								/>
-								<span>{`${inventory.fertilizer}`}</span>
-							</div>
+					<div className="inventory">
+						<img
+							className="chest"
+							onClick={() => toggleChest()}
+							src={`./gamification/chest_${chest}_new.png`}
+						/>
+						{chest === 'opened' && prizesTotal ? (
+							//if inventory is empty, show nothing or send message
+							<div className="rewards">
+								{/* if inventory of item is 0, dont render */}
+								{inventory.fertilizer > 0 && (
+									<div className="item">
+										<img
+											value="fertilizer"
+											draggable="true"
+											onDrag={(event) => onDrag(event, 'fertilizer')}
+											className="img"
+											src={'./gamification/dirt.png'}
+										/>
+										<span>{`${inventory.fertilizer}`}</span>
+									</div>
+								)}
+								{/* if inventory of item is 0, dont render */}
+								{inventory.nutritiousWater > 0 && (
+									<div className="item">
+										<img
+											value="nutritiousWater"
+											draggable="true"
+											onDrag={(event) => onDrag(event, 'nutritiousWater')}
+											className="img"
+											src={'./gamification/nutritious_water.png'}
+										/>
+										<span>{`${inventory.nutritiousWater}`}</span>
+									</div>
+								)}
 
-							{/* if inventory of item is 0, dont render */}
-							<div className="item">
-								<img
-									value="nutritiousWater"
-									draggable="true"
-									onDrag={(event) => onDrag(event, 'nutritiousWater')}
-									className="img"
-									src={'./gamification/nutritious_water.png'}
-								/>
-								<span>{`${inventory.nutritiousWater}`}</span>
-							</div>
+								{/* if inventory of item is 0, dont render */}
+								{inventory.water > 0 && (
+									<div className="item">
+										<img
+											value="water"
+											draggable="true"
+											onDrag={(event) => onDrag(event, 'water')}
+											className="img"
+											src={'./gamification/water.png'}
+										/>
 
-							{/* if inventory of item is 0, dont render */}
-							<div className="item">
-								<img
-									value="water"
-									draggable="true"
-									onDrag={(event) => onDrag(event, 'water')}
-									className="img"
-									src={'./gamification/water.png'}
-								/>
-
-								<span>{`${inventory.water}`}</span>
+										<span>{`${inventory.water}`}</span>
+									</div>
+								)}
 							</div>
-						</div>
-					) : null}
+						) : null}
+						{chest === 'opened' && !prizesTotal ? (
+							//if inventory is empty, show nothing or send message
+							<p className="bubble">
+								No prizes in your chest! Maintain Good posture to earn more~
+							</p>
+						) : null}
+					</div>
 				</div>
 			</div>
-		</div>
-	)
+		)
+	}
 }
 
 export default PetPlant
