@@ -80,7 +80,6 @@ const PostureTypePie = (props) => {
             style={{
               labels: { fontSize: 35, padding: 35 },
             }}
-            // labelRadius={({ outerRadius }) => outerRadius + 20}
             labels={({ datum }) => `${((datum.y / count) * 100).toFixed(0)}% `}
           />
         </div>

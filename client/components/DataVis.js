@@ -4,7 +4,6 @@ import { getUserData } from "../store/surveyDataSet";
 import PainAreaChart from "./PainAreaChart";
 import PostureTypePie from "./PostureTypePie";
 import DiscomfortLevelLineGraph from "./DiscomfortLevelLineGraph";
-import StretchList from "./StretchList";
 import { Row, Col, Container } from "react-bootstrap";
 
 export default (props) => {
@@ -62,10 +61,10 @@ export default (props) => {
                   <PostureTypePie />
                 </Col>
               </Row>
-
+              <br />
               <Row className="graph-row">
                 <DiscomfortLevelLineGraph
-                  className="graphs-container"
+                  className="line-graph-container"
                   dataSet={sortedSet}
                 />
               </Row>
@@ -76,7 +75,7 @@ export default (props) => {
   };
 
   return (
-    <div>
+    <div className="data-viz-body">
       <form>
         <label>See charts : </label>
         <select onChange={onChangeHandler}>
@@ -86,11 +85,7 @@ export default (props) => {
           <option value="posture_breakdown">Posture Breakdown</option>
         </select>
       </form>
-      {renderGraphs()}
-      {/* <DiscomfortLevelLineGraph dataSet={sortedSet} />
-      <PainAreaChart dataSet={sortedSet} />
-      <PostureTypePie /> */}
-      {/* <StretchList /> */}
+      <div className="graphs-container">{renderGraphs()}</div>
     </div>
   );
 };

@@ -63,7 +63,6 @@ const StretchList = (props) => {
       <Button variant="primary" onClick={() => setModalShow(true)}>
         Click to see your suggested stretches!
       </Button>
-
       <SuggestedStretchesGrid
         show={modalShow}
         onHide={() => setModalShow(false)}
