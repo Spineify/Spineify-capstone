@@ -193,3 +193,16 @@ div.graphs-container.container {
   align-content: center;
 }
 
+#posture-pie-loading-message {
+  text-align: center;
+}
+
+#pain-area-loading-message {
+  text-align: center;
+}
+
+#discomfort-level-line-loading-message {
+  text-align: center;
+}
+
+
