@@ -40,9 +40,9 @@ function Tracker() {
         return;
       }
 
-      const system = await electron.systemState.getSystemState();
-      setSystem(system);
-      console.log("systemState:", system);
+      // const system = await electron.systemState.getSystemState();
+      // setSystem(system);
+      // console.log("systemState:", system);
 
       // if (system === 'active') {
       const imageSrc = webcamRef.current.getScreenshot();

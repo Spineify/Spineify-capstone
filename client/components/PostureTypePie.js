@@ -52,7 +52,24 @@ const PostureTypePie = (props) => {
     teal: ["#00FFFF", "#5E6063", "#49C6B7"],
   };
 
-  console.log('checkArray', checkArray)
+  let index = 0
+  const colorsArray = checkArray.map((category) => {
+    const colorObj = {
+      name: category.x,
+      symbol: {
+        fill: colors.teal[index]
+      }
+    }
+    index++
+    return colorObj
+  })
+
+  let colorScaleArray = []
+  for(let i=0;i<checkArray.length;i++){
+    colorScaleArray.push(colors.teal[i])
+  }
+
+  console.log('colorsArray', colorsArray, colorScaleArray)
 
   return (
     <div >
@@ -72,16 +89,12 @@ const PostureTypePie = (props) => {
                 style={
                   ({ border: { stroke: "black" } }, { title: { fontSize: 35 } })
                 }
-                data={[
-                  { name: "Good Posture", symbol: { fill: "#49C6B7" } },
-                  { name: "OK Posture", symbol: { fill: "#00FFFF" } },
-                  { name: "Bad Posture", symbol: { fill: "#5E6063" } },
-                ]}
+                data={colorsArray}
               />
               <VictoryPie
                 data={checkArray}
                 name="Areas of Discomfort"
-                colorScale={colors["teal"]}
+                colorScale={colorScaleArray}
                 innerRadius={150}
                 padAngle={3}
                 width={900}
@@ -102,7 +115,7 @@ const PostureTypePie = (props) => {
                   orientation="horizontal"
                   height="auto"
                   style={
-                    ({ border: { stroke: "black" } }, { title: { fontSize: 35 } })
+                    ({ border: { stroke: "black" } }, { title: { fontSize: 25 } })
                   }
                   data={[
                     { name: "Good Posture", symbol: { fill: "#00FFFF" } },

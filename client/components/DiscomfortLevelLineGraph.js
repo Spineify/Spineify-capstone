@@ -74,7 +74,7 @@ const DiscomfortLevelLineGraph = (props) => {
             centerTitle
             height="auto"
             data={[{
-              name: '', symbol: {fill: '#FFFFFF'}
+              name: '', symbol: {fill: '#D9D9D9'}
             }
             ]}
             style={

@@ -43,11 +43,27 @@ export default (props) => {
 
   const checkArray = pieChartData.filter((entry) => entry.y !== 0);
 
-
   const colors = {
     pink: ["#CB5599", "#5E6063"],
-    teal: ["#3C6E71", "#284B63", "#D9D9D9", "#353535", "#A4C3B2"],
+    teal: ["#3C6E71", "#284B63", "#FFFFFF", "#353535", "#A4C3B2"],
   };
+
+  let index = 0
+  const colorsArray = checkArray.map((category) => {
+    const colorObj = {
+      name: category.x,
+      symbol: {
+        fill: colors.teal[index]
+      }
+    }
+    index++
+    return colorObj
+  })
+
+  let colorScaleArray = []
+  for(let i=0;i<checkArray.length;i++){
+    colorScaleArray.push(colors.teal[i])
+  }
 
   return (
     <div>
@@ -66,21 +82,13 @@ export default (props) => {
                 style={
                   ({ border: { stroke: "black" } }, { title: { fontSize: 35 } })
                 }
-                data={[
-                  { name: "neck", symbol: { fill: "#3C6E71" } },
-                  {
-                    name: "upper-back",
-                    symbol: { fill: "#284B63" },
-                  },
-                  { name: "lower-back", symbol: { fill: "#D9D9D9" } },
-                  { name: "shoulders", symbol: { fill: "#353535" } },
-                  { name: "hips", symbol: { fill: "#A4C3B2" } },
-                ]}
+                data={colorsArray}
+                itemsPerRow={3}
               />
               <VictoryPie
                 data={checkArray}
                 name="Areas of Discomfort"
-                colorScale={colors["teal"]}
+                colorScale={colorScaleArray}
                 innerRadius={150}
                 padAngle={3}
                 width={900}
@@ -100,7 +108,7 @@ export default (props) => {
                   orientation="horizontal"
                   height="auto"
                   style={
-                    ({ border: { stroke: "black" } }, { title: { fontSize: 35 } })
+                    ({ border: { stroke: "black" } }, { title: { fontSize: 25 } })
                   }
                   data={[
                     { name: "neck", symbol: { fill: "#3C6E71" } },
@@ -108,10 +116,11 @@ export default (props) => {
                       name: "upper-back",
                       symbol: { fill: "#284B63" },
                     },
-                    { name: "lower-back", symbol: { fill: "#D9D9D9" } },
+                    { name: "lower-back", symbol: { fill: "#FFFFFF" } },
                     { name: "shoulders", symbol: { fill: "#353535" } },
                     { name: "hips", symbol: { fill: "#A4C3B2" } },
                   ]}
+                  itemsPerRow={3}
                 />
                 <VictoryPie
                   data={pieChartData}
