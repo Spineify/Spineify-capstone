@@ -1,64 +1,69 @@
-import React, { useEffect, useState } from "react";
-import { connect, useDispatch, useSelector } from "react-redux";
-import { getPoses } from "../store/posture";
-import Tracker from "./Tracker";
-import PetPlant from "./PetPlant";
-import SurveyModal from "./SurveyModal";
-import StretchList from "./StretchList";
-import { getPlant } from "../store/petPlant";
-import { Alert } from "react-bootstrap";
+import React, { useEffect, useState } from 'react'
+import { connect, useDispatch, useSelector } from 'react-redux'
+import { getPoses } from '../store/posture'
+import Tracker from './Tracker'
+import PetPlant from './PetPlant'
+import SurveyModal from './SurveyModal'
+import StretchList from './StretchList'
+import { getPlant } from '../store/petPlant'
+import { Alert } from 'react-bootstrap'
 
 /**
  * COMPONENT
  */
 export const Home = (props) => {
-  const { username } = props;
-  const dispatch = useDispatch();
-  const [show, setShow] = useState(true);
-  const userId = useSelector((state) => state.auth.id);
-  const plant = useSelector((state) => state.plantReducer);
+	const { username } = props
+	const dispatch = useDispatch()
+	const [show, setShow] = useState(true)
+	const userId = useSelector((state) => state.auth.id)
+	const plant = useSelector((state) => state.plantReducer)
+	const [modalShow, setModalShow] = React.useState(false)
 
-  //get all poses
-  useEffect(() => {
-    dispatch(getPoses());
-    dispatch(getPlant())
-  }, []);
+	//get all poses
+	useEffect(() => {
+		dispatch(getPoses())
+		dispatch(getPlant())
+	}, [])
 
-  return (
-    <div id="home">
-      <h3>Hello, {username}</h3>
-      <SurveyModal />
-      <div>
-        {userId && (
-          <div>
-            {show ? (
-              <Alert color="primary" variant="success" closeLabel="Close alert">
-                Don't forget to take your daily survey! 🌱
-                <button type="button" onClick={() => setShow(false)}>
-                  Close
-                </button>
-              </Alert>
-            ) : null}
-          </div>
-        )}
-      </div>
-      <div className="homeContent">
-        <Tracker />
-        {Object.keys(plant).length && <PetPlant />}
-      </div>
-      <br /> <br />
-      <StretchList />
-    </div>
-  );
-};
+	//rerender home component when user takes/completes survey. ModalShow is used in PetPlant componenet so it doesnt refresh the survey at intervals when user is taking survey. see line 27 of petplant component
+	useEffect(() => {}, [modalShow])
+
+	return (
+		<div id="home">
+			<h3>Hello, {username}</h3>
+			<SurveyModal setModalShow={setModalShow} modalShow={modalShow} />
+			{console.log('modalShow at home', modalShow)}
+			<div>
+				{userId && (
+					<div>
+						{show ? (
+							<Alert color="primary" variant="success" closeLabel="Close alert">
+								Don't forget to take your daily survey! 🌱
+								<button type="button" onClick={() => setShow(false)}>
+									Close
+								</button>
+							</Alert>
+						) : null}
+					</div>
+				)}
+			</div>
+			<div className="homeContent">
+				<Tracker />
+				{Object.keys(plant).length && <PetPlant modalShow={modalShow} />}
+			</div>
+			<br /> <br />
+			<StretchList />
+		</div>
+	)
+}
 
 /**
  * CONTAINER
  */
 const mapState = (state) => {
-  return {
-    username: state.auth.username,
-  };
-};
+	return {
+		username: state.auth.username,
+	}
+}
 
-export default connect(mapState)(Home);
+export default connect(mapState)(Home)
