@@ -17,7 +17,6 @@ export const getModel = () => {
 			const modelURL = URL + 'model.json'
 			const metadataURL = URL + 'metadata.json'
 			const loadedModel = await tmPose.load(modelURL, metadataURL)
-			console.log(loadedModel)
 			dispatch(_getModel(loadedModel))
 		} catch (error) {
 			console.log('could not load tm model', error)

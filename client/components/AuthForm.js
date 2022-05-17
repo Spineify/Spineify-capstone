@@ -14,11 +14,23 @@ const AuthForm = (props) => {
 			<div className={`signin-info`}>
 				<h1>{displayName}</h1>
 				<form onSubmit={handleSubmit} name={name}>
+					{name === 'signup' && (
+						<div>
+							<label htmlFor="firstName">
+								<small>First Name: </small>
+							</label>
+							<input name="firstName" type="text" />
+							<label htmlFor="lastName">
+								<small>Last Name: </small>
+							</label>
+							<input name="lastName" type="text" />
+						</div>
+					)}
 					<div>
-						<label htmlFor="username">
-							<small>Username: </small>
+						<label htmlFor="email">
+							<small>Email: </small>
 						</label>
-						<input name="username" type="text" />
+						<input name="email" type="text" />
 					</div>
 					<div>
 						<label htmlFor="password">
@@ -26,30 +38,20 @@ const AuthForm = (props) => {
 						</label>
 						<input name="password" type="password" />
 					</div>
+					<button type="submit" className="btn btn-success">
+						{displayName}
+					</button>
+					{error && error.response && <div> {error.response.data} </div>}
 					{name === 'login' ? (
 						<div>
-							<button type="submit" className="btn btn-success">
-								{displayName}
-							</button>
-							<div>
-								Don't have an account? <Link to="/signup">Sign up</Link>
-							</div>
+							Don't have an account? <Link to="/signup">Sign up</Link>
 						</div>
 					) : (
 						<div>
-							<button type="submit" className="btn btn-primary">
-								{displayName}
-							</button>
-							<div>
-								Already have an account? <Link to="/login">Log in</Link>
-							</div>
+							Already have an account? <Link to="/login">Log in</Link>
 						</div>
 					)}
-					{error && error.response && <div> {error.response.data} </div>}
 				</form>
-			</div>
-			<div className={`pretty-intro`}>
-				{name === 'signup' ? <h2>Welcome to Spineify!</h2> : null}
 			</div>
 		</div>
 	)
@@ -83,9 +85,18 @@ const mapDispatch = (dispatch) => {
 		handleSubmit(evt) {
 			evt.preventDefault()
 			const formName = evt.target.name
-			const username = evt.target.username.value
-			const password = evt.target.password.value
-			dispatch(authenticate(username, password, formName))
+			//user
+			let user, firstName, lastName, email, password
+			email = evt.target.email.value
+			password = evt.target.password.value
+			if (evt.target.firstName) {
+				firstName = evt.target.firstName.value
+				lastName = evt.target.lastName.value
+				user = { firstName, lastName, email, password }
+			} else {
+				user = { email, password }
+			}
+			dispatch(authenticate(formName, user))
 		},
 	}
 }

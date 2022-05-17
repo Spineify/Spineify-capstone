@@ -5,7 +5,7 @@ const {
 	models: { User, Stretch, PetPlant },
 } = require('../server/db')
 
-const healthlineStretches = require('./stretches')
+const stretchesInstances = require('./stretches')
 /**
  * seed - this function clears the database, updates tables to
  *      match the models, and populates the database.
@@ -16,28 +16,35 @@ async function seed() {
 
 	// Creating Users
 	const users = await Promise.all([
-		User.create({ username: 'cody', password: '123' }),
-		User.create({ username: 'murphy', password: '123' }),
+		User.create({
+			firstName: 'Grace',
+			lastName: 'Hopper',
+			email: 'gh@gmail.com',
+			password: '123',
+		}),
+		User.create({
+			firstName: 'John',
+			lastName: 'Doe',
+			email: 'jd@gmail.com',
+			password: '123',
+		}),
 	])
 
 	// Creating Plants
-	await Promise.all([
+	const plants = await Promise.all([
 		PetPlant.create({ level: 3, points: 11, userId: 1 }),
 		PetPlant.create({ level: 11, points: 2, userId: 2 }),
 	])
 
-	await Promise.all(
-		healthlineStretches.map((stretch) => Stretch.create(stretch))
+	//Creating Stretches (Static)
+	const stretches = await Promise.all(
+		stretchesInstances.map((stretch) => Stretch.create(stretch))
 	)
 
-	console.log(`seeded ${users.length} users`)
+	console.log(
+		`seeded ${users.length} users, ${plants.length} plants, and ${stretches.length} stretches`
+	)
 	console.log(`seeded successfully`)
-	return {
-		users: {
-			cody: users[0],
-			murphy: users[1],
-		},
-	}
 }
 
 /*
