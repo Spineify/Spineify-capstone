@@ -69,8 +69,6 @@ const PostureTypePie = (props) => {
     colorScaleArray.push(colors.teal[i])
   }
 
-  console.log('colorsArray', colorsArray, colorScaleArray)
-
   return (
     <div >
       {checkArray.length === 0 && loadingState === true ? (

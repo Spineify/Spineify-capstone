@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Modal, Button, Card, Container, Row, Col } from "react-bootstrap";
+import { Modal, Button, Card, Container, Row, Col, ToggleButtonGroup, ToggleButton } from "react-bootstrap";
 import { addFavoriteStretch } from "../store/favoriteChange";
 
 function SuggestedStretchesGrid(props) {
@@ -22,30 +22,32 @@ function SuggestedStretchesGrid(props) {
       </Modal.Header>
       <Modal.Body className="show-grid">
         <Container>
-          <Row>
-            {stretchList.length === 0 ? (
-              <p>Please take your daily survey to see suggested stretches!</p>
-            ) : (
-              stretchList.map((stretch) => {
-                return (
-                  <Col md={3} key={stretch.id}>
-                    <Card className="stretchlist-card">
-                      <Card.Img variant="top" src={stretch.imageURL} />
-                      <Card.Title>{stretch.name}</Card.Title>
-                      <Card.Text>{stretch.directions}</Card.Text>
-                      <Button
-                        onClick={() => {
-                          setFavorite(stretch);
-                        }}
-                      >
-                        Add to Favorites
-                      </Button>
-                    </Card>
-                  </Col>
-                );
-              })
-            )}
-          </Row>
+          <ToggleButtonGroup type="checkbox" className="add-favorite-buttons">
+            <Row>
+              {stretchList.length === 0 ? (
+                <p>Please take your daily survey to see suggested stretches!</p>
+              ) : (
+                stretchList.map((stretch) => {
+                  return (
+                    <Col md={6} key={stretch.id}>
+                      <Card className="stretchlist-card">
+                        <Card.Img variant="top" src={stretch.imageURL} />
+                        <Card.Title>{stretch.name}</Card.Title>
+                        <Card.Text>{stretch.directions}</Card.Text>
+                        <ToggleButton
+                          onClick={() => {
+                            setFavorite(stretch);
+                          }}
+                        >
+                          Add to Favorites
+                        </ToggleButton>
+                      </Card>
+                    </Col>
+                  );
+                })
+              )}
+            </Row>
+          </ToggleButtonGroup>
         </Container>
       </Modal.Body>
       <Modal.Footer>
