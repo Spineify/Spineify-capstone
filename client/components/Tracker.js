@@ -7,6 +7,7 @@ import Webcam from "react-webcam";
 const GOOD_POSTURE = "/good_posture.jpeg";
 const COUNT_POSES = 3;
 function Tracker() {
+
   const [start, setStart] = useState(false);
   const [imageSrc, setImageSrc] = useState(GOOD_POSTURE);
   const model = useSelector((state) => state.modelReducer);
@@ -146,6 +147,7 @@ function Tracker() {
       </button>
     </div>
   );
+
 }
 
 export default Tracker;

@@ -1,16 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   VictoryLine,
   VictoryChart,
   VictoryAxis,
   VictoryTheme,
   VictoryStack,
+  VictoryLegend,
 } from "victory";
 import moment from "moment";
 import TimePeriodFilter from "./LineGraphTimeFilter";
 
 const DiscomfortLevelLineGraph = (props) => {
   const [filterStatus, setFilterStatus] = useState("");
+  const [loadingState, setLoadingState] = useState(true);
+
+  useEffect(() => {
+      setLoadingState(false)
+  }, [props.dataSet])
 
   const graphDataMap = props.dataSet.map((survey) => {
     const dataObj = {
@@ -57,12 +63,24 @@ const DiscomfortLevelLineGraph = (props) => {
 
   return (
     <div>
-      {finalLineArray.length === 0 ? (
+      {finalLineArray.length === 0 && loadingState === true ? (
         <h1>Loading data, please wait</h1>
-      ) : (
+      ) : finalLineArray.length <= 1 && loadingState === false ? <h3 id="discomfort-level-line-loading-message">Not enough data</h3> : (
         <div>
-          <h5>Discomfort Levels Over Time</h5>
           <VictoryChart theme={VictoryTheme.material} domainPadding={20}>
+            <VictoryLegend
+            title="Discomfort Levels Over Time"
+            orientation="horizontal"
+            centerTitle
+            height="auto"
+            data={[{
+              name: '', symbol: {fill: '#FFFFFF'}
+            }
+            ]}
+            style={
+              ({data: {fontSize: 1}}, {title: {fontSize: 25}})
+            }
+            />
             <VictoryAxis
               label="Time Taken"
               // padding={50}
