@@ -7,7 +7,6 @@ import SurveyModal from "./SurveyModal";
 import StretchList from "./StretchList";
 import { getPlant } from "../store/petPlant";
 import { Alert } from "react-bootstrap";
-import Sidebar from "./Sidebar";
 
 /**
  * COMPONENT
@@ -31,29 +30,37 @@ export const Home = (props) => {
 
   return (
     <div id="home">
-      <h3>Hello, {firstName}</h3>
-      <Sidebar />
-      <SurveyModal setModalShow={setModalShow} modalShow={modalShow} />
       <div>
         {userId && (
           <div>
             {show ? (
               <Alert color="primary" variant="success" closeLabel="Close alert">
                 Don't forget to take your daily survey! 🌱
-                <button type="button" onClick={() => setShow(false)}>
-                  Close
+                <button
+                  className="tracker-button"
+                  type="button"
+                  onClick={() => setShow(false)}
+                >
+                  X
                 </button>
               </Alert>
             ) : null}
           </div>
         )}
       </div>
-      <div className="homeContent">
-        {/* <Tracker /> */}
-        {Object.keys(plant).length && <PetPlant modalShow={modalShow} />}
+      <div className="home-info">
+        <div className="welcome-info">
+          <h3 className="welcome-name">Hello, {firstName}.</h3>
+          {/* <Sidebar /> */}
+          <SurveyModal setModalShow={setModalShow} modalShow={modalShow} />
+          <StretchList />
+        </div>
+        <div className="homeContent">
+          {/* <Tracker /> */}
+          {Object.keys(plant).length && <PetPlant modalShow={modalShow} />}
+        </div>
+        <br />
       </div>
-      <br /> <br />
-      <StretchList />
     </div>
   );
 };
