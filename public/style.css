@@ -2,6 +2,12 @@ body {
   font-family: sans-serif;
 }
 
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 a {
   text-decoration: none;
 }
@@ -424,8 +430,6 @@ div.graphs-container.container {
   display: flex;
   flex-direction: column;
   margin-left: 250px;
-  /* justify-content: center;
-  align-items: center; */
 }
 
 .home-info {
@@ -452,9 +456,15 @@ div.graphs-container.container {
 /* Tracker */
 
 .tracker-container {
-  margin-left: 250px;
-  background-color: #e9ebe8;
+  /* margin-left: 250px; */
+  background-color: #354f52;
   margin-bottom: 50px;
+  margin-top: 50px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
 }
 
 .tracker-button {

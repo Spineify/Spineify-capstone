@@ -33,6 +33,9 @@ const Sidebar = ({ handleClick, isLoggedIn }) => {
               <span className="sidebar-span">My Favorites</span>
             </Link>
           </li>
+          <li>
+            <Tracker />
+          </li>
         </ul>
       </nav>
     </>

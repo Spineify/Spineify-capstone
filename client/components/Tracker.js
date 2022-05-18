@@ -115,24 +115,6 @@ function Tracker() {
     <div className="tracker-container">
       {isLoggedIn ? (
         <div className="screenshot">
-          {start ? (
-            <div>
-              <Screenshot model={model} webcamRef={webcamRef} />
-            </div>
-          ) : null}
-          <div>
-            <img
-              ref={pictureRef}
-              id="image"
-              style={{
-                width: 400,
-                height: 300,
-                zindex: 10,
-                ...(start && { display: "none" }),
-              }}
-              src={imageSrc}
-            />
-          </div>
           <button
             className="tracker-button"
             onClick={() => {
@@ -149,6 +131,25 @@ function Tracker() {
           >
             Stop Tracking
           </button>
+
+          {start ? (
+            <div>
+              <Screenshot model={model} webcamRef={webcamRef} />
+            </div>
+          ) : null}
+          <div>
+            <img
+              ref={pictureRef}
+              id="image"
+              style={{
+                width: 180,
+                height: 180,
+                zindex: 10,
+                ...(start && { display: "none" }),
+              }}
+              src={imageSrc}
+            />
+          </div>
         </div>
       ) : null}
     </div>

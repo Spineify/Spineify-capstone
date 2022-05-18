@@ -21,7 +21,6 @@ const App = ({ isLoggedIn }) => {
 
       <div className={isLoggedIn ? "body-content" : "body-content-signin"}>
         <Routes />
-        <Tracker />
       </div>
     </div>
   );
