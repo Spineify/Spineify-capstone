@@ -4,7 +4,7 @@ import Screenshot from "./Screenshot";
 import { addPose, getPoses } from "../store/posture";
 import Webcam from "react-webcam";
 
-const GOOD_POSTURE = "/good_posture.jpeg";
+const GOOD_POSTURE = "/good_posture_new.jpeg";
 const COUNT_POSES = 3;
 
 function Tracker() {
@@ -115,23 +115,24 @@ function Tracker() {
     <div className="tracker-container">
       {isLoggedIn ? (
         <div className="screenshot">
-          <button
-            className="tracker-button"
-            onClick={() => {
-              setStart(true);
-            }}
-          >
-            Start Tracking
-          </button>
-          <button
-            className="tracker-button"
-            onClick={() => {
-              setStart(false);
-            }}
-          >
-            Stop Tracking
-          </button>
-
+          <div className="tracker-button-container">
+            <button
+              className="tracker-button tracker-btn-1"
+              onClick={() => {
+                setStart(true);
+              }}
+            >
+              Start
+            </button>
+            <button
+              className="tracker-button"
+              onClick={() => {
+                setStart(false);
+              }}
+            >
+              Stop
+            </button>
+          </div>
           {start ? (
             <div>
               <Screenshot model={model} webcamRef={webcamRef} />
@@ -142,8 +143,8 @@ function Tracker() {
               ref={pictureRef}
               id="image"
               style={{
-                width: 180,
-                height: 180,
+                width: 200,
+                height: 200,
                 zindex: 10,
                 ...(start && { display: "none" }),
               }}
