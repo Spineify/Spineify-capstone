@@ -14,6 +14,7 @@ const PetPlant = (props) => {
 	const [draggedItem, setDraggedItem] = useState('')
 	const [prevPlant, setPrevPlant] = useState(plant)
 	const dispatch = useDispatch()
+	const [levelUp, setLevelUp] = useState(false)
 
 	const inventoryTotal =
 		inventory.fertilizer + inventory.nutritiousWater + inventory.water
@@ -95,87 +96,89 @@ const PetPlant = (props) => {
 	if (Object.keys(plant).length) {
 		return (
 			<div className={`gameFrame ${timeOfDay}`}>
-				<div className="level">
-					<h1>{`Level ${level}`}</h1>
-					<h2>{`${12 - points} point${
-						12 - points !== 1 ? 's' : ''
-					} to go!`}</h2>
-				</div>
-				<div className="progress">
-					<div
-						className="progress-bar progress-bar-striped progress-bar-animated"
-						role="progressbar"
-						aria-valuenow={`${points}`}
-						aria-valuemin="0"
-						aria-valuemax="12"
-						style={{ width: `${Math.floor((points / 12) * 100)}%` }}
-					></div>
-				</div>
-				<div className="game">
-					<img
-						className="tree"
-						src={`./gamification/tree_${level}.png`}
-						onDrop={() => onDrop()}
-						onDragOver={(event) => onDragOver(event)}
-					/>
-					<div className="inventory">
+				<div className="content">
+					<div className="level">
+						<h1>{`Level ${level}`}</h1>
+						<h2>{`${12 - points} point${
+							12 - points !== 1 ? 's' : ''
+						} to go!`}</h2>
+					</div>
+					<div className="progress">
+						<div
+							className="progress-bar progress-bar-striped progress-bar-animated"
+							role="progressbar"
+							aria-valuenow={`${points}`}
+							aria-valuemin="0"
+							aria-valuemax="12"
+							style={{ width: `${Math.floor((points / 12) * 100)}%` }}
+						></div>
+					</div>
+					<div className="game">
 						<img
-							className="chest"
-							onClick={() => toggleChest()}
-							src={`./gamification/chest_${chest}_new.png`}
+							className="tree"
+							src={`./gamification/tree_${level}.png`}
+							onDrop={() => onDrop()}
+							onDragOver={(event) => onDragOver(event)}
 						/>
-						{chest === 'opened' && prizesTotal ? (
-							//if inventory is empty, show nothing or send message
-							<div className="rewards">
-								{/* if inventory of item is 0, dont render */}
-								{inventory.fertilizer > 0 && (
-									<div className="item">
-										<img
-											value="fertilizer"
-											draggable="true"
-											onDrag={(event) => onDrag(event, 'fertilizer')}
-											className="img"
-											src={'./gamification/dirt.png'}
-										/>
-										<span>{`${inventory.fertilizer}`}</span>
-									</div>
-								)}
-								{/* if inventory of item is 0, dont render */}
-								{inventory.nutritiousWater > 0 && (
-									<div className="item">
-										<img
-											value="nutritiousWater"
-											draggable="true"
-											onDrag={(event) => onDrag(event, 'nutritiousWater')}
-											className="img"
-											src={'./gamification/nutritious_water.png'}
-										/>
-										<span>{`${inventory.nutritiousWater}`}</span>
-									</div>
-								)}
+						<div className="inventory">
+							<img
+								className="chest"
+								onClick={() => toggleChest()}
+								src={`./gamification/chest_${chest}_new.png`}
+							/>
+							{chest === 'opened' && prizesTotal ? (
+								//if inventory is empty, show nothing or send message
+								<div className="rewards">
+									{/* if inventory of item is 0, dont render */}
+									{inventory.fertilizer > 0 && (
+										<div className="item">
+											<img
+												value="fertilizer"
+												draggable="true"
+												onDrag={(event) => onDrag(event, 'fertilizer')}
+												className="img"
+												src={'./gamification/dirt.png'}
+											/>
+											<span>{`${inventory.fertilizer}`}</span>
+										</div>
+									)}
+									{/* if inventory of item is 0, dont render */}
+									{inventory.nutritiousWater > 0 && (
+										<div className="item">
+											<img
+												value="nutritiousWater"
+												draggable="true"
+												onDrag={(event) => onDrag(event, 'nutritiousWater')}
+												className="img"
+												src={'./gamification/nutritious_water.png'}
+											/>
+											<span>{`${inventory.nutritiousWater}`}</span>
+										</div>
+									)}
 
-								{/* if inventory of item is 0, dont render */}
-								{inventory.water > 0 && (
-									<div className="item">
-										<img
-											value="water"
-											draggable="true"
-											onDrag={(event) => onDrag(event, 'water')}
-											className="img"
-											src={'./gamification/water.png'}
-										/>
+									{/* if inventory of item is 0, dont render */}
+									{inventory.water > 0 && (
+										<div className="item">
+											<img
+												value="water"
+												draggable="true"
+												onDrag={(event) => onDrag(event, 'water')}
+												className="img"
+												src={'./gamification/water.png'}
+											/>
 
-										<span>{`${inventory.water}`}</span>
-									</div>
-								)}
-							</div>
-						) : null}
-						{chest === 'opened' && !prizesTotal ? (
-							//if inventory is empty, show nothing or send message
-							<p className="bubble">
-								No prizes in your chest! Maintain Good posture to earn more~
-							</p>
-						) : null}
+											<span>{`${inventory.water}`}</span>
+										</div>
+									)}
+								</div>
+							) : null}
+							{chest === 'opened' && !prizesTotal ? (
+								//if inventory is empty, show nothing or send message
+								<p className="bubble">
+									No prizes in your chest! Maintain Good posture to earn more~
+								</p>
+							) : null}
+						</div>
 					</div>
 				</div>
 			</div>
