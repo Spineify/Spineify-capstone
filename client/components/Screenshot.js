@@ -31,17 +31,15 @@ function Screenshot({ webcamRef }) {
         <div className="toggle-switch"></div>
         <span className="toggle-label">Webcam On</span>
       </label>
-      <div className="screenshot">
+      <div>
         <Webcam
           ref={webcamRef}
           screenshotFormat="image/png"
           style={{
-            left: 0,
-            right: 0,
             textAlign: "center",
             zindex: 9,
-            width: 400,
-            height: 400,
+            width: 200,
+            height: 200,
             ...(!webcamOn && { opacity: 0 }),
             // opacity: 0,
           }}
