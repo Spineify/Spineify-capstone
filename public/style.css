@@ -271,6 +271,7 @@ div.graphs-container.container {
 
 .data-viz-body {
   padding: 50px;
+  width: 100%;
 }
 
 .graphs-container {
@@ -382,9 +383,10 @@ div.graphs-container.container {
 .sidebar-span {
   margin-left: 16px;
   text-decoration: none;
-  color: #cad2c5;
+  /* color: #cad2c5; */
+  color: white;
   font-size: 1.3rem;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Cormorant", serif;
 }
 
 .sidebar-span:hover {
@@ -394,7 +396,7 @@ div.graphs-container.container {
 .spineify-title {
   color: white;
   font-size: 1.7rem;
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Cormorant", serif;
 }
 
 .app-container {
@@ -410,7 +412,6 @@ div.graphs-container.container {
   margin-left: 250px;
   background-color: #e9ebe8;
   height: 100vh;
-  width: 100vw;
 }
 
 .body-content-signin {
@@ -434,18 +435,31 @@ div.graphs-container.container {
   flex-direction: column;
   justify-content: space-between;
   padding: 50px;
-  height: 400px;
+  height: 600px;
+  gap: 10px;
 }
 
 .homeContent {
   height: 400px;
+  align-self: center;
+  margin-right: 40px;
 }
 
 .welcome-name {
-  font-family: "Courier New", Courier, monospace;
-  font-size: 1.4rem;
+  font-family: "Cormorant", serif;
+  font-weight: bold;
+  font-size: 1.7rem;
 }
 
+.welcome-paragraph {
+  border: 1px solid black;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-family: "Cormorant", serif;
+  font-weight: 600;
+  box-shadow: rgba(89, 89, 99, 0.2) 0px 7px 29px 0px;
+}
 /* Tracker */
 
 .tracker-container {
@@ -473,15 +487,24 @@ div.graphs-container.container {
   transition-duration: 300ms;
 }
 
-#modal-button {
+/* #modal-button {
   border-radius: 3px;
   padding: 7px;
   background-color: #84a98c;
   color: white;
   border: none;
+} */
+#modal-button {
+  border-radius: 3px;
+  padding: 7px;
+  background-color: #e9ebe8;
+  color: black;
+  border: 1px solid black;
+  font-family: "Cormorant", serif;
+  font-weight: 700;
 }
 
 #modal-button:hover {
-  background-color: #1a83ff;
+  background-color: #84a98c;
   transition-duration: 300ms;
 }
