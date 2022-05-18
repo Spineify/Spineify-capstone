@@ -51,12 +51,20 @@ export const Home = (props) => {
       <div className="home-info">
         <div className="welcome-info">
           <h3 className="welcome-name">Hello, {firstName}.</h3>
-          {/* <Sidebar /> */}
+          <p className="welcome-paragraph">
+            Welcome to Spineify! To start tracking your posture, click on the
+            'Start Tracking' button. Your posture will be tracked through the
+            webcam on your computer. To stop tracking at any time, click 'Stop
+            Tracking'. Every day fill out a daily survey to track your levels of
+            discomfort and areas of pain. Suggested stretches based on your pain
+            points will be recommended after each survey. Check out your results
+            in the data section to monitor your progress. Win prizes for your
+            pet plant by maintaining good posture during the day. You got this!
+          </p>
           <SurveyModal setModalShow={setModalShow} modalShow={modalShow} />
           <StretchList />
         </div>
         <div className="homeContent">
-          {/* <Tracker /> */}
           {Object.keys(plant).length && <PetPlant modalShow={modalShow} />}
         </div>
         <br />
