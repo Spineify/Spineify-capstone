@@ -4,7 +4,7 @@
   "description": "Some boilerplate code to get you started - get shakin'!",
   "main": "main.js",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack && npm run seed",
     "build:dev": "npm run build -- --watch --mode=development",
     "seed": "node script/seed.js",
     "start": "node server",
@@ -17,7 +17,7 @@
     "test:dev": "npm run test -- --watch",
     "test:dev:models": "npm run test:dev -- --grep=model",
     "test:dev:routes": "npm run test:dev -- --grep=route",
-    "package": "electron-packager . --all --out=dist"
+    "package": "electron-packager ."
   },
   "author": "FSA - Spineify",
   "license": "MIT",

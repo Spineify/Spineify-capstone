@@ -32,8 +32,18 @@ async function seed() {
 
 	// Creating Plants
 	const plants = await Promise.all([
-		PetPlant.create({ level: 3, points: 11, userId: 1 }),
-		PetPlant.create({ level: 11, points: 2, userId: 2 }),
+		PetPlant.create({
+			level: 3,
+			points: 11,
+			userId: 1,
+			inventory: { fertilizer: 5, nutritiousWater: 5, water: 6 },
+		}),
+		PetPlant.create({
+			level: 11,
+			points: 2,
+			userId: 2,
+			inventory: { fertilizer: 2, nutritiousWater: 5, water: 8 },
+		}),
 	])
 
 	//Creating Stretches (Static)
