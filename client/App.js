@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector, connect } from "react-redux";
 import Navbar from "./components/Navbar";
 import Routes from "./Routes";
 import Tracker from "./components/Tracker";
 import Sidebar from "./components/Sidebar";
 import { getModel } from "./store/tmModel";
+import { logout } from "./store";
 
-const App = () => {
+const App = ({ isLoggedIn }) => {
   const dispatch = useDispatch();
 
   //load teachable machine model
@@ -16,10 +17,9 @@ const App = () => {
 
   return (
     <div className="app-container">
-      {/* <Navbar /> */}
-      <Sidebar className="sidebar" />
+      {isLoggedIn && <Sidebar className="sidebar" />}
 
-      <div className="body-content">
+      <div className={isLoggedIn ? "body-content" : "body-content-signin"}>
         <Routes />
         <Tracker />
       </div>
@@ -27,4 +27,18 @@ const App = () => {
   );
 };
 
-export default App;
+const mapState = (state) => {
+  return {
+    isLoggedIn: !!state.auth.id,
+  };
+};
+
+const mapDispatch = (dispatch) => {
+  return {
+    handleClick() {
+      dispatch(logout());
+    },
+  };
+};
+
+export default connect(mapState, mapDispatch)(App);
