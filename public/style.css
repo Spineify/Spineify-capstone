@@ -56,7 +56,7 @@ form div {
 }
 
 .gameFrame .level {
-  display:flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -64,11 +64,13 @@ form div {
 
 .gameFrame .level h1 {
   font-size: 17px;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 .gameFrame .level h2 {
   font-size: 15px;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 .gameFrame .progress {
   width: 60%;
@@ -173,7 +175,7 @@ div.graphs-container.container {
 
 .signin-info.signup {
   background-color: #aff6cf;
-background-image: linear-gradient(315deg, #aff6cf 0%, #9f98e8 74%);
+  background-image: linear-gradient(315deg, #aff6cf 0%, #9f98e8 74%);
 }
 
 .signin-info .form-element {
@@ -192,15 +194,15 @@ background-image: linear-gradient(315deg, #aff6cf 0%, #9f98e8 74%);
   font-weight: 300;
   font-size: 13px;
   padding: 5px;
-  border: solid #cccccc
+  border: solid #cccccc;
 }
 .signin-info small {
   font-size: 15px;
 }
 
-.signin .btn{
+.signin .btn {
   width: 70px;
-  align-self:center;
+  align-self: center;
   padding: 5px;
   margin: 10px;
 }
@@ -208,8 +210,7 @@ background-image: linear-gradient(315deg, #aff6cf 0%, #9f98e8 74%);
 .signin-info h1 {
   font-size: 30px;
   padding: 30px;
-  color:rgb(63, 63, 63)
-
+  color: rgb(63, 63, 63);
 }
 
 .signin-info form {
@@ -407,6 +408,13 @@ background-image: linear-gradient(315deg, #aff6cf 0%, #9f98e8 74%);
 .body-content {
   margin-left: 250px;
   background-color: #e9ebe8;
+  height: 100vh;
+  width: 100vw;
+}
+
+.body-content-signin {
+  margin-left: 250px;
+  background-color: white;
   height: 100vh;
   width: 100vw;
 }
