@@ -39,7 +39,9 @@ function createWindow() {
   });
 
   // win.loadFile("./public/index.html");
-  win.loadURL("http://localhost:8080/");
+  win.loadURL(
+    isDev ? "http://localhost:8080/" : "https://spineify.herokuapp.com/"
+  );
 }
 
 if (isDev) {
