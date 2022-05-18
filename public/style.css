@@ -458,7 +458,8 @@ div.graphs-container.container {
   font-size: 1rem;
   font-family: "Cormorant", serif;
   font-weight: 600;
-  box-shadow: rgba(89, 89, 99, 0.2) 0px 7px 29px 0px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 /* Tracker */
 
