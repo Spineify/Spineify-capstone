@@ -47,7 +47,7 @@ const PostureTypePie = (props) => {
 
 	const colors = {
 		pink: ['#CB5599', '#5E6063'],
-		teal: ['#00FFFF', '#5E6063', '#49C6B7'],
+		teal: ["#3C6E71", "#284B63", "#FFFFFF"],
 	}
 
   let index = 0
