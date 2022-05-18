@@ -2,7 +2,7 @@
 
 ## About the Project
 
-Due to the pandemic, poor posture has become a common problem for today's remote workers. The Spineify desktop app is designed to monitor your posture and well-being while working at your desk.
+Due to the pandemic, poor posture and back pain has become a common problem for today's remote workers. The Spineify desktop app is designed to monitor your posture and well-being while working at your desk.
 
 ### Language & Frameworks
 
@@ -52,13 +52,7 @@ You got this!
 
 You can create your own account or use the following account information to log in:
 
-1. First Name: Grace
-   Last Name: Hopper
-   Email: gh@gmail.com
-   Password: 123
-2. First Name: John
-   Last Name: Doe
-   Email: jd@gmail.com
-   Password: 123
+1. First Name: Grace, Last Name: Hopper, Email: gh@gmail.com, Password: 123
+2. First Name: John, Last Name: Doe, Email: jd@gmail.com, Password: 123
 
 Have fun!
