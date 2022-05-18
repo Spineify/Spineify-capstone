@@ -430,9 +430,6 @@ div.graphs-container.container {
   display: flex;
   flex-direction: column;
   margin-left: 250px;
-  position: sticky;
-  /* justify-content: center;
-  align-items: center; */
 }
 
 .home-info {
