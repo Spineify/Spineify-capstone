@@ -95,6 +95,12 @@ const PetPlant = (props) => {
 	if (Object.keys(plant).length) {
 		return (
 			<div className={`gameFrame ${timeOfDay}`}>
+				<div className="level">
+					<h1>{`Level ${level}`}</h1>
+					<h2>{`${12 - points} point${
+						12 - points !== 1 ? 's' : ''
+					} to go!`}</h2>
+				</div>
 				<div className="progress">
 					<div
 						className="progress-bar progress-bar-striped progress-bar-animated"
