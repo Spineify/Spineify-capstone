@@ -1,6 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Modal, Button, Card, Container, Row, Col, ToggleButtonGroup, ToggleButton } from "react-bootstrap";
+import {
+  Modal,
+  Button,
+  Card,
+  Container,
+  Row,
+  Col,
+  ToggleButtonGroup,
+  ToggleButton,
+} from "react-bootstrap";
 import { addFavoriteStretch } from "../store/favoriteChange";
 
 function SuggestedStretchesGrid(props) {
@@ -62,7 +71,11 @@ const StretchList = (props) => {
 
   return (
     <>
-      <Button variant="primary" onClick={() => setModalShow(true)}>
+      <Button
+        id="modal-button"
+        variant="primary"
+        onClick={() => setModalShow(true)}
+      >
         Click to see your suggested stretches!
       </Button>
       <SuggestedStretchesGrid
