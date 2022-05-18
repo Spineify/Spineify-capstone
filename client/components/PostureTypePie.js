@@ -47,7 +47,7 @@ const PostureTypePie = (props) => {
 
 	const colors = {
 		pink: ['#CB5599', '#5E6063'],
-		teal: ['#00FFFF', '#5E6063', '#49C6B7'],
+		teal: ["#3C6E71", "#284B63", "#FFFFFF"],
 	}
 
   let index = 0
@@ -67,8 +67,6 @@ const PostureTypePie = (props) => {
     colorScaleArray.push(colors.teal[i])
   }
 
-  console.log('color check', colorsArray, colorScaleArray)
-
 	return (
 		<div>
 			{checkArray.length === 0 && loadingState === true ? (
@@ -79,13 +77,13 @@ const PostureTypePie = (props) => {
 				</p>
 			) : (
 				<div className="pie-chart-container">
+					<h4>Posture Type Breakdown</h4>
 					<VictoryLegend
-						title="Posture Type Breakdown"
+						//title="Posture Type Breakdown"
 						centerTitle
-						orientation="horizontal"
 						height="auto"
 						style={
-							({ border: { stroke: 'black' } }, { title: { fontSize: 35 } })
+							({ border: { stroke: 'black' } }, { title: { fontSize: 25 } })
 						}
 						data={colorsArray}
 					/>
