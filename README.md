@@ -1,76 +1,58 @@
-# Spineify-capstone
+# Spineify - Posture Tracking
 
-# FS-App-Template
+## About the Project
 
-## Setup
+Due to the pandemic, poor posture and back pain has become a common problem for today's remote workers. The Spineify desktop app is designed to monitor your posture and well-being while working at your desk.
 
-To use this as boilerplate, you'll need to take the following steps:
+### Language & Frameworks
 
-- Don't fork or clone this repo! Instead, create a new, empty
-  directory on your machine and `git init` (or create an empty repo on
-  Github and clone it to your local machine)
+- JavaScript
+- React/Redux
+- Express
+- Sequelize
+- Google's teachable machine and Tensorflow
+- Victory - Data Visualization
+- SurveyJS - Surveys
+- Bootstrap - Styling
+- Electron - Desktop App
+- Node-Cron - Function Scheduler
 
-- Now you will have to add the fs-app-template as a remote and merge it into your own repository.
+## Installation
 
-```
-git remote add boilermaker git@github.com:FullstackAcademy/fs-app-template.git
-git fetch boilermaker
-git merge boilermaker/main
-git branch -m master main
-```
+In order to install the desktop app, please refer to the following link with the most recent release of the app: https://github.com/Spineify/Spineify-capstone/releases
 
-## Customize
+We recommend downloading the app; however, there is a website that you can access (with missing features such as getting notifications and tracking system's idle state): http://spineify.herokuapp.com/
 
-Now that you've got the code, follow these steps to get acclimated:
+## Using the App
 
-- Update project name and description in `package.json`
-- `npm install`
-- Create two postgres databases (`MY_APP_NAME` should match the `name`
-  parameter in `package.json`):
-- These commands will create both your **development** and **test** databases
+To start tracking your posture -
 
-```
-createdb <YOUR APP NAME HERE FROM package.json>
-createdb <YOUR APP NAME HERE FROM package.json>-test
-```
+1. Click on the 'Start Tracking' button. Your posture will be tracked through the webcam on your computer. To stop tracking at any time, click 'Stop Tracking'.
+2. Every day, fill out a daily survey to track your levels of discomfort and areas of pain. Suggested stretched based on your pain points will be recommended after each survey.
+3. Check out your results in the data section to monitor your progress.
+4. Take care of your pet Plant by collecting rewards and feeding your plant!
 
-- By default, running `npm test` will use your test database, while
-  regular development uses development database
+### Game
 
-## Start
+- There are 15 levels total and you need 12 points to level up.
+- Click on the chest to see the prizes you have accumulated so far.
+- The point system is as follows:
+  - fertilizer: 3 points
+  - nutritious water (pink watering can): 2 points
+  - regular water (blue watering can): 1 point
+- If you don't feed your plant for two days, you will lose 2 points 😔.
+- Win prizes for your plant by maintaining good posture during the day 💪. Based on your daily performance, you will receive a prize at the end of the day at 5pm. The criteria is as follows:
+  - fertilizer: 90% of your daily postures are good
+  - nutritious water: 75% of your daily postures are good
+  - water: 50% good posturesof your daily postures are good
 
-Sync and seed your database by running `npm run seed`. Running `npm run start:dev` will make great things happen!
+You got this!
 
-- start:dev will both start your server and build your client side files using webpack
-- start:dev:logger is the same as start:dev, but you will see your SQL queries (can be helpful for debugging)
-- start:dev:seed will start your server and also seed your database (this is useful when you are making schema changes and you don't want to run your seed script separately)
+## Testing the app
 
-### Heroku
+You can create your own account or use the following account information to log in:
 
-1.  Set up the [Heroku command line tools][heroku-cli]
-2.  `heroku login`
-3.  Add a git remote for heroku:
+1. First Name: Grace, Last Name: Hopper, Email: gh@gmail.com, Password: 123
+2. First Name: John, Last Name: Doe, Email: jd@gmail.com, Password: 123
 
-[heroku-cli]: https://devcenter.heroku.com/articles/heroku-cli
-
-- **If you are creating a new app...**
-
-  1.  `heroku create` or `heroku create your-app-name` if you have a
-      name in mind.
-  2.  `heroku config:set JWT=<your secret here!>` to set a secret for JWT signing
-
-Database Setup
-
-3.  `heroku addons:create heroku-postgresql:hobby-dev` to add
-    ("provision") a postgres database to your heroku dyno (This creates your production database)
-
-4.  `heroku config:set SEED=true` to get heroku to sync and seed your database
-
-5.  note everytime your app restarts, the database tables will be dropped and re-created. To avoid this you can `config:unset SEED`
-
-- **If you already have a Heroku app...**
-
-  1.  `heroku git:remote your-app-name` You'll need to be a
-      collaborator on the app.
-
-Now, you should be deployed!
+Have fun!
