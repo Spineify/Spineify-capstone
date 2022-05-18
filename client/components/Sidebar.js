@@ -1,56 +1,49 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { logout } from "../store";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 
-const sideBarData = [
-  {
-    title: "Home",
-    path: "/home",
-    icon: <AiIcons.AiFillHome />,
-    cName: "nav-text-",
-  },
-  {
-    title: "Data",
-    path: "/data",
-    icon: <AiIcons.GoGraph />,
-    cName: "nav-text-",
-  },
-  {
-    title: "My Stretches",
-    path: "/favorites",
-    icon: <AiIcons.RiPlantLine />,
-    cName: "nav-text-",
-  },
-  {
-    title: "Logout",
-    path: "/login",
-    icon: <AiIcons.FiLogOut />,
-    cName: "nav-text-",
-  },
-];
-
-const Sidebar = (props) => {
+const Sidebar = ({ handleClick, isLoggedIn }) => {
   return (
     <>
-      {/* <h5>Spineify</h5> */}
       <nav className="nav-menu active">
         <ul className="nav-menu-items">
           <li className="spineify-title">Spineify</li>
-          {sideBarData.map((item, index) => {
-            return (
-              <li key={index} className={item.cName}>
-                <Link to={item.path}>
-                  {/* {item.icon} */}
-                  <span className="sidebar-span">{item.title}</span>
-                </Link>
-              </li>
-            );
-          })}
+
+          <li>
+            <Link to="/home">
+              <span className="sidebar-span">Home</span>
+            </Link>
+          </li>
+          <li>
+            <a href="#" onClick={handleClick}>
+              <span className="sidebar-span">Logout</span>
+            </a>
+          </li>
+          <li>
+            <Link to="/data">
+              <span className="sidebar-span">Data</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/favorites">
+              <span className="sidebar-span">My Favorites</span>
+            </Link>
+          </li>
         </ul>
       </nav>
     </>
   );
 };
 
-export default Sidebar;
+const mapDispatch = (dispatch) => {
+  return {
+    handleClick() {
+      dispatch(logout());
+    },
+  };
+};
+
+export default connect(null, mapDispatch)(Sidebar);
