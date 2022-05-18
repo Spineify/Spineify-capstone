@@ -253,8 +253,6 @@ div.graphs-container.container {
 .favorites-remove-button {
   justify-self: flex-end;
   margin-top: auto;
-  /* align-self: flex-end; */
-  /* margin-bottom: auto; */
 }
 
 /*  Pie Chart Styling*/
@@ -267,13 +265,11 @@ div.graphs-container.container {
 /* */
 
 .favorites-container {
-  margin-left: 250px;
   padding: 50px;
 }
 /* Main Data Visualization Page Styling */
 
 .data-viz-body {
-  margin-left: 250px;
   padding: 50px;
 }
 
@@ -291,7 +287,6 @@ div.graphs-container.container {
 }
 
 .line-graph-container {
-  /* padding-top: 50px; */
   margin: auto;
 }
 
@@ -419,7 +414,6 @@ div.graphs-container.container {
 }
 
 .body-content-signin {
-  margin-left: 250px;
   background-color: white;
   height: 100vh;
   width: 100vw;
@@ -429,7 +423,6 @@ div.graphs-container.container {
 #home {
   display: flex;
   flex-direction: column;
-  margin-left: 250px;
 }
 
 .home-info {
