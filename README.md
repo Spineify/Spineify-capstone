@@ -12,8 +12,8 @@ Due to the pandemic, poor posture and back pain has become a common problem for 
 - Sequelize
 - Google's teachable machine and Tensorflow
 - Victory - Data Visualization
-- Survey - Surveys
-- Bootscrap - Styling
+- SurveyJS - Surveys
+- Bootstrap - Styling
 - Electron - Desktop App
 - Node-Cron - Function Scheduler
 
