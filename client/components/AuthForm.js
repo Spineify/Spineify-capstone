@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { authenticate } from '../store'
+import { AiOutlineUser } from 'react-icons'
 
 /**
  * COMPONENT
@@ -11,34 +12,42 @@ const AuthForm = (props) => {
 
 	return (
 		<div className={`signin ${name}`}>
-			<div className={`signin-info`}>
-				<h1>{displayName}</h1>
+			<div className={`signin-info ${name}`}>
+				{name === 'signup' ? (
+					<h1>Create an account</h1>
+				) : (
+					<h1>Login to your account</h1>
+				)}
 				<form onSubmit={handleSubmit} name={name}>
 					{name === 'signup' && (
-						<div>
-							<label htmlFor="firstName">
-								<small>First Name: </small>
-							</label>
-							<input name="firstName" type="text" />
-							<label htmlFor="lastName">
-								<small>Last Name: </small>
-							</label>
-							<input name="lastName" type="text" />
-						</div>
+						<>
+							<div className="form-element">
+								<label htmlFor="firstName">
+									<small>First Name: </small>
+								</label>
+								<input name="firstName" type="text" />
+							</div>
+							<div className="form-element">
+								<label htmlFor="lastName">
+									<small>Last Name: </small>
+								</label>
+								<input name="lastName" type="text" />
+							</div>
+						</>
 					)}
-					<div>
+					<div className="form-element">
 						<label htmlFor="email">
 							<small>Email: </small>
 						</label>
 						<input name="email" type="text" />
 					</div>
-					<div>
+					<div className="form-element">
 						<label htmlFor="password">
 							<small>Password: </small>
 						</label>
 						<input name="password" type="password" />
 					</div>
-					<button type="submit" className="btn btn-success">
+					<button type="submit" className="btn btn-secondary">
 						{displayName}
 					</button>
 					{error && error.response && <div> {error.response.data} </div>}

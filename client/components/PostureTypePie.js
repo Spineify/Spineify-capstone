@@ -111,3 +111,4 @@ const PostureTypePie = (props) => {
 }
 
 export default PostureTypePie;
+

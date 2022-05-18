@@ -26,15 +26,15 @@ form div {
   height: 100%;
 }
 
+/* Game */
 .gameFrame {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  width: 80%;
-  height: 1200;
+  width: 300px;
+  height: 450px;
   border: solid #d1d1d0 1px;
-  border-radius: 50% / 30%;
+  border-radius: 50% / 35%;
 }
 
 .gameFrame.morning {
@@ -47,6 +47,29 @@ form div {
   background: linear-gradient(180deg, #031d44 70%, #41521f 30%);
 }
 
+.gameFrame .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 55px;
+}
+
+.gameFrame .level {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.gameFrame .level h1 {
+  font-size: 17px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.gameFrame .level h2 {
+  font-size: 15px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
 .gameFrame .progress {
   width: 60%;
 }
@@ -70,11 +93,12 @@ form div {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-grow: 1;
+  flex-grow: 2;
+  margin: 15px;
 }
 
 .inventory .chest {
-  width: 50px;
+  width: 55px;
 }
 
 .inventory .rewards {
@@ -94,6 +118,10 @@ form div {
 
 .inventory span {
   font-size: 7px;
+}
+
+.game .bubble {
+  font-size: 9px;
 }
 
 /* these might be helpful or they might break the graphs
@@ -118,14 +146,14 @@ div.graphs-container.container {
 .signin {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
   margin: 75px 30px 30px 30px;
   height: 500px;
-  border: solid rgb(178, 178, 178) 0.5px;
-  border-radius: 0.5rem;
-  background: linear-gradient(62deg, #ff99cc 0%, #ffcccc 100%);
 }
 
 .signin-info {
+  height: 100%;
   width: 50%;
   padding: 20px;
   display: flex;
@@ -133,11 +161,55 @@ div.graphs-container.container {
   justify-content: center;
   align-items: center;
   font-weight: 300;
+  color: rgb(103, 102, 102);
+  border: solid rgb(178, 178, 178) 0.5px;
+  border-radius: 0.5rem;
+}
+
+.signin-info.login {
+  background-color: #ffcfdf;
+  background-image: linear-gradient(315deg, #ffcfdf 0%, #b0f3f1 74%);
+}
+
+.signin-info.signup {
+  background-color: #aff6cf;
+background-image: linear-gradient(315deg, #aff6cf 0%, #9f98e8 74%);
+}
+
+.signin-info .form-element {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin: 5px;
+}
+
+.signin-info input {
+  border-radius: 3px;
+  color: gray;
+  font-family: sans-serif;
+  font-weight: 300;
+  font-size: 13px;
+  padding: 5px;
+  border: solid #cccccc
+}
+.signin-info small {
+  font-size: 15px;
+}
+
+.signin .btn{
+  width: 70px;
+  align-self:center;
+  padding: 5px;
+  margin: 10px;
 }
 
 .signin-info h1 {
   font-size: 30px;
-  align-self: flex-start;
+  padding: 30px;
+  color:rgb(63, 63, 63)
+
 }
 
 .signin-info form {
