@@ -26,7 +26,7 @@ export const FavoriteStretches = (props) => {
   }, [stretchToDelete]);
 
   return (
-    <div>
+    <div className="favorites-container">
       <h3 id="favorites-title">My Favorites</h3>
       <Container>
         <Row>

@@ -31,7 +31,7 @@ form div {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 25%;
+  width: 80%;
   height: 1200;
   border: solid #d1d1d0 1px;
   border-radius: 50% / 30%;
@@ -185,7 +185,18 @@ div.graphs-container.container {
   align-content: center;
 }
 
+/* */
+
+.favorites-container {
+  margin-left: 250px;
+  padding: 50px;
+}
 /* Main Data Visualization Page Styling */
+
+.data-viz-body {
+  margin-left: 250px;
+  padding: 50px;
+}
 
 .graphs-container {
   display: flex;
@@ -221,5 +232,173 @@ div.graphs-container.container {
   text-align: center;
 }
 
+/* Sidebar Styling */
 
+.navbar {
+  background-color: #060b26;
+  height: 80px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
 
+.menu-bars {
+  margin-left: 2rem;
+  font-size: 2rem;
+  background: none;
+}
+
+.nav-menu {
+  background-color: #354f52;
+  width: 250px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: -100%;
+  transition: 850ms;
+}
+
+.nav-menu.active {
+  left: 0;
+  transition: 350ms;
+}
+
+.nav-text {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 8px 0px 8px 16px;
+  list-style: none;
+  height: 60px;
+}
+
+.nav-text a {
+  text-decoration: none;
+  color: #f5f5f5;
+  font-size: 18px;
+  width: 95%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  border-radius: 4px;
+}
+
+.nav-text a:hover {
+  background-color: #1a83ff;
+}
+
+.nav-menu-items {
+  width: 100%;
+  padding: 40px;
+  list-style-type: none;
+}
+
+.navbar-toggle {
+  background-color: #354f52;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.sidebar-span {
+  margin-left: 16px;
+  text-decoration: none;
+  color: #cad2c5;
+  font-size: 1.3rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.sidebar-span:hover {
+  color: rgb(10, 204, 194);
+}
+
+.spineify-title {
+  color: white;
+  font-size: 1.7rem;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.app-container {
+  position: absolute;
+}
+
+.sidebar {
+  position: fixed;
+  background-color: #354f52;
+}
+
+.body-content {
+  margin-left: 250px;
+  background-color: #e9ebe8;
+  height: 100vh;
+  width: 100vw;
+}
+
+/*  Home styling */
+#home {
+  display: flex;
+  flex-direction: column;
+  margin-left: 250px;
+  /* justify-content: center;
+  align-items: center; */
+}
+
+.home-info {
+  display: flex;
+}
+
+.welcome-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 50px;
+  height: 400px;
+}
+
+.homeContent {
+  height: 400px;
+}
+
+.welcome-name {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1.4rem;
+}
+
+/* Tracker */
+
+.tracker-container {
+  margin-left: 250px;
+  background-color: #e9ebe8;
+  margin-bottom: 50px;
+}
+
+.tracker-button {
+  border-radius: 3px;
+  padding: 7px;
+  background-color: #84a98c;
+  color: white;
+  border: none;
+}
+
+.tracker-button:hover {
+  background-color: #1a83ff;
+  transition-duration: 300ms;
+}
+
+#modal-button {
+  border-radius: 3px;
+  padding: 7px;
+  background-color: #84a98c;
+  color: white;
+  border: none;
+}
+
+#modal-button:hover {
+  background-color: #1a83ff;
+  transition-duration: 300ms;
+}
