@@ -17,6 +17,7 @@ export const Home = (props) => {
   const [show, setShow] = useState(true);
   const userId = useSelector((state) => state.auth.id);
   const plant = useSelector((state) => state.plantReducer);
+  const stretchList = useSelector((state) => state.stretchList)
   const [modalShow, setModalShow] = React.useState(false);
 
   //get all poses
@@ -53,7 +54,7 @@ export const Home = (props) => {
           <h3 className="welcome-name">Hello, {firstName}.</h3>
           {/* <Sidebar /> */}
           <SurveyModal setModalShow={setModalShow} modalShow={modalShow} />
-          <StretchList />
+          {stretchList.length > 0 ? <StretchList /> : ''}
         </div>
         <div className="homeContent">
           {/* <Tracker /> */}

@@ -42,6 +42,7 @@ export const FavoriteStretches = (props) => {
                     <Card.Title>{stretch.name}</Card.Title>
                     <Card.Text>{stretch.directions}</Card.Text>
                     <Button
+                      variant="success"
                       className="favorites-remove-button"
                       onClick={() => {
                         deleteStretch(stretch);

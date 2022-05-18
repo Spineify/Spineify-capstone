@@ -18,7 +18,11 @@ export const getFavoriteStretch = () => {
   return async (dispatch, getState) => {
     try {
       const auth = getState().auth;
-      const {data} = await axios.get(`/api/users/${auth.id}/favorites`)
+      const {data} = await axios.get(`/api/users/${auth.id}/favorites`, {
+        headers: {
+          authorization: auth.token
+        }
+      })
       dispatch(_getFavoriteStretch(data))
     } catch (err) {
       console.log(err)
@@ -30,7 +34,11 @@ export const deleteFavoriteStretch = (stretch) => {
   return async (dispatch, getState) => {
     try {
       const auth = getState().auth
-      const res = await axios.delete(`/api/users/${auth.id}/favorites/${stretch.id}`, stretch)
+      const res = await axios.delete(`/api/users/${auth.id}/favorites/${stretch.id}`, stretch, {
+        headers: {
+          authorization: auth.token
+        }
+      })
       dispatch(_deleteFavoriteStretch(stretch.id))
     } catch (err) {
       console.log(err)

@@ -44,6 +44,7 @@ function SuggestedStretchesGrid(props) {
                         <Card.Title>{stretch.name}</Card.Title>
                         <Card.Text>{stretch.directions}</Card.Text>
                         <ToggleButton
+                          variant="success"
                           onClick={() => {
                             setFavorite(stretch);
                           }}
@@ -60,7 +61,7 @@ function SuggestedStretchesGrid(props) {
         </Container>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
+        <Button variant="success" onClick={props.onHide}>Close</Button>
       </Modal.Footer>
     </Modal>
   );

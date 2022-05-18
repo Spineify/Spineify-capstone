@@ -44,7 +44,6 @@ export default (props) => {
   const checkArray = pieChartData.filter((entry) => entry.y !== 0);
 
   const colors = {
-    pink: ["#CB5599", "#5E6063"],
     teal: ["#3C6E71", "#284B63", "#FFFFFF", "#353535", "#A4C3B2"],
   };
 
@@ -74,8 +73,9 @@ export default (props) => {
           ? <p id="pain-area-loading-message">You can view tracking data on your areas of discomfort after you take a daily quiz</p>
           :
           <div className="pie-chart-container">
+            <h4>Areas of Discomfort</h4>
             <VictoryLegend
-              title="Areas of discomfort"
+              //title="Areas of discomfort"
               centerTitle
               height="auto"
               style={
