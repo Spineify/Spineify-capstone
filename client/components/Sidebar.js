@@ -19,11 +19,6 @@ const Sidebar = ({ handleClick, isLoggedIn }) => {
             </Link>
           </li>
           <li>
-            <a href="#" onClick={handleClick}>
-              <span className="sidebar-span">Logout</span>
-            </a>
-          </li>
-          <li>
             <Link to="/data">
               <span className="sidebar-span">Data</span>
             </Link>
@@ -32,6 +27,11 @@ const Sidebar = ({ handleClick, isLoggedIn }) => {
             <Link to="/favorites">
               <span className="sidebar-span">My Favorites</span>
             </Link>
+          </li>
+          <li>
+            <a href="#" onClick={handleClick}>
+              <span className="sidebar-span">Logout</span>
+            </a>
           </li>
           <li>
             <Tracker />

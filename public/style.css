@@ -248,6 +248,7 @@ div.graphs-container.container {
   text-align: center;
   font-weight: bold;
   padding-bottom: 15px;
+  font-family: "Cormorant", serif;
 }
 
 .favorites-remove-button {
@@ -513,6 +514,7 @@ div.graphs-container.container {
 
 .toggle-label {
   font-size: 12px;
+  font-family: "Cormorant", serif;
 }
 
 /* #modal-button {
