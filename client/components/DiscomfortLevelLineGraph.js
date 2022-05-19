@@ -4,18 +4,20 @@ import {
   VictoryChart,
   VictoryAxis,
   VictoryTheme,
-  VictoryStack,
   VictoryLegend,
+  VictoryScatter,
+  VictoryGroup
 } from "victory";
 import moment from "moment";
 import TimePeriodFilter from "./LineGraphTimeFilter";
+import { useSelector } from "react-redux";
 
 const DiscomfortLevelLineGraph = (props) => {
   const [filterStatus, setFilterStatus] = useState("");
   const [loadingState, setLoadingState] = useState(true);
 
   useEffect(() => {
-      setLoadingState(false)
+    setLoadingState(false)
   }, [props.dataSet])
 
   const graphDataMap = props.dataSet.map((survey) => {
@@ -26,6 +28,8 @@ const DiscomfortLevelLineGraph = (props) => {
 
     return dataObj;
   });
+
+
 
   const filterChangeHandler = (selectedStatus) => {
     setFilterStatus(selectedStatus);
@@ -61,25 +65,29 @@ const DiscomfortLevelLineGraph = (props) => {
 
   const finalLineArray = filteredGraphData();
 
+
   return (
     <div>
       {finalLineArray.length === 0 && loadingState === true ? (
         <h1>Loading data, please wait</h1>
       ) : finalLineArray.length <= 1 && loadingState === false ? <h3 id="discomfort-level-line-loading-message">Not enough data</h3> : (
         <div>
-          <VictoryChart theme={VictoryTheme.material} domainPadding={20}>
+          <VictoryChart
+            theme={VictoryTheme.material}
+            domainPadding={20}
+          >
             <VictoryLegend
-            title="Discomfort Levels Over Time"
-            orientation="horizontal"
-            centerTitle
-            height="auto"
-            data={[{
-              name: '', symbol: {fill: '#D9D9D9'}
-            }
-            ]}
-            style={
-              ({data: {fontSize: 1}}, {title: {fontSize: 25}})
-            }
+              title="Discomfort Levels Over Time"
+              orientation="horizontal"
+              centerTitle
+              height="auto"
+              data={[{
+                name: '', symbol: { fill: '#D9D9D9' }
+              }
+              ]}
+              style={
+                ({ data: { fontSize: 1 } }, { title: { fontSize: 25 } })
+              }
             />
             <VictoryAxis
               label="Time Taken"
@@ -113,13 +121,18 @@ const DiscomfortLevelLineGraph = (props) => {
                 tickLabels: { fontSize: 8, padding: 5 },
               }}
             />
-            <VictoryStack colorScale={"warm"}>
-              <VictoryLine
-                data={finalLineArray}
-                width={400}
-                style={{ data: { stroke: "#49C6B7"} }}
-              />
-            </VictoryStack>
+            <VictoryGroup>
+                <VictoryLine
+                  data={finalLineArray}
+                  // width={400}
+                  style={{ data: { stroke: "#49C6B7" } }}
+                />
+                <VictoryScatter
+                  data={finalLineArray}
+                  size={4}
+                  style={{ data: { fill:  "#49C6B7" } }}
+                />
+            </VictoryGroup>
           </VictoryChart>
           <TimePeriodFilter
             selected={filterStatus}

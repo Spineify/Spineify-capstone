@@ -4,7 +4,7 @@ body {
 
 html,
 body {
-  max-width: 100%;
+  width: 100%;
   overflow-x: hidden;
 }
 
@@ -51,6 +51,7 @@ form div {
 }
 .gameFrame.evening {
   background: linear-gradient(180deg, #031d44 70%, #41521f 30%);
+  color: rgb(153, 153, 153);
 }
 
 .gameFrame .content {
@@ -125,7 +126,7 @@ form div {
 }
 
 .inventory span {
-  font-size: 7px;
+  font-size: 9px;
 }
 
 .game .bubble {
@@ -151,13 +152,20 @@ div.graphs-container.container {
 } */
 
 /*Login / Signup*/
+
+.body-content-signin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .signin {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin: 75px 30px 30px 30px;
+  /* margin: 75px 30px 30px 30px; */
   height: 500px;
+  width: 1000px;
 }
 
 .signin-info {
@@ -175,13 +183,13 @@ div.graphs-container.container {
 }
 
 .signin-info.login {
-  background-color: #ffcfdf;
-  background-image: linear-gradient(315deg, #ffcfdf 0%, #b0f3f1 74%);
+  background-color: #deebdd;
+  background-image: linear-gradient(315deg, #deebdd 0%, #bbdbbe 74%);
 }
 
 .signin-info.signup {
-  background-color: #aff6cf;
-  background-image: linear-gradient(315deg, #aff6cf 0%, #9f98e8 74%);
+  background-color: #e4eee9;
+  background-image: linear-gradient(315deg, #e4eee9 0%, #93a5ce 74%);
 }
 
 .signin-info .form-element {
@@ -202,6 +210,7 @@ div.graphs-container.container {
   padding: 5px;
   border: solid #cccccc;
 }
+
 .signin-info small {
   font-size: 15px;
 }
@@ -267,6 +276,8 @@ div.graphs-container.container {
 
 .favorites-container {
   padding: 50px;
+  height: 100vh;
+  width: 100%;
 }
 /* Main Data Visualization Page Styling */
 
@@ -361,10 +372,10 @@ div.graphs-container.container {
   padding: 0 16px;
   border-radius: 4px;
 }
-
+/* 
 .nav-text a:hover {
   background-color: #1a83ff;
-}
+} */
 
 .nav-menu-items {
   width: 100%;
@@ -384,14 +395,13 @@ div.graphs-container.container {
 .sidebar-span {
   margin-left: 16px;
   text-decoration: none;
-  /* color: #cad2c5; */
   color: white;
   font-size: 1.3rem;
   font-family: "Cormorant", serif;
 }
 
 .sidebar-span:hover {
-  color: rgb(10, 204, 194);
+  color: teal;
 }
 
 .spineify-title {
@@ -402,6 +412,7 @@ div.graphs-container.container {
 
 .app-container {
   position: absolute;
+  width: 100%;
 }
 
 .sidebar {
@@ -413,6 +424,7 @@ div.graphs-container.container {
   margin-left: 250px;
   background-color: #e9ebe8;
   height: 100vh;
+  width: 100%;
 }
 
 .body-content-signin {
@@ -537,4 +549,16 @@ div.graphs-container.container {
 #modal-button:hover {
   background-color: #84a98c;
   transition-duration: 300ms;
+}
+
+#instructions-button {
+  font-family: Cormorant;
+  background-color: #354f52;
+  border: none;
+  margin-left: 16px;
+  font-size: 1.3rem;
+}
+
+#instructions-button:hover {
+  color: teal;
 }

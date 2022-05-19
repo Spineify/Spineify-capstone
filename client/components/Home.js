@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { connect, useDispatch, useSelector } from "react-redux";
-import { getPoses } from "../store/posture";
-//import Tracker from './Tracker'
+import React, { useEffect, useState } from 'react'
+import { connect, useDispatch, useSelector } from 'react-redux'
+import { getPoses } from '../store/posture'
 import PetPlant from "./PetPlant";
 import SurveyModal from "./SurveyModal";
 import StretchList from "./StretchList";
 import Clock from "./Clock";
 import { getPlant } from "../store/petPlant";
 import { Alert } from "react-bootstrap";
+import AppIntro from "./AppIntroPopover";
 
 /**
  * COMPONENT
@@ -21,14 +21,14 @@ export const Home = (props) => {
   const stretchList = useSelector((state) => state.stretchList);
   const [modalShow, setModalShow] = React.useState(false);
 
-  //get all poses
-  useEffect(() => {
-    dispatch(getPoses());
-    dispatch(getPlant());
-  }, []);
+	//get all poses
+	useEffect(() => {
+		dispatch(getPoses())
+		dispatch(getPlant())
+	}, [])
 
-  //rerender home component when user takes/completes survey. ModalShow is used in PetPlant componenet so it doesnt refresh the survey at intervals when user is taking survey. see line 27 of petplant component
-  useEffect(() => {}, [modalShow]);
+	//rerender home component when user takes/completes survey. ModalShow is used in PetPlant componenet so it doesnt refresh the survey at intervals when user is taking survey. see line 27 of petplant component
+	useEffect(() => {}, [modalShow])
 
   return (
     <div id="home">
@@ -56,17 +56,6 @@ export const Home = (props) => {
           <div className="clock-container">
             <Clock />
           </div>
-          <p className="welcome-paragraph">
-            Welcome to Spineify! To start tracking your posture, click on the
-            'Start' button in the bottom left corner. Your posture will be
-            tracked through the webcam on your computer. To stop tracking at any
-            time, click 'Stop'. Every day fill out a daily survey to track your
-            levels of discomfort and areas of pain. Suggested stretches based on
-            your pain points will be recommended after each survey. Check out
-            your results in the data section to monitor your progress. Win
-            prizes for your pet plant by maintaining good posture during the
-            day. You got this!
-          </p>
           <SurveyModal setModalShow={setModalShow} modalShow={modalShow} />
           {stretchList.length > 0 ? <StretchList /> : ""}
         </div>
@@ -83,9 +72,9 @@ export const Home = (props) => {
  * CONTAINER
  */
 const mapState = (state) => {
-  return {
-    firstName: state.auth.firstName,
-  };
-};
+	return {
+		firstName: state.auth.firstName,
+	}
+}
 
-export default connect(mapState)(Home);
+export default connect(mapState)(Home)

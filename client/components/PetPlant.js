@@ -2,6 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getPlant, updatePlant } from "../store/petPlant";
 
+import isElectron from "is-electron";
+import ReactRain from "react-rain-animation";
+import "react-rain-animation/lib/style.css";
+
+
 const PetPlant = (props) => {
   const [chest, setChest] = useState("closed");
 
@@ -15,6 +20,8 @@ const PetPlant = (props) => {
   const [prevPlant, setPrevPlant] = useState(plant);
   const dispatch = useDispatch();
   const [levelUp, setLevelUp] = useState(false);
+
+  const [dropped, setDropped] = useState(false);
 
   const inventoryTotal =
     inventory.fertilizer + inventory.nutritiousWater + inventory.water;
@@ -31,20 +38,25 @@ const PetPlant = (props) => {
       const prevInventory = prevPlant.inventory;
       const { inventory } = plant;
 
-      if (
-        prevInventory.fertilizer < inventory.fertilizer ||
-        prevInventory.nutritiousWater < inventory.nutritiousWater ||
-        prevInventory.water < inventory.water
-      ) {
-        electron.notificationApi.sendNotification(
-          `Great Job you got more prizes!`
-        );
-      }
+      if (isElectron()) {
+        if (
+          prevInventory.fertilizer < inventory.fertilizer ||
+          prevInventory.nutritiousWater < inventory.nutritiousWater ||
+          prevInventory.water < inventory.water
+        ) {
+          electron.notificationApi.sendNotification(
+            `Great Job you got more prizes!`
+          );
+        }
 
-      if (prevPlant.points > plant.points && prevPlant.level === plant.level) {
-        electron.notificationApi.sendNotification(
-          `You haven't fed your tree in a while`
-        );
+        if (
+          prevPlant.points > plant.points &&
+          prevPlant.level === plant.level
+        ) {
+          electron.notificationApi.sendNotification(
+            `You haven't fed your tree in a while`
+          );
+        }
       }
 
       setPrevPlant(plant);
@@ -61,6 +73,12 @@ const PetPlant = (props) => {
 
   const onDrop = () => {
     dispatch(updatePlant(draggedItem));
+
+    if (draggedItem === "nutritiousWater" || draggedItem === "water") {
+      setDropped(true);
+      // return <ReactRain numDrops="300" />;
+    }
+
     setDraggedItem("");
     //add animation when tree is fed
   };
@@ -96,6 +114,9 @@ const PetPlant = (props) => {
   if (Object.keys(plant).length) {
     return (
       <div className={`gameFrame ${timeOfDay}`}>
+
+        {dropped ? <ReactRain numDrops="500" /> : null}
+
         <div className="content">
           <div className="level">
             <h1>{`Level ${level}`}</h1>
@@ -139,7 +160,8 @@ const PetPlant = (props) => {
                         className="img"
                         src={"./gamification/dirt.png"}
                       />
-                      <span>{`${inventory.fertilizer}`}</span>
+
+                      <span>{`x${inventory.fertilizer}`}</span>
                     </div>
                   )}
                   {/* if inventory of item is 0, dont render */}
@@ -152,7 +174,9 @@ const PetPlant = (props) => {
                         className="img"
                         src={"./gamification/nutritious_water.png"}
                       />
-                      <span>{`${inventory.nutritiousWater}`}</span>
+
+                      <span>{`x${inventory.nutritiousWater}`}</span>
+
                     </div>
                   )}
 
@@ -167,7 +191,9 @@ const PetPlant = (props) => {
                         src={"./gamification/water.png"}
                       />
 
-                      <span>{`${inventory.water}`}</span>
+
+                      <span>{`x${inventory.water}`}</span>
+
                     </div>
                   )}
                 </div>
