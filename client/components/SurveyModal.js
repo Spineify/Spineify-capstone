@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { addData } from "../store/surveyData";
 import { connect, useSelector, useDispatch } from "react-redux";
 import "survey-core/modern.min.css";
@@ -12,6 +12,7 @@ StylesManager.applyTheme("modern");
 const surveyJson = {
   title: "Daily Check-in",
   logoPosition: "right",
+  triggers: [{ type: "complete", expression: "{page1} = 'Yes'" }],
   pages: [
     {
       name: "page1",
@@ -106,44 +107,47 @@ function MyVerticallyCenteredModal(props) {
 }
 
 const SurveyModal = (props) => {
-  let userId = useSelector((state) => state.auth.id);
-  // const [modalShow, setModalShow] = React.useState(false);
-
-  const survey = new Model(surveyJson);
-
-  let jsonData;
-
-  const alertResults = useCallback(
-    (sender) => {
-      const results = JSON.stringify(sender.data);
-      jsonData = JSON.parse(results);
-      jsonData.userId = userId;
-      if (userId) {
-        console.log("(in SurveyModal) if statement for add");
-        addData(jsonData);
-      }
-    },
-    [userId]
-  );
-
-  survey.onComplete.add(alertResults);
-
   return (
     <>
       <Button
         id="modal-button"
         variant="primary"
-        onClick={() => props.setModalShow(true)}
+        onClick={() => {
+          props.setModalShow(true);
+        }}
       >
         Take Daily Check-In Survey
       </Button>
 
       <MyVerticallyCenteredModal
         show={props.modalShow}
-        onHide={() => props.setModalShow(false)}
+        onHide={() => {
+          props.setModalShow(false);
+        }}
       />
     </>
   );
 };
 
 export default SurveyModal;
+
+// let userId = useSelector((state) => state.auth.id);
+//  const [modalShow, setModalShow] = useState(false);
+// const survey = new Model(surveyJson);
+
+// let jsonData;
+
+// const alertResults = useCallback(
+//   (sender) => {
+//     const results = JSON.stringify(sender.data);
+//     jsonData = JSON.parse(results);
+//     jsonData.userId = userId;
+//     if (userId) {
+//       console.log("(in SurveyModal) if statement for add");
+//       addData(jsonData);
+//     }
+//   },
+//   [userId]
+// );
+
+// survey.onComplete.add(alertResults);
