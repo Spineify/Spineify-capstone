@@ -10,8 +10,9 @@ import { suggestStretch } from "../store/stretch";
 StylesManager.applyTheme("modern");
 
 const surveyJson = {
-  title: "Spinefy",
+  title: "Daily Check-in",
   logoPosition: "right",
+  triggers: [{ type: "complete", expression: "{exit1} = 'Yes'" }],
   pages: [
     {
       name: "page1",
@@ -20,10 +21,12 @@ const surveyJson = {
           type: "rating",
           name: "discomfort_level",
           title:
-            "Rate your current level of discomfort. (0 = no discomfort, 10=highest level of discomfort)",
+            "Rate your current level of discomfort. (0 = no discomfort, 10 = highest level of discomfort)",
           isRequired: true,
           rateMin: 0,
           rateMax: 10,
+          minRateDescription: "None",
+          maxRateDescription: "Max",
         },
         {
           type: "checkbox",
@@ -57,10 +60,9 @@ const surveyJson = {
       ],
     },
   ],
-  navigateToUrl: "/home",
 };
 
-function SurveyComponent(props) {
+export default function SurveyComponent(props) {
   let userId = useSelector((state) => state.auth.id);
   const dispatch = useDispatch();
   const survey = new Model(surveyJson);
@@ -70,7 +72,6 @@ function SurveyComponent(props) {
       const results = sender.data;
       results.userId = userId;
       if (userId) {
-        console.log("DISPATCH");
         dispatch(addData(results));
       }
       if (results.pain_area) {
@@ -103,28 +104,3 @@ function SurveyComponent(props) {
     </Modal>
   );
 }
-
-const SurveyModal = (props) => {
-  return (
-    <>
-      <Button
-        id="modal-button"
-        variant="primary"
-        onClick={() => {
-          props.setModalShow(true);
-        }}
-      >
-        Take Daily Check-In Survey
-      </Button>
-
-      <SurveyComponent
-        show={props.modalShow}
-        onHide={() => {
-          props.setModalShow(false);
-        }}
-      />
-    </>
-  );
-};
-
-export default SurveyModal;

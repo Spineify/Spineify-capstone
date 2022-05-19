@@ -13,7 +13,6 @@ const AppIntro = (props) => {
             <Popover id={`popover-positioned-${placement}`}>
               <Popover.Header as="h3">{`Spineify Instructions`}</Popover.Header>
               <Popover.Body>
-                {" "}
                 Welcome to Spineify! To start tracking your posture, click on
                 the 'Start Tracking' button. Your posture will be tracked
                 through the webcam on your computer. To stop tracking at any
@@ -27,7 +26,7 @@ const AppIntro = (props) => {
             </Popover>
           }
         >
-          <Button id="modal-button" variant="secondary">
+          <Button id="instructions-button" variant="secondary">
             Instructions
           </Button>
         </OverlayTrigger>

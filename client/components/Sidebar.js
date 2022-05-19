@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../store";
 import Tracker from "./Tracker";
+import AppIntro from "./AppIntroPopover";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 
@@ -17,6 +18,11 @@ const Sidebar = ({ handleClick, isLoggedIn }) => {
             <Link to="/home">
               <span className="sidebar-span">Home</span>
             </Link>
+          </li>
+          <li>
+            <span>
+              <AppIntro />
+            </span>
           </li>
           <li>
             <Link to="/data">

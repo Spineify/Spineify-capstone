@@ -53,8 +53,8 @@ export const Home = (props) => {
       <div className="home-info">
         <div className="welcome-info">
           <h3 className="welcome-name">Hello, {firstName}.</h3>
-          <AppIntro />
-          <p className="welcome-paragraph">
+          {/* <AppIntro /> */}
+          {/* <p className="welcome-paragraph">
             Welcome to Spineify! To start tracking your posture, click on the
             'Start Tracking' button. Your posture will be tracked through the
             webcam on your computer. To stop tracking at any time, click 'Stop
@@ -63,7 +63,7 @@ export const Home = (props) => {
             points will be recommended after each survey. Check out your results
             in the data section to monitor your progress. Win prizes for your
             pet plant by maintaining good posture during the day. You got this!
-          </p>
+          </p> */}
           <SurveyModal setModalShow={setModalShow} modalShow={modalShow} />
           {stretchList.length > 0 ? <StretchList /> : ""}
         </div>
