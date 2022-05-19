@@ -4,6 +4,7 @@ const {
 	ipcMain,
 	Notification,
 	powerMonitor,
+	systemPreferences,
 } = require('electron')
 const path = require('path')
 
@@ -23,7 +24,7 @@ const isDev = !app.isPackaged
 
 // });
 
-function createWindow() {
+async function createWindow() {
 	// express();
 	const win = new BrowserWindow({
 		width: 1200,
@@ -41,6 +42,9 @@ function createWindow() {
 	win.loadURL(
 		isDev ? 'http://localhost:8080/' : 'https://spineify.herokuapp.com/'
 	)
+
+	const success = await systemPreferences.askForMediaAccess('camera')
+	console.log('media access:', success)
 }
 
 if (isDev) {

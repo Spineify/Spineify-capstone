@@ -17,7 +17,18 @@
     "test:dev": "npm run test -- --watch",
     "test:dev:models": "npm run test:dev -- --grep=model",
     "test:dev:routes": "npm run test:dev -- --grep=route",
-    "package": "electron-packager ."
+    "package": "electron-packager .",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "com.spineify.app",
+    "mac": {
+      "hardenedRuntime": true,
+      "entitlements": "entitlements.mac.plist",
+      "extendInfo": {
+        "NSMCameraUsageDescription": "Please give us access to your camera"
+      }
+    }
   },
   "author": "FSA - Spineify",
   "license": "MIT",
@@ -58,6 +69,7 @@
     "babel-loader": "^8.2.2",
     "chai": "^4.2.0",
     "electron": "^18.2.0",
+    "electron-builder": "^23.0.3",
     "electron-packager": "^15.5.1",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",
