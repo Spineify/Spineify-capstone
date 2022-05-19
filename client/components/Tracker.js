@@ -41,10 +41,10 @@ function Tracker() {
         return;
       }
 
-      if(electron && electron.systemState.getSystemState()){
+      //if(electron && electron.systemState.getSystemState()){
         console.log('electron in here?')
         const system = await electron.systemState.getSystemState()
-      }
+     // }
 
       setSystem(system)
       console.log('systemState in Tracker:', system)
