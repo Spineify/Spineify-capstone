@@ -42,7 +42,7 @@ async function seed() {
 			level: 11,
 			points: 2,
 			userId: 2,
-			inventory: { fertilizer: 2, nutritiousWater: 5, water: 8 },
+			inventory: { fertilizer: 100, nutritiousWater: 100, water: 100 },
 		}),
 	])
 
