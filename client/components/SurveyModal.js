@@ -1,6 +1,6 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback } from "react";
 import { addData } from "../store/surveyData";
-import { connect, useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import "survey-core/modern.min.css";
 import { StylesManager, Model } from "survey-core";
 import { Survey } from "survey-react-ui";
