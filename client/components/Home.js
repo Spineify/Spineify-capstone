@@ -4,6 +4,7 @@ import { getPoses } from '../store/posture'
 import PetPlant from "./PetPlant";
 import SurveyModal from "./SurveyModal";
 import StretchList from "./StretchList";
+import Clock from "./Clock";
 import { getPlant } from "../store/petPlant";
 import { Alert } from "react-bootstrap";
 import AppIntro from "./AppIntroPopover";
@@ -52,6 +53,9 @@ export const Home = (props) => {
       <div className="home-info">
         <div className="welcome-info">
           <h3 className="welcome-name">Hello, {firstName}.</h3>
+          <div className="clock-container">
+            <Clock />
+          </div>
           <SurveyModal setModalShow={setModalShow} modalShow={modalShow} />
           {stretchList.length > 0 ? <StretchList /> : ""}
         </div>
