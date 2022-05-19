@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getPlant, updatePlant } from '../store/petPlant'
+import isElectron from 'is-electron'
 
 const PetPlant = (props) => {
 	const [chest, setChest] = useState('closed')
@@ -30,23 +31,26 @@ const PetPlant = (props) => {
 			}
 			const prevInventory = prevPlant.inventory
 			const { inventory } = plant
+			if (isElectron()) {
+				if (
+					prevInventory.fertilizer < inventory.fertilizer ||
+					prevInventory.nutritiousWater < inventory.nutritiousWater ||
+					prevInventory.water < inventory.water
+				) {
+					electron.notificationApi.sendNotification(
+						`Great Job you got more prizes!`
+					)
+				}
 
-			if (
-				prevInventory.fertilizer < inventory.fertilizer ||
-				prevInventory.nutritiousWater < inventory.nutritiousWater ||
-				prevInventory.water < inventory.water
-			) {
-				electron.notificationApi.sendNotification(
-					`Great Job you got more prizes!`
-				)
+				if (
+					prevPlant.points > plant.points &&
+					prevPlant.level === plant.level
+				) {
+					electron.notificationApi.sendNotification(
+						`You haven't fed your tree in a while`
+					)
+				}
 			}
-
-			if (prevPlant.points > plant.points && prevPlant.level === plant.level) {
-				electron.notificationApi.sendNotification(
-					`You haven't fed your tree in a while`
-				)
-			}
-
 			setPrevPlant(plant)
 		}, 5000)
 		return () => {
