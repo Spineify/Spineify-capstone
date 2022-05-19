@@ -7,3 +7,4 @@ yarn-error.log
 package-lock.json
 spineify-darwin-x64
 dist
+spineify-linux-x64
