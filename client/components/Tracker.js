@@ -41,9 +41,12 @@ function Tracker() {
         return;
       }
 
-      // const system = await electron.systemState.getSystemState()
-      // setSystem(system)
-      // console.log('systemState in Tracker:', system)
+      if(electron){
+        const system = await electron.systemState.getSystemState()
+      }
+
+      setSystem(system)
+      console.log('systemState in Tracker:', system)
 
       // if (system === 'active') {
       const imageSrc = webcamRef.current.getScreenshot();
@@ -86,14 +89,18 @@ function Tracker() {
 
       if (numOfBad >= 2) {
         console.log("bad posture in Tracker:");
-        electron.notificationApi.sendNotification(
-          `Seems like you've been working in bad posture for the past hour, we suggest ....`
-        );
+        if(electron){
+          electron.notificationApi.sendNotification(
+            `Seems like you've been working in bad posture for the past hour, we suggest ....`
+          );
+        }
+
       } else if (numOfGood >= 2) {
         console.log("good posture in Tracker:");
-        electron.notificationApi.sendNotification(`Great Posture! Keep it up!`);
+        if(electron){
+          electron.notificationApi.sendNotification(`Great Posture! Keep it up!`);
+        }
       }
-
       setCount(0);
     }
   }, [count]);
