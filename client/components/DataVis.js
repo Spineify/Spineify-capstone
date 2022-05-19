@@ -5,6 +5,7 @@ import PainAreaChart from "./PainAreaChart";
 import PostureTypePie from "./PostureTypePie";
 import DiscomfortLevelLineGraph from "./DiscomfortLevelLineGraph";
 import { Row, Col, Container } from "react-bootstrap";
+import GoodPosturePercentLineGraph from "./GoodPosturePercentLineGraph";
 
 export default (props) => {
   const dispatch = useDispatch();
@@ -61,14 +62,19 @@ export default (props) => {
                   <PostureTypePie />
                 </Col>
               </Row>
-              <br/>
+              <br />
 
 
               <Row className="graph-row">
-                <DiscomfortLevelLineGraph
-                  className="line-graph-container"
-                  dataSet={sortedSet}
-                />
+                <Col>
+                  <DiscomfortLevelLineGraph
+                    className="line-graph-container"
+                    dataSet={sortedSet}
+                  />
+                </Col>
+                <Col>
+                  <GoodPosturePercentLineGraph />
+                </Col>
               </Row>
             </Container>
           </>
