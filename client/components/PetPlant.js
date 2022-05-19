@@ -4,6 +4,27 @@ import { getPlant, updatePlant } from "../store/petPlant";
 import isElectron from "is-electron";
 import ReactRain from "react-rain-animation";
 import "react-rain-animation/lib/style.css";
+import { Button, Overlay, OverlayTrigger, Tooltip } from "react-bootstrap";
+
+function PointTips() {
+  const [show, setShow] = useState(false);
+  const target = useRef(null);
+
+  return (
+    <>
+      <Button ref={target} onClick={() => setShow(!show)}>
+        Click me!
+      </Button>
+      <Overlay target={target.current} show={show} placement="right">
+        {(props) => (
+          <Tooltip id="overlay-example" {...props}>
+            Fertilizer is 3 points!
+          </Tooltip>
+        )}
+      </Overlay>
+    </>
+  );
+}
 
 const PetPlant = (props) => {
   const [chest, setChest] = useState("closed");
@@ -133,11 +154,28 @@ const PetPlant = (props) => {
               onDragOver={(event) => onDragOver(event)}
             />
             <div className="inventory">
+              <>
+                {["right"].map((placement) => (
+                  <OverlayTrigger
+                    key={placement}
+                    placement={placement}
+                    overlay={
+                      <Tooltip id={`tooltip-${placement}`}>
+                        Fertilizer is 3 points! Nutritious water is 2 points!
+                        Water is 1 point!
+                      </Tooltip>
+                    }
+                  >
+                    <Button variant="secondary">...</Button>
+                  </OverlayTrigger>
+                ))}
+              </>
               <img
                 className="chest"
                 onClick={() => toggleChest()}
                 src={`./gamification/chest_${chest}_new.png`}
               />
+
               {chest === "opened" && prizesTotal ? (
                 //if inventory is empty, show nothing or send message
                 <div className="rewards">
@@ -151,6 +189,8 @@ const PetPlant = (props) => {
                         className="img"
                         src={"./gamification/dirt.png"}
                       />
+                      {/* <PointTips /> */}
+
                       <span>{`x${inventory.fertilizer}`}</span>
                     </div>
                   )}
