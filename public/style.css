@@ -51,6 +51,7 @@ form div {
 }
 .gameFrame.evening {
   background: linear-gradient(180deg, #031d44 70%, #41521f 30%);
+  color:rgb(153, 153, 153);
 }
 
 .gameFrame .content {
@@ -125,7 +126,7 @@ form div {
 }
 
 .inventory span {
-  font-size: 7px;
+  font-size: 9px;
 }
 
 .game .bubble {

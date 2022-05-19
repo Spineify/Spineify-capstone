@@ -139,7 +139,7 @@ const PetPlant = (props) => {
 												className="img"
 												src={'./gamification/dirt.png'}
 											/>
-											<span>{`${inventory.fertilizer}`}</span>
+											<span>{`x${inventory.fertilizer}`}</span>
 										</div>
 									)}
 									{/* if inventory of item is 0, dont render */}
@@ -152,7 +152,7 @@ const PetPlant = (props) => {
 												className="img"
 												src={'./gamification/nutritious_water.png'}
 											/>
-											<span>{`${inventory.nutritiousWater}`}</span>
+											<span>{`x${inventory.nutritiousWater}`}</span>
 										</div>
 									)}
 
@@ -167,7 +167,7 @@ const PetPlant = (props) => {
 												src={'./gamification/water.png'}
 											/>
 
-											<span>{`${inventory.water}`}</span>
+											<span>{`x${inventory.water}`}</span>
 										</div>
 									)}
 								</div>
