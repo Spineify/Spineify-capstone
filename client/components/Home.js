@@ -7,6 +7,7 @@ import SurveyModal from "./SurveyModal";
 import StretchList from "./StretchList";
 import { getPlant } from "../store/petPlant";
 import { Alert } from "react-bootstrap";
+import AppIntro from "./AppIntroPopover";
 
 /**
  * COMPONENT
@@ -17,7 +18,7 @@ export const Home = (props) => {
   const [show, setShow] = useState(true);
   const userId = useSelector((state) => state.auth.id);
   const plant = useSelector((state) => state.plantReducer);
-  const stretchList = useSelector((state) => state.stretchList)
+  const stretchList = useSelector((state) => state.stretchList);
   const [modalShow, setModalShow] = React.useState(false);
 
   //get all poses
@@ -52,7 +53,8 @@ export const Home = (props) => {
       <div className="home-info">
         <div className="welcome-info">
           <h3 className="welcome-name">Hello, {firstName}.</h3>
-          <p className="welcome-paragraph">
+          {/* <AppIntro /> */}
+          {/* <p className="welcome-paragraph">
             Welcome to Spineify! To start tracking your posture, click on the
             'Start Tracking' button. Your posture will be tracked through the
             webcam on your computer. To stop tracking at any time, click 'Stop
@@ -61,9 +63,9 @@ export const Home = (props) => {
             points will be recommended after each survey. Check out your results
             in the data section to monitor your progress. Win prizes for your
             pet plant by maintaining good posture during the day. You got this!
-          </p>
+          </p> */}
           <SurveyModal setModalShow={setModalShow} modalShow={modalShow} />
-          {stretchList.length > 0 ? <StretchList /> : ''}
+          {stretchList.length > 0 ? <StretchList /> : ""}
         </div>
         <div className="homeContent">
           {Object.keys(plant).length && <PetPlant modalShow={modalShow} />}
