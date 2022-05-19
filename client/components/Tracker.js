@@ -41,7 +41,8 @@ function Tracker() {
         return;
       }
 
-      if(electron){
+      if(electron && electron.systemState.getSystemState()){
+        console.log('electron in here?')
         const system = await electron.systemState.getSystemState()
       }
 
