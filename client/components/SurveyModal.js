@@ -10,7 +10,7 @@ import { suggestStretch } from "../store/stretch";
 StylesManager.applyTheme("modern");
 
 const surveyJson = {
-  title: "Spinefy",
+  // title: "Spinefy",
   logoPosition: "right",
   pages: [
     {
@@ -57,7 +57,7 @@ const surveyJson = {
       ],
     },
   ],
-  navigateToUrl: "/home",
+  // navigateToUrl: "/home",
 };
 
 function SurveyComponent(props) {
@@ -76,6 +76,7 @@ function SurveyComponent(props) {
       if (results.pain_area) {
         dispatch(suggestStretch(results.pain_area));
       }
+      props.onHide();
     },
     [userId]
   );
@@ -85,13 +86,13 @@ function SurveyComponent(props) {
   return (
     <Modal
       {...props}
-      size="lg"
+      size="md"
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Daily Check-In
+          Spineify Daily Check-In
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
