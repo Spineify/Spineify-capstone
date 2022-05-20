@@ -101,7 +101,7 @@ export default (props) => {
                   centerTitle
                   height="auto"
                   data={[{
-                    name: '', symbol: { fill: '#D9D9D9' }
+                    name: '', symbol: { fill: '#E9EBE8' }
                   }
                   ]}
                   style={
@@ -109,8 +109,6 @@ export default (props) => {
                   }
                 />
                 <VictoryAxis
-                  label="Time Taken"
-                  // padding={50}
                   tickCount={12}
                   tickFormat={(x) => {
                     switch (filterStatus) {
@@ -126,18 +124,21 @@ export default (props) => {
                   }}
                   fixLabelOverlap={true}
                   style={{
-                    axisLabel: { fontSize: 12, padding: 30 },
-                    tickLabels: { fontSize: 8, padding: 5 },
+                    axisLabel: { fontSize: 12, padding: 30, stroke: "#353535" },
+                    tickLabels: { fontSize: 12, padding: 5, textAnchor: "end", stroke: "#353535" },
+                    grid: {stroke: "#FFFFFF"},
+                    axis: {stroke: "#353535"}
                   }}
                 />
                 <VictoryAxis
                   label={"Percent of Good Posture"}
                   dependentAxis
                   domain={[0, 100]}
-                  // padding={50}
                   style={{
-                    axisLabel: { fontSize: 12, padding: 30 },
-                    tickLabels: { fontSize: 8, padding: 5 },
+                    axisLabel: { fontSize: 12, padding: 30, stroke: "#353535" },
+                    tickLabels: { fontSize: 12, padding: 5, textAnchor: "end", stroke: "#353535" },
+                    grid: {stroke: "#FFFFFF"},
+                    axis: {stroke: "#353535"}
                   }}
                 />
                 <VictoryGroup>
