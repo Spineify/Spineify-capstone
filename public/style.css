@@ -639,6 +639,7 @@ li a {
 
 .clock{
   font-size: 28px;
+  font-family: "quicksandlight", serif;
 }
 
 /* .home-dash{
@@ -647,17 +648,12 @@ li a {
 .stats-title{
   font-size: 19px;
   padding-top: 25px;
-}
-
-#ul-stats{
-  list-style: none;
-  margin-left: -12px;
-  font-size: 18px;
+  font-family: "quicksandlight", serif;
 }
 
 .user-dash-container{
-  position: static;
-  top: 25%;
+  position: absolute;
+  top: 19%;
 
 }
 
@@ -687,7 +683,6 @@ li a {
   top: -20%;
 }
 
-
 #instructions-button-dots li {
   color: black solid;
   height: 7px;
@@ -707,4 +702,11 @@ li a {
 .image-button:hover {
   border: rgb(143, 143, 143) solid 2px;
   border-radius: 1rem;
+}
+
+.yest-progress-bar{
+  font-family: "quicksandlight", serif;
+}
+.tip-for-today{
+  font-family: "quicksandlight", serif;
 }

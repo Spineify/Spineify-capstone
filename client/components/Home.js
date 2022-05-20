@@ -31,44 +31,44 @@ export const Home = (props) => {
 	//rerender home component when user takes/completes survey. ModalShow is used in PetPlant componenet so it doesnt refresh the survey at intervals when user is taking survey. see line 27 of petplant component
 	useEffect(() => {}, [modalShow])
 
-	return (
-		<div id="home">
-			<div className="reminder">
-				{userId && (
-					<div>
-						{show ? (
-							<Alert color="primary" variant="success" closeLabel="Close alert">
-								Don't forget to take your daily survey! 🌱
-								<button
-									className="reminder-button"
-									type="button"
-									onClick={() => setShow(false)}
-								>
-									X
-								</button>
-							</Alert>
-						) : null}
-					</div>
-				)}
-			</div>
-			<div className="home-info">
-				<div className="welcome-info">
-					<h3 className="welcome-name">Hello, {firstName}.</h3>
-					<div className="user-dash-container">
-						<Clock />
-						<UserHomeDash />
-					</div>
-					<SurveyModal setModalShow={setModalShow} modalShow={modalShow} />
-					{stretchList.length > 0 ? <StretchList /> : ''}
-				</div>
-				<div className="homeContent">
-					{Object.keys(plant).length && <PetPlant modalShow={modalShow} />}
-				</div>
-				<br />
-			</div>
-		</div>
-	)
-}
+  return (
+    <div id="home">
+      <div className="reminder">
+        {userId && (
+          <div>
+            {show ? (
+              <Alert color="primary" variant="success" closeLabel="Close alert">
+                Don't forget to take your daily survey! 🌱
+                <button
+                  className="reminder-button"
+                  type="button"
+                  onClick={() => setShow(false)}
+                >
+                  X
+                </button>
+              </Alert>
+            ) : null}
+          </div>
+        )}
+      </div>
+      <div className="home-info">
+        <div className="welcome-info">
+          <h3 className="welcome-name">Hello, {firstName}.</h3>
+          <div className="user-dash-container">
+            <Clock />
+            <UserHomeDash />
+            <SurveyModal setModalShow={setModalShow} modalShow={modalShow} />
+            {stretchList.length > 0 ? <StretchList /> : ""}
+          </div>
+        </div>
+        <div className="homeContent">
+          {Object.keys(plant).length && <PetPlant modalShow={modalShow} />}
+        </div>
+        <br />
+      </div>
+    </div>
+  );
+};
 
 /**
  * CONTAINER

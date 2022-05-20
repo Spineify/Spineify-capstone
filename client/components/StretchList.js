@@ -77,7 +77,7 @@ const StretchList = (props) => {
       <Button
         id="modal-button"
         variant="primary"
-        style={{ width: "65%" }}
+        style={{ width: "45%" }}
         onClick={() => setModalShow(true)}
       >
         Click to see your suggested stretches!
