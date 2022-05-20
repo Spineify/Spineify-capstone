@@ -23,6 +23,7 @@ export const getFavoriteStretch = () => {
           authorization: auth.token
         }
       })
+      console.log('CAUGHT IT',data)
       dispatch(_getFavoriteStretch(data))
     } catch (err) {
       console.log(err)

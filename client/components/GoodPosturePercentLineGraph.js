@@ -21,7 +21,6 @@ export default (props) => {
   let poseDates = []
   const mappedPoses = sortedPoses.map((pose) => {
     const date = new Date(pose.createdAt)
-
     //transforming the data to become more useful
     //start by sorting the number of dates we're working with into an object, and the dates themselves into an array
     if (!poseDays[`${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`]) {
@@ -37,12 +36,12 @@ export default (props) => {
   //within the date object to to calculations and then present it in the way that Victory wants
   const lineGraphData = poseDates.map((date) => {
     const daysPoses = poseDays[date];
-    console.log(daysPoses)
+    console.log('daysPoses', daysPoses)
+    console.log('date test', daysPoses[0].createdAt)
     const goodPoses = daysPoses.filter((pose) => pose.type === "Good Posture")
-    console.log('good poses', goodPoses)
     const goodPosePercent = goodPoses.length / daysPoses.length * 100
     const dataObj = {
-      x: date,
+      x: daysPoses[0].createdAt,
       y: goodPosePercent
     }
     return dataObj

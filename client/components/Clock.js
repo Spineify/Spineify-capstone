@@ -17,7 +17,7 @@ function Clock() {
   return (
     <div>
       <span>{date.toLocaleTimeString().replace(/:\d+ /, " ")}</span>
-      <UserHomeDash />
+      {/* <UserHomeDash /> */}
     </div>
   );
 }

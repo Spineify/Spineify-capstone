@@ -29,6 +29,39 @@ const DiscomfortLevelLineGraph = (props) => {
     return dataObj;
   });
 
+  const posesData = useSelector((state) => state.posesReducer)
+
+  const sortedPoses = posesData.sort((a, b) => a.id - b.id)
+
+  let poseDays = {}
+  let poseDates = []
+  const mappedPoses = sortedPoses.map((pose) => {
+    const date = new Date(pose.createdAt)
+
+    //transforming the data to become more useful
+    //start by sorting the number of dates we're working with into an object, and the dates themselves into an array
+    if (!poseDays[`${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`]) {
+      poseDays[`${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`] = []
+      poseDays[`${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`].push(pose)
+      poseDates.push(`${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`)
+    } else {
+      poseDays[`${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`].push(pose)
+    }
+  })
+
+  //map through the date array to access the pose data
+  //within the date object to to calculations and then present it in the way that Victory wants
+  const lineGraphData = poseDates.map((date) => {
+    const daysPoses = poseDays[date];
+    const goodPoses = daysPoses.filter((pose) => pose.type === "Good Posture")
+    const goodPosePercent = goodPoses.length / daysPoses.length * 100
+    const dataObj = {
+      x: date,
+      y: goodPosePercent
+    }
+    return dataObj
+  })
+console.log('goodPosture linegraph data', lineGraphData)
 
 
   const filterChangeHandler = (selectedStatus) => {
@@ -64,7 +97,7 @@ const DiscomfortLevelLineGraph = (props) => {
   };
 
   const finalLineArray = filteredGraphData();
-
+  console.log('discomfortLineArray', finalLineArray)
 
   return (
     <div>
@@ -75,6 +108,7 @@ const DiscomfortLevelLineGraph = (props) => {
           <VictoryChart
             theme={VictoryTheme.material}
             domainPadding={20}
+            domain={{ y: [0, 1] }}
           >
             <VictoryLegend
               title="Discomfort Levels Over Time"
@@ -90,9 +124,9 @@ const DiscomfortLevelLineGraph = (props) => {
               }
             />
             <VictoryAxis
-              label="Time Taken"
+              //label="Time Taken"
               // padding={50}
-              tickCount={12}
+              // tickCount={12}
               tickFormat={(x) => {
                 switch (filterStatus) {
                   case "Today":
@@ -106,32 +140,61 @@ const DiscomfortLevelLineGraph = (props) => {
                 }
               }}
               fixLabelOverlap={true}
-              style={{
-                axisLabel: { fontSize: 12, padding: 30 },
-                tickLabels: { fontSize: 8, padding: 5 },
-              }}
+              // style={{
+              //   axisLabel: { fontSize: 12, padding: 30 },
+              //   tickLabels: { fontSize: 8, padding: 5 },
+              // }}
             />
             <VictoryAxis
-              label={"Discomfort Level"}
+              //label={"Discomfort Level"}
               dependentAxis
-              domain={[0, 10]}
+              //domain={[0, 10]}
               // padding={50}
               style={{
                 axisLabel: { fontSize: 12, padding: 30 },
-                tickLabels: { fontSize: 8, padding: 5 },
+                tickLabels: { fontSize: 8, padding: 5, textAnchor: "end" },
               }}
+              tickValues={[.2, .4, .6, .8, 1]}
+              tickFormat={(t) => t * 10}
+            />
+            <VictoryAxis
+              //label={"Percent of Good Posture"}
+              dependentAxis
+              domain={[0, 100]}
+              // padding={50}
+              style={{
+                axisLabel: { fontSize: 12, padding: 30 },
+                tickLabels: { fontSize: 8, padding: 5, textAnchor: "start" },
+                ticks: { padding: -20 }
+              }}
+              tickValues={[.2, .4, .6, .8, 1]}
+              tickFormat={(t) => t * 100}
+              offsetX={300}
             />
             <VictoryGroup>
-                <VictoryLine
-                  data={finalLineArray}
-                  // width={400}
-                  style={{ data: { stroke: "#49C6B7" } }}
-                />
-                <VictoryScatter
-                  data={finalLineArray}
-                  size={4}
-                  style={{ data: { fill:  "#49C6B7" } }}
-                />
+              <VictoryLine
+                data={lineGraphData}
+                style={{ data: { stroke: "#A4C3B2" } }}
+                y={(datum) => datum.y / 100}
+              />
+              <VictoryLine
+                data={finalLineArray}
+                // width={400}
+                style={{ data: { stroke: "#49C6B7" } }}
+                y={(datum) => datum.y / 10}
+              />
+              {/* <VictoryScatter
+                data={finalLineArray}
+                size={4}
+                style={{ data: { fill: "#49C6B7" } }}
+                y={(datum) => datum.y / 10}
+              />
+              <VictoryScatter
+                data={lineGraphData}
+                style={{ data: { fill: "#A4C3B2" } }}
+                y={(datum) => datum.y / 100}
+              /> */}
+
             </VictoryGroup>
           </VictoryChart>
           <TimePeriodFilter
