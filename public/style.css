@@ -532,7 +532,8 @@ li a {
   font-size: 1.7rem; */
   font-family: "highvalleyregular";
   font-size: 60px;
-  margin-bottom: -11px;
+  margin-bottom: -19px;
+  margin-left: -15px;
 }
 
 .welcome-paragraph {
@@ -668,8 +669,8 @@ li a {
 
 #instructions-button-dots {
   background-color: transparent;
-  border: none;
-  height: 30px;
+  border:rgb(143, 143, 143) solid 2px;
+  height: 33px;
   width: 20px;
   position: relative;
 }
@@ -706,6 +707,8 @@ li a {
 
 .yest-progress-bar{
   font-family: "quicksandlight", serif;
+  margin-bottom: 17px;
+  margin-top: 8px;
 }
 .tip-for-today{
   font-family: "quicksandlight", serif;

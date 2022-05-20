@@ -27,11 +27,6 @@ const Sidebar = ({ handleClick, isLoggedIn }) => {
 						</Link>
 					</li>
 					<li>
-						<span className="sidebar-span">
-							<AppIntro />
-						</span>
-					</li>
-					<li>
 						<Link to="/data">
 							<span className="sidebar-span">Data</span>
 						</Link>
