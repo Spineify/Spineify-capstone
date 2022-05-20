@@ -32,6 +32,15 @@ form div {
   height: 100%;
 }
 
+.reminder-button{
+  border-radius: 3px;
+  padding: 5px 10px;
+  background-color: #84a98c;
+  color: white;
+  border: none;
+  margin-left: 3px
+}
+
 /* Game */
 .gameFrame {
   display: flex;
@@ -372,7 +381,7 @@ div.graphs-container.container {
   padding: 0 16px;
   border-radius: 4px;
 }
-/* 
+/*
 .nav-text a:hover {
   background-color: #1a83ff;
 } */
@@ -400,8 +409,13 @@ div.graphs-container.container {
   font-family: "Cormorant", serif;
 }
 
+
 .sidebar-span:hover {
   color: teal;
+}
+
+.side-line{
+  text-decoration: none;
 }
 
 .spineify-title {
@@ -455,13 +469,18 @@ div.graphs-container.container {
 .homeContent {
   height: 400px;
   align-self: center;
-  margin-right: 40px;
+  position:fixed;
+  top: 27%;
+  left: 71%;
+  /* margin-right: 40px; */
+
 }
 
 .welcome-name {
   font-family: "Cormorant", serif;
   font-weight: bold;
   font-size: 1.7rem;
+  margin-bottom: -11px;
 }
 
 .welcome-paragraph {
@@ -561,4 +580,37 @@ div.graphs-container.container {
 
 #instructions-button:hover {
   color: teal;
+}
+
+.clock{
+  font-size: 28px;
+  font-family: "FreeMono"
+}
+
+/* .home-dash{
+  border-style: ;
+} */
+.stats-title{
+  font-size: 19px;
+  padding-top: 25px;
+}
+#ul-stats{
+  list-style: none;
+  margin-left: -12px;
+  font-size: 18px;
+}
+
+.user-dash-container{
+  position: static;
+  top: 25%;
+
+}
+
+.take-survey-btn{
+  position:static;
+  top: 84%;
+}
+
+.stats-container{
+  font-family: "FreeMono";
 }

@@ -15,7 +15,7 @@ const Sidebar = ({ handleClick, isLoggedIn }) => {
           <li className="spineify-title">Spineify</li>
 
           <li>
-            <Link to="/home">
+            <Link to="/home" className="side-line">
               <span className="sidebar-span">Home</span>
             </Link>
           </li>
@@ -25,17 +25,17 @@ const Sidebar = ({ handleClick, isLoggedIn }) => {
             </span>
           </li>
           <li>
-            <Link to="/data">
+            <Link to="/data" className="side-line">
               <span className="sidebar-span">Data</span>
             </Link>
           </li>
           <li>
-            <Link to="/favorites">
+            <Link to="/favorites" className="side-line">
               <span className="sidebar-span">My Favorites</span>
             </Link>
           </li>
           <li>
-            <a href="#" onClick={handleClick}>
+            <a className="side-line" href="#" onClick={handleClick}>
               <span className="sidebar-span">Logout</span>
             </a>
           </li>
