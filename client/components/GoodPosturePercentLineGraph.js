@@ -46,14 +46,41 @@ export default (props) => {
     return dataObj
   })
 
-  //eventual dataObj: {
-  // x: day/month/year
-  // y: % of Good posture / whole day
-  //}
-
   const filterChangeHandler = (selectedStatus) => {
     setFilterStatus(selectedStatus);
   };
+
+  let filteredGraphData = () => {
+    switch (filterStatus) {
+      case "Today":
+        let currentDay = new Date().getDate();
+        return lineGraphData.filter((survey) => {
+          let surveyTime = new Date(survey.x);
+          let formatedSurvey = surveyTime.getDate();
+          return formatedSurvey === currentDay;
+        });
+      case "Past Month":
+        let currentMonth = new Date().getMonth();
+        return lineGraphData.filter((survey) => {
+          let surveyMonth = new Date(survey.x);
+          let formatedMonth = surveyMonth.getMonth();
+          return formatedMonth === currentMonth;
+        });
+      case "Past Year":
+        let currentYear = new Date().getYear();
+        return lineGraphData.filter((survey) => {
+          let surveyYear = new Date(survey.x);
+          let formatedYear = surveyYear.getYear();
+          return formatedYear === currentYear;
+        });
+      default:
+        return lineGraphData;
+    }
+  };
+
+  const finalPostureLineArray = filteredGraphData()
+
+  console.log('filtered array', finalPostureLineArray)
 
   return (
     <div>
@@ -108,11 +135,11 @@ export default (props) => {
         />
         <VictoryGroup>
           <VictoryScatter
-            data={lineGraphData}
+            data={finalPostureLineArray}
             style={{ data: { fill:  "#A4C3B2" } }}
           />
           <VictoryLine
-            data={lineGraphData}
+            data={finalPostureLineArray}
             style={{ data: { stroke:  "#A4C3B2" } }}
           />
         </VictoryGroup>
