@@ -4,7 +4,6 @@ import { withRouter, Route, Switch, Redirect } from "react-router-dom";
 import { Login, Signup } from "./components/AuthForm";
 import Home from "./components/Home";
 import { me } from "./store";
-import Tracker from "./components/Tracker";
 import DataVis from "./components/DataVis";
 import { FavoriteStretches } from "./components/FavoriteStretches";
 
