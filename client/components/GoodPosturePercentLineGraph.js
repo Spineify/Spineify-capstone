@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   VictoryLine,
   VictoryChart,
@@ -14,9 +14,14 @@ import TimePeriodFilter from "./LineGraphTimeFilter";
 
 export default (props) => {
   const [filterStatus, setFilterStatus] = useState("");
+  const [loadingState, setLoadingState] = useState(true);
   const posesData = useSelector((state) => state.posesReducer)
 
   const sortedPoses = posesData.sort((a, b) => a.id - b.id)
+
+  useEffect(() => {
+    setLoadingState(false)
+  }, [posesData])
 
   let poseDays = {}
   let poseDates = []
@@ -80,74 +85,78 @@ export default (props) => {
 
   const finalPostureLineArray = filteredGraphData()
 
-  console.log('filtered array', finalPostureLineArray)
-
   return (
     <div>
-      <VictoryChart
-        theme={VictoryTheme.material}
-        domainPadding={20}
-      >
-        <VictoryLegend
-              title="Good Posture Trends"
-              orientation="horizontal"
-              centerTitle
-              height="auto"
-              data={[{
-                name: '', symbol: { fill: '#D9D9D9' }
-              }
-              ]}
-              style={
-                ({ data: { fontSize: 1 } }, { title: { fontSize: 25 } })
-              }
-            />
-        <VictoryAxis
-          label="Time Taken"
-          // padding={50}
-          tickCount={12}
-          tickFormat={(x) => {
-            switch (filterStatus) {
-              case "Today":
-                return moment(x).format("LT");
-              case "Past Month":
-                return moment(x).format("Do");
-              case "Past Year":
-                return moment(x).format("MMMM");
-              default:
-                return moment(x).format("MMM Do");
-            }
-          }}
-          fixLabelOverlap={true}
-          style={{
-            axisLabel: { fontSize: 12, padding: 30 },
-            tickLabels: { fontSize: 8, padding: 5 },
-          }}
-        />
-        <VictoryAxis
-          label={"Percent of Good Posture"}
-          dependentAxis
-          domain={[0, 100]}
-          // padding={50}
-          style={{
-            axisLabel: { fontSize: 12, padding: 30 },
-            tickLabels: { fontSize: 8, padding: 5 },
-          }}
-        />
-        <VictoryGroup>
-          <VictoryScatter
-            data={finalPostureLineArray}
-            style={{ data: { fill:  "#A4C3B2" } }}
-          />
-          <VictoryLine
-            data={finalPostureLineArray}
-            style={{ data: { stroke:  "#A4C3B2" } }}
-          />
-        </VictoryGroup>
-      </VictoryChart>
-      <TimePeriodFilter
-        selected={filterStatus}
-        onChange={filterChangeHandler}
-      />
+      {finalPostureLineArray.length === 0 && loadingState === true ? (<h3>Loading data, please wait</h3>)
+        : finalPostureLineArray <= 1 && loadingState === false ?
+          <h3>Please turn on the posture data tracker to get data</h3> : (
+            <div>
+              <VictoryChart
+                theme={VictoryTheme.material}
+                domainPadding={20}
+              >
+                <VictoryLegend
+                  title="Good Posture Trends"
+                  orientation="horizontal"
+                  centerTitle
+                  height="auto"
+                  data={[{
+                    name: '', symbol: { fill: '#D9D9D9' }
+                  }
+                  ]}
+                  style={
+                    ({ data: { fontSize: 1 } }, { title: { fontSize: 25 } })
+                  }
+                />
+                <VictoryAxis
+                  label="Time Taken"
+                  // padding={50}
+                  tickCount={12}
+                  tickFormat={(x) => {
+                    switch (filterStatus) {
+                      case "Today":
+                        return moment(x).format("LT");
+                      case "Past Month":
+                        return moment(x).format("Do");
+                      case "Past Year":
+                        return moment(x).format("MMMM");
+                      default:
+                        return moment(x).format("MMM Do");
+                    }
+                  }}
+                  fixLabelOverlap={true}
+                  style={{
+                    axisLabel: { fontSize: 12, padding: 30 },
+                    tickLabels: { fontSize: 8, padding: 5 },
+                  }}
+                />
+                <VictoryAxis
+                  label={"Percent of Good Posture"}
+                  dependentAxis
+                  domain={[0, 100]}
+                  // padding={50}
+                  style={{
+                    axisLabel: { fontSize: 12, padding: 30 },
+                    tickLabels: { fontSize: 8, padding: 5 },
+                  }}
+                />
+                <VictoryGroup>
+                  <VictoryScatter
+                    data={finalPostureLineArray}
+                    style={{ data: { fill: "#A4C3B2" } }}
+                  />
+                  <VictoryLine
+                    data={finalPostureLineArray}
+                    style={{ data: { stroke: "#A4C3B2" } }}
+                  />
+                </VictoryGroup>
+              </VictoryChart>
+              <TimePeriodFilter
+                selected={filterStatus}
+                onChange={filterChangeHandler}
+              />
+            </div>
+          )}
     </div>
   )
 }
