@@ -21,7 +21,6 @@ router.get('/:painArea', async (req, res, next) => {
         category: painArea
       }
     })
-    console.log('painarea data', data)
     res.send(data)
   } catch(err) {
     next(err)
