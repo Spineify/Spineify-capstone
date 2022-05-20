@@ -57,9 +57,9 @@ export const Home = (props) => {
           <div className="user-dash-container">
             <Clock />
             <UserHomeDash />
+            <SurveyModal setModalShow={setModalShow} modalShow={modalShow} />
+            {stretchList.length > 0 ? <StretchList /> : ""}
           </div>
-          <SurveyModal setModalShow={setModalShow} modalShow={modalShow} />
-          {stretchList.length > 0 ? <StretchList /> : ""}
         </div>
         <div className="homeContent">
           {Object.keys(plant).length && <PetPlant modalShow={modalShow} />}
