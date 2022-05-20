@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { logout } from '../store'
 import Tracker from './Tracker'
 import AppIntro from './AppIntroPopover'
+import AppIntroDots from './AppIntroPopoverDots'
 import * as FaIcons from 'react-icons/fa'
 import * as AiIcons from 'react-icons/ai'
 
@@ -12,7 +13,14 @@ const Sidebar = ({ handleClick, isLoggedIn }) => {
 		<>
 			<nav className="nav-menu active">
 				<ul className="nav-menu-items">
-					<li className="spineify-title">Spineify</li>
+					<li className="spineify-title">
+						<span>Spineify</span>
+						<span>
+							{' '}
+							{'  '}
+							<AppIntroDots />
+						</span>
+					</li>
 					<li>
 						<Link to="/home">
 							<span className="sidebar-span">Home</span>
@@ -46,7 +54,6 @@ const Sidebar = ({ handleClick, isLoggedIn }) => {
 		</>
 	)
 }
-
 
 const mapDispatch = (dispatch) => {
 	return {
