@@ -29,6 +29,8 @@ export const Home = (props) => {
   }, []);
 
   //rerender home component when user takes/completes survey. ModalShow is used in PetPlant componenet so it doesnt refresh the survey at intervals when user is taking survey. see line 27 of petplant component
+
+  //comment
   useEffect(() => {}, [modalShow]);
 
   return (
