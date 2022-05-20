@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import UserHomeDash from "./UserHomeDash";
+
 //import { connect, useDispatch, useSelector } from "react-redux";
 
 function Clock() {
@@ -16,8 +16,9 @@ function Clock() {
   }, []);
   return (
     <div>
-      <span>{date.toLocaleTimeString().replace(/:\d+ /, " ")}</span>
-      {/* <UserHomeDash /> */}
+      <span className="clock">
+        {date.toLocaleTimeString().replace(/:\d+ /, " ")}
+      </span>
     </div>
   );
 }

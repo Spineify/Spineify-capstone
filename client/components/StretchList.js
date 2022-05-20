@@ -61,7 +61,9 @@ function SuggestedStretchesGrid(props) {
         </Container>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="success" onClick={props.onHide}>Close</Button>
+        <Button variant="success" onClick={props.onHide}>
+          Close
+        </Button>
       </Modal.Footer>
     </Modal>
   );
@@ -75,6 +77,7 @@ const StretchList = (props) => {
       <Button
         id="modal-button"
         variant="primary"
+        style={{ width: "45%" }}
         onClick={() => setModalShow(true)}
       >
         Click to see your suggested stretches!

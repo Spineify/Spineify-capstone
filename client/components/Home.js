@@ -1,25 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import { connect, useDispatch, useSelector } from 'react-redux'
 import { getPoses } from '../store/posture'
-import PetPlant from "./PetPlant";
-import SurveyModal from "./SurveyModal";
-import StretchList from "./StretchList";
-import Clock from "./Clock";
-import { getPlant } from "../store/petPlant";
-import { Alert } from "react-bootstrap";
-import AppIntro from "./AppIntroPopover";
+import PetPlant from './PetPlant'
+import SurveyModal from './SurveyModal'
+import StretchList from './StretchList'
+import Clock from './Clock'
+import UserHomeDash from './UserHomeDash'
+import { getPlant } from '../store/petPlant'
+import { Alert } from 'react-bootstrap'
+import AppIntro from './AppIntroPopover'
 
 /**
  * COMPONENT
  */
 export const Home = (props) => {
-  const { firstName } = props;
-  const dispatch = useDispatch();
-  const [show, setShow] = useState(true);
-  const userId = useSelector((state) => state.auth.id);
-  const plant = useSelector((state) => state.plantReducer);
-  const stretchList = useSelector((state) => state.stretchList);
-  const [modalShow, setModalShow] = React.useState(false);
+	const { firstName } = props
+	const dispatch = useDispatch()
+	const [show, setShow] = useState(true)
+	const userId = useSelector((state) => state.auth.id)
+	const plant = useSelector((state) => state.plantReducer)
+	const stretchList = useSelector((state) => state.stretchList)
+	const [modalShow, setModalShow] = React.useState(false)
 
 	//get all poses
 	useEffect(() => {
@@ -32,14 +33,14 @@ export const Home = (props) => {
 
   return (
     <div id="home">
-      <div>
+      <div className="reminder">
         {userId && (
           <div>
             {show ? (
               <Alert color="primary" variant="success" closeLabel="Close alert">
                 Don't forget to take your daily survey! 🌱
                 <button
-                  className="tracker-button"
+                  className="reminder-button"
                   type="button"
                   onClick={() => setShow(false)}
                 >
@@ -53,11 +54,12 @@ export const Home = (props) => {
       <div className="home-info">
         <div className="welcome-info">
           <h3 className="welcome-name">Hello, {firstName}.</h3>
-          <div className="clock-container">
+          <div className="user-dash-container">
             <Clock />
+            <UserHomeDash />
+            <SurveyModal setModalShow={setModalShow} modalShow={modalShow} />
+            {stretchList.length > 0 ? <StretchList /> : ""}
           </div>
-          <SurveyModal setModalShow={setModalShow} modalShow={modalShow} />
-          {stretchList.length > 0 ? <StretchList /> : ""}
         </div>
         <div className="homeContent">
           {Object.keys(plant).length && <PetPlant modalShow={modalShow} />}
