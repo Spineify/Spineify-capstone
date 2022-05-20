@@ -57,7 +57,7 @@ const surveyJson = {
       ],
     },
   ],
-  //navigateToUrl: "/home",
+
 };
 
 function SurveyComponent(props) {
