@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { connect, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getPoses } from "../store/posture";
-import { Button, Alert, ProgressBar } from "react-bootstrap";
+import { Alert, ProgressBar } from "react-bootstrap";
 
 const UserHomeDash = () => {
   const dispatch = useDispatch();
@@ -100,18 +100,7 @@ const UserHomeDash = () => {
           <Alert.Heading>Tip of the day! </Alert.Heading>
           <p>{tip}</p>
           <hr />
-          {/* <div className="d-flex justify-content-end">
-            <Button onClick={() => setShow(false)} variant="outline-success">
-              Hide tip
-            </Button>
-          </div> */}
         </Alert>
-
-        {/* {!show && (
-          <Button variant="outline-success" onClick={() => setShow(true)}>
-            Show tip
-          </Button>
-        )} */}
       </div>
     </div>
   );

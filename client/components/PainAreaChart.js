@@ -75,7 +75,6 @@ export default (props) => {
           <div className="pie-chart-container">
             <h4>Areas of Discomfort</h4>
             <VictoryLegend
-              //title="Areas of discomfort"
               centerTitle
               height="auto"
               style={
