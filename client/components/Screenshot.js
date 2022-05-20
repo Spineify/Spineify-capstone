@@ -28,7 +28,6 @@ function Screenshot({ webcamRef }) {
           value={webcamOn}
           onClick={() => setWebcamOn(!webcamOn)}
         />
-        <div className="toggle-switch"></div>
         <span className="toggle-label">Webcam On</span>
       </label>
       <div>

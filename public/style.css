@@ -71,7 +71,7 @@ form div {
   background-color: #84a98c;
   color: white;
   border: none;
-  margin-left: 3px
+  margin-left:12px;
 }
 
 /* Game */
@@ -303,12 +303,23 @@ form div {
   height: 100%;
 }
 #favorites-title {
+  /* position: absolute;
+  top: 7%;
+  left: 54%; */
   text-align: center;
+  margin-left: -1em;
   font-weight: bold;
   padding-bottom: 15px;
   font-family: "Cormorant", serif;
 }
 
+.no-stretches{
+  /* position: absolute;
+  top: 16%;
+  left: 50%; */
+  text-align: center;
+  margin-left: -0.8em
+}
 .favorites-remove-button {
   justify-self: flex-end;
   margin-top: auto;
@@ -324,10 +335,15 @@ form div {
 /* */
 
 .favorites-container {
+  margin-left: 17px;
   padding: 50px;
   height: 100vh;
-  width: 100%;
+  width: 77%;
 }
+
+/* .container{
+
+} */
 /* Main Data Visualization Page Styling */
 
 .data-viz-body {
@@ -596,11 +612,6 @@ li a {
 }
 
 
-.toggle-label {
-  font-size: 12px;
-  font-family: "Cormorant", serif;
-}
-
 /* #modal-button {
   border-radius: 3px;
   padding: 7px;
@@ -654,13 +665,15 @@ li a {
 
 .user-dash-container{
   position: absolute;
-  top: 19%;
+  top: 13%;
 
 }
 
 .take-survey-btn{
   position:static;
   top: 84%;
+  margin-top: 32px;
+  margin-bottom: 25px;
 }
 
 .stats-container{
@@ -710,6 +723,25 @@ li a {
   margin-bottom: 17px;
   margin-top: 8px;
 }
+
 .tip-for-today{
   font-family: "quicksandlight", serif;
 }
+
+.home-btns{
+  display: flex;
+  flex-direction: column;
+}
+
+.toggle{
+  margin-left: 55px;
+}
+
+.toggle-label {
+  font-size: 15px;
+  font-family: "quicksandlight", serif;
+  color: white;
+  margin-left: 8px;
+}
+
+

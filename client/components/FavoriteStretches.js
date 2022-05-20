@@ -31,7 +31,7 @@ export const FavoriteStretches = (props) => {
       <Container>
         <Row>
           {favoritesArray.length === 0 ? (
-            <p>Feel free to add some stretches!</p>
+            <p className="no-stretches">Feel free to add some stretches!</p>
           ) : (
             favoritesArray.map((favorite) => {
               const stretch = favorite.stretch;
