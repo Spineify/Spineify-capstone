@@ -10,6 +10,8 @@ import { Alert } from 'react-bootstrap'
 //thunkcreators
 import { getPoses } from '../store/posture'
 import { getPlant } from '../store/petPlant'
+import { suggestStretch } from '../store/stretch'
+import { getData } from '../store/surveyData'
 
 /**
  * COMPONENT
@@ -20,6 +22,7 @@ export const Home = (props) => {
 	const [show, setShow] = useState(true)
 	const userId = useSelector((state) => state.auth.id)
 	const plant = useSelector((state) => state.plantReducer)
+	const surveyData = useSelector((state) => state.surveyReducer)
 	const stretchList = useSelector((state) => state.stretchList)
 	//modalShow is used in PetPlant componenet so that home component does not rerender when user is taking survey. see line 27 of petplant component
 	const [modalShow, setModalShow] = useState(false)
@@ -28,7 +31,12 @@ export const Home = (props) => {
 	useEffect(() => {
 		dispatch(getPoses())
 		dispatch(getPlant())
+		dispatch(getData())
 	}, [])
+
+	useEffect(() => {
+		dispatch(suggestStretch(surveyData.pain_area))
+	}, [surveyData])
 
 	useEffect(() => {}, [modalShow])
 

@@ -5,19 +5,20 @@ const {
 
 module.exports = router
 
-router.get('/', async (req, res, next) => {
-	try {
-		const users = await User.findAll({
-			// explicitly select only the id and username fields - even though
-			// users' passwords are encrypted, it won't help if we just
-			// send everything to anyone who asks!
-			attributes: ['id', 'firstName', 'lastName', 'email'],
-		})
-		res.json(users)
-	} catch (err) {
-		next(err)
-	}
-})
+// do not need router to get all users
+// router.get('/', async (req, res, next) => {
+// 	try {
+// 		const users = await User.findAll({
+// 			// explicitly select only the id and username fields - even though
+// 			// users' passwords are encrypted, it won't help if we just
+// 			// send everything to anyone who asks!
+// 			attributes: ['id', 'firstName', 'lastName', 'email'],
+// 		})
+// 		res.json(users)
+// 	} catch (err) {
+// 		next(err)
+// 	}
+// })
 
 //GET /users/poses (get all)
 router.get('/poses', async (req, res, next) => {
@@ -54,11 +55,12 @@ router.get('/plant', async (req, res, next) => {
 	}
 })
 
-router.get('/:id/favorites', async (req, res, next) => {
+router.get('/favorites', async (req, res, next) => {
 	try {
+		const user = await User.findByToken(req.headers.authorization)
 		const favorites = await UserStretch.findAll({
 			where: {
-				userId: req.params.id,
+				userId: user.id,
 			},
 			include: {
 				model: Stretch,
@@ -70,11 +72,12 @@ router.get('/:id/favorites', async (req, res, next) => {
 	}
 })
 
-router.post('/:id/favorites', async (req, res, next) => {
+router.post('/favorites', async (req, res, next) => {
 	try {
+		const user = await User.findByToken(req.headers.authorization)
 		const checkFavorite = await UserStretch.findOne({
 			where: {
-				userId: req.params.id,
+				userId: user.id,
 				stretchId: req.body.id,
 			},
 		})
@@ -90,11 +93,12 @@ router.post('/:id/favorites', async (req, res, next) => {
 	}
 })
 
-router.delete('/:userId/favorites/:stretchId', async (req, res, next) => {
+router.delete('/favorites/:stretchId', async (req, res, next) => {
 	try {
+		const user = await User.findByToken(req.headers.authorization)
 		const deletedFavorite = await UserStretch.destroy({
 			where: {
-				userId: req.params.userId,
+				userId: user.id,
 				stretchId: req.params.stretchId,
 			},
 		})

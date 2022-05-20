@@ -69,12 +69,11 @@ function SurveyComponent(props) {
 			const results = sender.data
 			results.userId = userId
 			if (userId) {
-				console.log('DISPATCH')
 				dispatch(addData(results))
 			}
-			if (results.pain_area) {
-				dispatch(suggestStretch(results.pain_area))
-			}
+			// if (results.pain_area) {
+			// 	dispatch(suggestStretch(results.pain_area))
+			// }
 			props.onHide()
 		},
 		[userId]
