@@ -531,7 +531,8 @@ li a {
 .welcome-name {
   font-family: "highvalleyregular";
   font-size: 60px;
-  margin-bottom: -11px;
+  margin-bottom: -19px;
+  margin-left: -15px;
 }
 
 .welcome-paragraph {
@@ -691,6 +692,8 @@ li a {
 
 .yest-progress-bar{
   font-family: "quicksandlight", serif;
+  margin-bottom: 17px;
+  margin-top: 8px;
 }
 .tip-for-today{
   font-family: "quicksandlight", serif;
