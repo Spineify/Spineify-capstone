@@ -69,7 +69,6 @@ function SurveyComponent(props) {
       const results = sender.data;
       results.userId = userId;
       if (userId) {
-        console.log("DISPATCH");
         dispatch(addData(results));
       }
       if (results.pain_area) {
@@ -94,11 +93,13 @@ function SurveyComponent(props) {
           Spineify Daily Check-In
         </Modal.Title>
       </Modal.Header>
-      <Modal.Body>
+      <Modal.Body className="survey-modal">
         <Survey model={survey} />
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
+        <Button className="modal-button" onClick={props.onHide}>
+          Close
+        </Button>
       </Modal.Footer>
     </Modal>
   );
@@ -121,6 +122,7 @@ const SurveyModal = (props) => {
 
       <SurveyComponent
         show={props.modalShow}
+        className="survey-modal"
         onHide={() => {
           props.setModalShow(false);
         }}

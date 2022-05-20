@@ -1,38 +1,38 @@
 @font-face {
-  font-family: 'mercyregular';
-  src: url('fonts/fontsfree-net-mercy-regular-webfont.woff2') format('woff2');
-  src: url('fonts/fontsfree-net-mercy-regular-webfont.woff') format('woff');
+  font-family: "mercyregular";
+  src: url("fonts/fontsfree-net-mercy-regular-webfont.woff2") format("woff2");
+  src: url("fonts/fontsfree-net-mercy-regular-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
-  color:rgba(22, 22, 22, 0.22)
+  color: rgba(22, 22, 22, 0.22);
 }
 
 @font-face {
-  font-family: 'clear_sans_thinregular';
-  src: url('fonts/fontsfree-net-clearsans-thin-webfont.woff2') format('woff2');
-  src: url('fonts/fontsfree-net-clearsans-thin-webfont.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'quicksandlight';
-  src: url('/fonts/quicksand-variablefont_wght-webfont.woff2') format('woff2');
-  src: url('/fonts/quicksand-variablefont_wght-webfont.woff') format('woff');
+  font-family: "clear_sans_thinregular";
+  src: url("fonts/fontsfree-net-clearsans-thin-webfont.woff2") format("woff2");
+  src: url("fonts/fontsfree-net-clearsans-thin-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'highvalleyregular';
-  src: url('fonts/fontsfree-net-highvalley-webfont.woff2') format('woff2');
-  src: url('fonts/fontsfree-net-highvalley-webfont.woff') format('woff');
+  font-family: "quicksandlight";
+  src: url("/fonts/quicksand-variablefont_wght-webfont.woff2") format("woff2");
+  src: url("/fonts/quicksand-variablefont_wght-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "highvalleyregular";
+  src: url("fonts/fontsfree-net-highvalley-webfont.woff2") format("woff2");
+  src: url("fonts/fontsfree-net-highvalley-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
 body {
-  font-family: "clear_sans_thinregular"
+  font-family: "clear_sans_thinregular";
 }
 
 html,
@@ -65,13 +65,13 @@ form div {
   height: 100%;
 }
 
-.reminder-button{
+.reminder-button {
   border-radius: 3px;
   padding: 5px 10px;
   background-color: #84a98c;
   color: white;
   border: none;
-  margin-left: 3px
+  margin-left: 3px;
 }
 
 /* Game */
@@ -179,7 +179,6 @@ form div {
 .game .congrats {
   height: 450px;
   z-index: 5;
-
 }
 /*Login / Signup*/
 
@@ -223,9 +222,9 @@ form div {
 }
 
 .signin-info h1 {
-  font-family: 'mercyregular';
+  font-family: "mercyregular";
   font-size: 60px;
-  color:rgba(0, 0, 0, 0.6);
+  color: rgba(0, 0, 0, 0.6);
   position: absolute;
   top: 60px;
 }
@@ -276,7 +275,7 @@ form div {
 }
 
 .signin-info h2 {
-  font-family: 'clear_sans_thinregular';
+  font-family: "clear_sans_thinregular";
   font-size: 30px;
   padding: 30px;
   z-index: 2;
@@ -458,7 +457,7 @@ li a {
   color: teal;
 }
 
-.side-line{
+.side-line {
   text-decoration: none;
 }
 
@@ -468,7 +467,6 @@ li a {
   font-family: "Cormorant", serif; */
   font-size: 2.3rem;
   font-family: "mercyregular", serif;
-
 }
 
 .app-container {
@@ -521,7 +519,7 @@ li a {
 .homeContent {
   height: 400px;
   align-self: center;
-  position:fixed;
+  position: fixed;
   top: 25%;
   left: 65%;
 }
@@ -595,7 +593,6 @@ li a {
   border-radius: 1rem;
 }
 
-
 .toggle-label {
   font-size: 12px;
   font-family: "Cormorant", serif;
@@ -631,14 +628,13 @@ li a {
   margin-left: 4px;
   font-size: 1.3rem;
   font-family: "quicksandlight";
-
 }
 
 #instructions-button:hover {
   color: teal;
 }
 
-.clock{
+.clock {
   font-size: 28px;
   font-family: "quicksandlight", serif;
 }
@@ -646,24 +642,23 @@ li a {
 /* .home-dash{
   border-style: ;
 } */
-.stats-title{
+.stats-title {
   font-size: 19px;
   padding-top: 25px;
   font-family: "quicksandlight", serif;
 }
 
-.user-dash-container{
+.user-dash-container {
   position: absolute;
   top: 19%;
-
 }
 
-.take-survey-btn{
-  position:static;
+.take-survey-btn {
+  position: static;
   top: 84%;
 }
 
-.stats-container{
+.stats-container {
   font-family: "FreeMono";
 }
 
@@ -691,8 +686,8 @@ li a {
 }
 
 .modal-image {
-  width:450px;
-  height:450px;
+  width: 450px;
+  height: 450px;
 }
 
 .image-button {
@@ -705,11 +700,23 @@ li a {
   border-radius: 1rem;
 }
 
-.yest-progress-bar{
+.yest-progress-bar {
   font-family: "quicksandlight", serif;
   margin-bottom: 17px;
   margin-top: 8px;
 }
-.tip-for-today{
+.tip-for-today {
   font-family: "quicksandlight", serif;
 }
+
+/* Survey Styling */
+
+.survey-modal {
+  font-family: "quicksandlight", serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* #surveyElement {
+  --background: cadetblue;
+} */
