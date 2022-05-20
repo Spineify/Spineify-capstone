@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect, useDispatch, useSelector } from "react-redux";
 import { getPoses } from "../store/posture";
-import { Button, Alert } from "react-bootstrap";
+import { Button, Alert, ProgressBar } from "react-bootstrap";
 
 const UserHomeDash = () => {
   const dispatch = useDispatch();
@@ -22,8 +22,7 @@ const UserHomeDash = () => {
       return pose.createdAt.substr(0, 10) == yesterday;
     }
   });
-  console.log("poses", poses);
-  console.log("yesterdays poses", yesterdaysPoses);
+
   const totalPoses = yesterdaysPoses.length;
   const numOfGood = yesterdaysPoses.filter(
     (pose) => pose.type === "Good Posture"
@@ -69,13 +68,32 @@ const UserHomeDash = () => {
     <div className="home-dash">
       <div className="stats-container">
         {yesterdaysPoses.length > 0 && (
-          <div className="stats-title">Yesterday's stats:</div>
+          <div>
+            <div className="stats-title">Yesterday's stats:</div>
+            <div className="yest-progress-bar" style={{ width: "45%" }}>
+              <ProgressBar style={{ height: 30 }}>
+                <ProgressBar
+                  now={pOfGood}
+                  key={1}
+                  label={`Good ${pOfGood}%`}
+                  style={{ backgroundColor: "#38a3a5" }}
+                />
+                <ProgressBar
+                  now={pOfOK}
+                  key={2}
+                  label={`OK ${pOfOK}%`}
+                  style={{ backgroundColor: "#f6bd60" }}
+                />
+                <ProgressBar
+                  now={pOfBad}
+                  key={3}
+                  label={`Bad ${pOfBad}%`}
+                  style={{ backgroundColor: "#e26d5c" }}
+                />
+              </ProgressBar>
+            </div>
+          </div>
         )}
-        <ul id="ul-stats">
-          {pOfGood > 0 && <li className="stat">Good posture: {pOfGood}%</li>}
-          {pOfOK > 0 && <li className="stat">Ok posture: {pOfOK}%</li>}
-          {pOfBad > 0 && <li className="stat">Bad posture: {pOfBad}%</li>}
-        </ul>
       </div>
       <div className="tip-for-today" style={{ width: "45%" }}>
         <Alert show={show} variant="success">
@@ -89,11 +107,11 @@ const UserHomeDash = () => {
           </div> */}
         </Alert>
 
-        {!show && (
+        {/* {!show && (
           <Button variant="outline-success" onClick={() => setShow(true)}>
             Show tip
           </Button>
-        )}
+        )} */}
       </div>
     </div>
   );
