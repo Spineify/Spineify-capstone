@@ -36,8 +36,6 @@ export default (props) => {
   //within the date object to to calculations and then present it in the way that Victory wants
   const lineGraphData = poseDates.map((date) => {
     const daysPoses = poseDays[date];
-    console.log('daysPoses', daysPoses)
-    console.log('date test', daysPoses[0].createdAt)
     const goodPoses = daysPoses.filter((pose) => pose.type === "Good Posture")
     const goodPosePercent = goodPoses.length / daysPoses.length * 100
     const dataObj = {
@@ -46,8 +44,6 @@ export default (props) => {
     }
     return dataObj
   })
-
-  console.log('lineGraphData', lineGraphData)
 
   //eventual dataObj: {
   // x: day/month/year
