@@ -57,7 +57,7 @@ const surveyJson = {
       ],
     },
   ],
-  navigateToUrl: "/home",
+  //navigateToUrl: "/home",
 };
 
 function SurveyComponent(props) {
@@ -76,6 +76,7 @@ function SurveyComponent(props) {
       if (results.pain_area) {
         dispatch(suggestStretch(results.pain_area));
       }
+      props.onHide();
     },
     [userId]
   );
