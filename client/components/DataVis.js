@@ -90,7 +90,7 @@ export default (props) => {
 
   return (
     <div className="data-viz-body">
-      <form>
+      <form className="graph_form">
         <label>See charts : </label>
         <select onChange={onChangeHandler}>
           <option value="all"> All </option>
