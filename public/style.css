@@ -83,6 +83,7 @@ form div {
   height: 525px;
   border: solid #d1d1d0 1px;
   border-radius: 50% / 35%;
+  position: relative;
 }
 
 .gameFrame.morning {
@@ -176,13 +177,15 @@ form div {
   font-size: 9px;
 }
 
-.game .congrats {
-  height: 450px;
+.gameFrame .congrats {
+  height: 350px;
+  width: 300px;
+  position: relative;
   z-index: 5;
-
+  top: 20%;
 }
-/*Login / Signup*/
 
+/*Login / Signup*/
 .body-content-signin {
   display: flex;
   justify-content: center;

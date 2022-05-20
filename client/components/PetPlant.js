@@ -73,7 +73,7 @@ const PetPlant = (props) => {
 
 	useEffect(() => {
 		if (levelUp === true) {
-			setTimeout(() => setLevelUp(false), 5000)
+			setTimeout(() => setLevelUp(false), 15000)
 		}
 	}, [levelUp])
 
@@ -127,7 +127,7 @@ const PetPlant = (props) => {
 		return (
 			<div className={`gameFrame ${timeOfDay}`}>
 				{levelUp && <LevelUp />}
-				{dropped ? <ReactRain numDrops="500" /> : null}
+				{dropped && <ReactRain numDrops="200" />}
 
 				<div className="content">
 					<div className="level">
