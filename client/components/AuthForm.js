@@ -13,54 +13,57 @@ const AuthForm = (props) => {
 	return (
 		<div className={`signin ${name}`}>
 			<div className={`signin-info ${name}`}>
-				{name === 'signup' ? (
-					<h1>Create an account</h1>
-				) : (
-					<h1>Login to your account</h1>
-				)}
-				<form onSubmit={handleSubmit} name={name}>
-					{name === 'signup' && (
-						<>
-							<div className="form-element">
-								<label htmlFor="firstName">
-									<small>First Name: </small>
-								</label>
-								<input name="firstName" type="text" />
-							</div>
-							<div className="form-element">
-								<label htmlFor="lastName">
-									<small>Last Name: </small>
-								</label>
-								<input name="lastName" type="text" />
-							</div>
-						</>
-					)}
-					<div className="form-element">
-						<label htmlFor="email">
-							<small>Email: </small>
-						</label>
-						<input name="email" type="text" />
-					</div>
-					<div className="form-element">
-						<label htmlFor="password">
-							<small>Password: </small>
-						</label>
-						<input name="password" type="password" />
-					</div>
-					<button type="submit" className="btn btn-secondary">
-						{displayName}
-					</button>
-					{error && error.response && <div> {error.response.data} </div>}
-					{name === 'login' ? (
-						<div>
-							Don't have an account? <Link to="/signup">Sign up</Link>
-						</div>
+				<h1>Spineify</h1>
+				<div className="form">
+					{name === 'signup' ? (
+						<h2>Create an account</h2>
 					) : (
-						<div>
-							Already have an account? <Link to="/login">Log in</Link>
-						</div>
+						<h2>Login to your account</h2>
 					)}
-				</form>
+					<form onSubmit={handleSubmit} name={name}>
+						{name === 'signup' && (
+							<>
+								<div className="form-element">
+									<label htmlFor="firstName">
+										<small>First Name: </small>
+									</label>
+									<input name="firstName" type="text" />
+								</div>
+								<div className="form-element">
+									<label htmlFor="lastName">
+										<small>Last Name: </small>
+									</label>
+									<input name="lastName" type="text" />
+								</div>
+							</>
+						)}
+						<div className="form-element">
+							<label htmlFor="email">
+								<small>Email: </small>
+							</label>
+							<input name="email" type="text" />
+						</div>
+						<div className="form-element">
+							<label htmlFor="password">
+								<small>Password: </small>
+							</label>
+							<input name="password" type="password" />
+						</div>
+						<button type="submit" className="btn btn-secondary">
+							{displayName}
+						</button>
+						{error && error.response && <div> {error.response.data} </div>}
+						{name === 'login' ? (
+							<div>
+								Don't have an account? <Link to="/signup">Sign up</Link>
+							</div>
+						) : (
+							<div>
+								Already have an account? <Link to="/login">Log in</Link>
+							</div>
+						)}
+					</form>
+				</div>
 			</div>
 		</div>
 	)
