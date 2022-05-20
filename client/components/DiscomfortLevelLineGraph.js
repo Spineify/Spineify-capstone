@@ -10,7 +10,6 @@ import {
 } from "victory";
 import moment from "moment";
 import TimePeriodFilter from "./LineGraphTimeFilter";
-import { useSelector } from "react-redux";
 
 const DiscomfortLevelLineGraph = (props) => {
   const [filterStatus, setFilterStatus] = useState("");
@@ -23,13 +22,11 @@ const DiscomfortLevelLineGraph = (props) => {
   const graphDataMap = props.dataSet.map((survey) => {
     const dataObj = {
       x: survey.createdAt,
-      y: Number(survey.discomfort_level),
+      y: Number(survey.discomfort_level)
     };
 
     return dataObj;
   });
-
-
 
   const filterChangeHandler = (selectedStatus) => {
     setFilterStatus(selectedStatus);
@@ -65,7 +62,6 @@ const DiscomfortLevelLineGraph = (props) => {
 
   const finalLineArray = filteredGraphData();
 
-
   return (
     <div>
       {finalLineArray.length === 0 && loadingState === true ? (
@@ -75,6 +71,7 @@ const DiscomfortLevelLineGraph = (props) => {
           <VictoryChart
             theme={VictoryTheme.material}
             domainPadding={20}
+            domain={{ y: [0, 1] }}
           >
             <VictoryLegend
               title="Discomfort Levels Over Time"
@@ -90,9 +87,6 @@ const DiscomfortLevelLineGraph = (props) => {
               }
             />
             <VictoryAxis
-              label="Time Taken"
-              // padding={50}
-              tickCount={12}
               tickFormat={(x) => {
                 switch (filterStatus) {
                   case "Today":
@@ -106,32 +100,30 @@ const DiscomfortLevelLineGraph = (props) => {
                 }
               }}
               fixLabelOverlap={true}
-              style={{
-                axisLabel: { fontSize: 12, padding: 30 },
-                tickLabels: { fontSize: 8, padding: 5 },
-              }}
             />
             <VictoryAxis
               label={"Discomfort Level"}
               dependentAxis
-              domain={[0, 10]}
-              // padding={50}
               style={{
                 axisLabel: { fontSize: 12, padding: 30 },
-                tickLabels: { fontSize: 8, padding: 5 },
+                tickLabels: { fontSize: 8, padding: 5, textAnchor: "end" },
               }}
+              tickValues={[.2, .4, .6, .8, 1]}
+              tickFormat={(t) => t * 10}
             />
             <VictoryGroup>
-                <VictoryLine
-                  data={finalLineArray}
-                  // width={400}
-                  style={{ data: { stroke: "#49C6B7" } }}
-                />
-                <VictoryScatter
-                  data={finalLineArray}
-                  size={4}
-                  style={{ data: { fill:  "#49C6B7" } }}
-                />
+              <VictoryLine
+                data={finalLineArray}
+                // width={400}
+                style={{ data: { stroke: "#49C6B7" } }}
+                y={(datum) => datum.y / 10}
+              />
+              <VictoryScatter
+                data={finalLineArray}
+                size={4}
+                style={{ data: { fill: "#49C6B7" } }}
+                y={(datum) => datum.y / 10}
+              />
             </VictoryGroup>
           </VictoryChart>
           <TimePeriodFilter

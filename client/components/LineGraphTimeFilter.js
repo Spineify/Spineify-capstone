@@ -11,7 +11,6 @@ const TimePeriodFilter = (props) => {
       >
         <option value="">All</option>
         <option value="Today">Today</option>
-        <option value="Past Week">Past Week</option>
         <option value="Past Month">Past Month</option>
         <option value="Past Year">Past Year</option>
       </select>
