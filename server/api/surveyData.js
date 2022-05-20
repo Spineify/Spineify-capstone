@@ -34,12 +34,6 @@ router.post('/', async (req, res, next) => {
 			discomfort_level: req.body.discomfort_level,
 			pain_area: req.body.pain_area,
 		})
-		//   {
-		//   where: {
-		//     discomfort_level: req.body.discomfort_level,
-		//     pain_area: req.body.pain_area,
-		//   },
-		// });
 		res.send(newData).status(201)
 	} catch (err) {
 		next(err)

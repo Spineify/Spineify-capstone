@@ -331,8 +331,11 @@ form div {
 /* Main Data Visualization Page Styling */
 
 .data-viz-body {
-  padding: 50px;
-  width: 100%;
+  padding-right: 90px;
+  width: 85%;
+  height:max-content;
+  overflow: hidden;
+  align-items: center;
 }
 
 .graphs-container {
@@ -340,7 +343,12 @@ form div {
   flex-direction: column;
   width: 100%;
   text-align: center;
-  padding: 50px;
+  padding-top: 20px;
+  padding-right: 50px;
+  height: 100%;
+  max-width: 950px;
+  overflow: hidden;
+  align-items: center;
 }
 
 .graph-column {
@@ -352,9 +360,7 @@ form div {
   margin: auto;
 }
 
-.data-viz-body {
-  background-color: #d9d9d9;
-}
+
 
 #posture-pie-loading-message {
   text-align: center;
@@ -440,8 +446,6 @@ form div {
   margin-left: 16px;
   text-decoration: none;
   color: white;
-  /* font-size: 1.3rem;
-  font-family: "Cormorant", serif; */
   font-size: 1.3rem;
   font-family: "quicksandlight", serif;
 }
@@ -464,8 +468,6 @@ li a {
 
 .spineify-title {
   color: white;
-  /* font-size: 1.7rem;
-  font-family: "Cormorant", serif; */
   font-size: 2.3rem;
   font-family: "mercyregular", serif;
 
@@ -527,9 +529,6 @@ li a {
 }
 
 .welcome-name {
-  /* font-family: "Cormorant", serif;
-  font-weight: bold;
-  font-size: 1.7rem; */
   font-family: "highvalleyregular";
   font-size: 60px;
   margin-bottom: -19px;
@@ -549,7 +548,6 @@ li a {
 /* Tracker */
 
 .tracker-container {
-  /* margin-left: 250px; */
   background-color: #354f52;
   margin-bottom: 50px;
   margin-top: 50px;
@@ -601,13 +599,6 @@ li a {
   font-family: "Cormorant", serif;
 }
 
-/* #modal-button {
-  border-radius: 3px;
-  padding: 7px;
-  background-color: #84a98c;
-  color: white;
-  border: none;
-} */
 #modal-button {
   border-radius: 3px;
   padding: 7px;
@@ -624,10 +615,8 @@ li a {
 }
 
 #instructions-button {
-  /* font-family: "Cormorant"; */
   background-color: #354f52;
   border: none;
-  /* margin-left: 16px; */
   margin-left: 4px;
   font-size: 1.3rem;
   font-family: "quicksandlight";
@@ -643,9 +632,6 @@ li a {
   font-family: "quicksandlight", serif;
 }
 
-/* .home-dash{
-  border-style: ;
-} */
 .stats-title{
   font-size: 19px;
   padding-top: 25px;
@@ -655,7 +641,6 @@ li a {
 .user-dash-container{
   position: absolute;
   top: 19%;
-
 }
 
 .take-survey-btn{

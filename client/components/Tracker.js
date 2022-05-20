@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Screenshot from './Screenshot'
 import { addPose, getPoses } from '../store/posture'
-import Webcam from 'react-webcam'
 import isElectron from 'is-electron'
 import ImageModal from './ImageModal'
 

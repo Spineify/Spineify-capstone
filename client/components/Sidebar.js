@@ -5,8 +5,6 @@ import { logout } from '../store'
 import Tracker from './Tracker'
 import AppIntro from './AppIntroPopover'
 import AppIntroDots from './AppIntroPopoverDots'
-import * as FaIcons from 'react-icons/fa'
-import * as AiIcons from 'react-icons/ai'
 
 const Sidebar = ({ handleClick, isLoggedIn }) => {
 	return (
