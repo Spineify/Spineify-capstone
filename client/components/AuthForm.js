@@ -1,14 +1,15 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
-import { authenticate } from '../store'
-import { AiOutlineUser } from 'react-icons'
+import React from "react";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { authenticate } from "../store";
+import { AiOutlineUser } from "react-icons";
 
 /**
  * COMPONENT
  */
 const AuthForm = (props) => {
-	const { name, displayName, handleSubmit, error } = props
+  const { name, displayName, handleSubmit, error } = props;
+
 
 	return (
 		<div className={`signin ${name}`}>
@@ -69,6 +70,7 @@ const AuthForm = (props) => {
 	)
 }
 
+
 /**
  * CONTAINER
  *   Note that we have two different sets of 'mapStateToProps' functions -
@@ -77,41 +79,41 @@ const AuthForm = (props) => {
  *   can stay DRY with interfaces that are very similar to each other!
  */
 const mapLogin = (state) => {
-	return {
-		name: 'login',
-		displayName: 'Login',
-		error: state.auth.error,
-	}
-}
+  return {
+    name: "login",
+    displayName: "Login",
+    error: state.auth.error,
+  };
+};
 
 const mapSignup = (state) => {
-	return {
-		name: 'signup',
-		displayName: 'Sign Up',
-		error: state.auth.error,
-	}
-}
+  return {
+    name: "signup",
+    displayName: "Sign Up",
+    error: state.auth.error,
+  };
+};
 
 const mapDispatch = (dispatch) => {
-	return {
-		handleSubmit(evt) {
-			evt.preventDefault()
-			const formName = evt.target.name
-			//user
-			let user, firstName, lastName, email, password
-			email = evt.target.email.value
-			password = evt.target.password.value
-			if (evt.target.firstName) {
-				firstName = evt.target.firstName.value
-				lastName = evt.target.lastName.value
-				user = { firstName, lastName, email, password }
-			} else {
-				user = { email, password }
-			}
-			dispatch(authenticate(formName, user))
-		},
-	}
-}
+  return {
+    handleSubmit(evt) {
+      evt.preventDefault();
+      const formName = evt.target.name;
+      //user
+      let user, firstName, lastName, email, password;
+      email = evt.target.email.value;
+      password = evt.target.password.value;
+      if (evt.target.firstName) {
+        firstName = evt.target.firstName.value;
+        lastName = evt.target.lastName.value;
+        user = { firstName, lastName, email, password };
+      } else {
+        user = { email, password };
+      }
+      dispatch(authenticate(formName, user));
+    },
+  };
+};
 
-export const Login = connect(mapLogin, mapDispatch)(AuthForm)
-export const Signup = connect(mapSignup, mapDispatch)(AuthForm)
+export const Login = connect(mapLogin, mapDispatch)(AuthForm);
+export const Signup = connect(mapSignup, mapDispatch)(AuthForm);

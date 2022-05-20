@@ -17,10 +17,13 @@ const UserHomeDash = () => {
     dispatch(getPoses());
   }, []);
 
-  const yesterdaysPoses = poses.filter(
-    (pose) => pose.createdAt.substr(0, 10) == yesterday
-  );
-
+  const yesterdaysPoses = poses.filter((pose) => {
+    if (pose.createdAt !== undefined) {
+      return pose.createdAt.substr(0, 10) == yesterday;
+    }
+  });
+  console.log("poses", poses);
+  console.log("yesterdays poses", yesterdaysPoses);
   const totalPoses = yesterdaysPoses.length;
   const numOfGood = yesterdaysPoses.filter(
     (pose) => pose.type === "Good Posture"
@@ -36,9 +39,6 @@ const UserHomeDash = () => {
   const pOfOK = Math.round((numOfOK / totalPoses) * 100);
   const pOfBad = Math.round((numOfBad / totalPoses) * 100);
 
-  // const pOfGood = 15;
-  // const pOfOK = 64;
-  // const pOfBad = 70;
   let tip = "No tips for you today, have a great day!";
   if (pOfGood >= 85) {
     tip =
@@ -61,26 +61,32 @@ const UserHomeDash = () => {
   } else if (pOfBad >= 75) {
     tip =
       "🚨 🚨 🚨 Seems like you had a rough posture day yesterday! Why don't we stretch out that back nice and tall to help reset for today with our suggested stretches. The more you protect your back with good posture, the better you'll feel and the more your plant friend will grow! You got this!! 😤 😤 😤 ";
+  } else if (pOfGood >= 25 && pOfBad >= 25 && pOfOK >= 25) {
+    tip =
+      "You like to give equal love to all the postures, dontcha?! You had an OK posture day yesterday. Let's see if we can get that back sitting nice and tall today - you got this! We wanna make sure to earn some grub for our plant mate! (and also to prevent back pain 😉) ";
   }
-
   return (
     <div className="home-dash">
-      Yesterday's stats:
-      <ul id="ul-stats">
-        <li className="stat">Good posture: {pOfGood}%</li>
-        <li className="stat">Ok posture: {pOfOK}%</li>
-        <li className="stat">Bad posture: {pOfBad}%</li>
-      </ul>
-      <div className="tip-for-today">
+      <div className="stats-container">
+        {yesterdaysPoses.length > 0 && (
+          <div className="stats-title">Yesterday's stats:</div>
+        )}
+        <ul id="ul-stats">
+          {pOfGood > 0 && <li className="stat">Good posture: {pOfGood}%</li>}
+          {pOfOK > 0 && <li className="stat">Ok posture: {pOfOK}%</li>}
+          {pOfBad > 0 && <li className="stat">Bad posture: {pOfBad}%</li>}
+        </ul>
+      </div>
+      <div className="tip-for-today" style={{ width: "45%" }}>
         <Alert show={show} variant="success">
           <Alert.Heading>Tip of the day! </Alert.Heading>
           <p>{tip}</p>
           <hr />
-          <div className="d-flex justify-content-end">
+          {/* <div className="d-flex justify-content-end">
             <Button onClick={() => setShow(false)} variant="outline-success">
               Hide tip
             </Button>
-          </div>
+          </div> */}
         </Alert>
 
         {!show && (
