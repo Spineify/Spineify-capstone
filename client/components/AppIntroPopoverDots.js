@@ -29,8 +29,12 @@ const AppIntro = (props) => {
 						</Popover>
 					}
 				>
-					<Button id="instructions-button" variant="secondary">
-						Instructions
+					<Button id="instructions-button-dots" variant="secondary">
+						<ul>
+							<li></li>
+							<li></li>
+							<li></li>
+						</ul>
 					</Button>
 				</OverlayTrigger>
 			))}

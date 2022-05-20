@@ -4,8 +4,9 @@ import Screenshot from './Screenshot'
 import { addPose, getPoses } from '../store/posture'
 import Webcam from 'react-webcam'
 import isElectron from 'is-electron'
+import ImageModal from './ImageModal'
 
-const GOOD_POSTURE = '/good_posture_new.jpeg'
+const GOOD_POSTURE = '/correct-posture.png'
 const COUNT_POSES = 3
 
 function Tracker() {
@@ -159,16 +160,10 @@ function Tracker() {
 						</div>
 					) : null}
 					<div>
-						<img
-							ref={pictureRef}
-							id="image"
-							style={{
-								width: 200,
-								height: 200,
-								zindex: 10,
-								...(start && { display: 'none' }),
-							}}
-							src={imageSrc}
+						<ImageModal
+							pictureRef={pictureRef}
+							start={start}
+							imageSrc={imageSrc}
 						/>
 					</div>
 				</div>
