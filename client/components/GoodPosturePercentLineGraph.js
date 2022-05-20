@@ -10,6 +10,7 @@ import {
 } from "victory";
 import { useSelector } from "react-redux";
 import moment from "moment";
+import TimePeriodFilter from "./LineGraphTimeFilter";
 
 export default (props) => {
   const [filterStatus, setFilterStatus] = useState("");
@@ -115,8 +116,11 @@ export default (props) => {
             style={{ data: { stroke:  "#A4C3B2" } }}
           />
         </VictoryGroup>
-
       </VictoryChart>
+      <TimePeriodFilter
+        selected={filterStatus}
+        onChange={filterChangeHandler}
+      />
     </div>
   )
 }
