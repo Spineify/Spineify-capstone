@@ -18,19 +18,12 @@ module.exports = router
 // 	}
 // })
 
-// GET /api/surveydata/today
-router.get('/today', async (req, res, next) => {
+//GET /api/surveydata (to get all survey data for a user)
+router.get('/', async (req, res, next) => {
 	try {
 		const user = await User.findByToken(req.headers.authorization)
-		const today = new Date().toISOString()
-		let data = await SurveyData.findAll({
-			where: {
-				userId: user.id,
-			},
-		})
-		data = data.filter((element) => {
-			const date = element.createdAt.toISOString()
-			return date.substr(0, 10) === today.substr(0, 10)
+		const data = await SurveyData.findAll({
+			where: { userId: user.id },
 		})
 		res.send(data)
 	} catch (err) {

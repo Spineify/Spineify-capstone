@@ -8,25 +8,25 @@ const _addData = (surveyData) => ({
 	surveyData,
 })
 
-const _getSurveyData = (surveyData) => ({
+const _getLatestSurveyData = (surveyData) => ({
 	type: GET_DATA,
 	surveyData,
 })
 
-export const getSurveyData = () => {
+export const getLatestSurveyData = () => {
 	return async (dispatch, getState) => {
 		try {
 			const auth = getState().auth
-			const { data: surveyData } = await axios.get('api/surveydata/today', {
+			const { data } = await axios.get('api/surveydata', {
 				headers: { authorization: auth.token },
 			})
 			let latestData
-			if (surveyData.length === 0) {
+			if (data.length === 0) {
 				latestData = {}
 			} else {
-				latestData = surveyData[surveyData.length - 1]
+				latestData = data[data.length - 1]
 			}
-			dispatch(_getSurveyData(latestData))
+			dispatch(_getLatestSurveyData(latestData))
 		} catch (err) {
 			console.log('Could not get most recent survey data', err)
 		}

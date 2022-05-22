@@ -11,7 +11,7 @@ import { Alert } from 'react-bootstrap'
 import { getPoses } from '../store/posture'
 import { getPlant } from '../store/petPlant'
 import { suggestStretch } from '../store/stretch'
-import { getSurveyData } from '../store/surveyData'
+import { getLatestSurveyData } from '../store/surveyData'
 
 /**
  * COMPONENT
@@ -31,7 +31,7 @@ export const Home = (props) => {
 	useEffect(() => {
 		dispatch(getPoses())
 		dispatch(getPlant())
-		dispatch(getSurveyData())
+		dispatch(getLatestSurveyData())
 	}, [])
 
 	useEffect(() => {
