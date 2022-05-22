@@ -31,6 +31,14 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'balcony_signatureregular';
+  src: url('fonts/fontsfree-net-balcony-webfont.woff2') format('woff2');
+  src: url('fonts/fontsfree-net-balcony-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   font-family: "clear_sans_thinregular"
 }
@@ -533,7 +541,7 @@ li a {
   /* font-family: "Cormorant", serif;
   font-weight: bold;
   font-size: 1.7rem; */
-  font-family: "highvalleyregular";
+  font-family: "balcony_signatureregular";
   font-size: 60px;
   margin-bottom: -19px;
   margin-left: -15px;

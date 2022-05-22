@@ -8,8 +8,7 @@ const { Op } = require('sequelize')
 module.exports = router
 
 // GET request
-
-// we do not need to get all survey data
+// we do not need to get all survey data (no admin feature)
 // router.get('/', async (req, res, next) => {
 // 	try {
 // 		const data = await SurveyData.findAll()
@@ -33,7 +32,6 @@ router.get('/today', async (req, res, next) => {
 			const date = element.createdAt.toISOString()
 			return date.substr(0, 10) === today.substr(0, 10)
 		})
-
 		res.send(data)
 	} catch (err) {
 		next(err)

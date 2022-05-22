@@ -11,7 +11,7 @@ import { Alert } from 'react-bootstrap'
 import { getPoses } from '../store/posture'
 import { getPlant } from '../store/petPlant'
 import { suggestStretch } from '../store/stretch'
-import { getData } from '../store/surveyData'
+import { getSurveyData } from '../store/surveyData'
 
 /**
  * COMPONENT
@@ -31,11 +31,13 @@ export const Home = (props) => {
 	useEffect(() => {
 		dispatch(getPoses())
 		dispatch(getPlant())
-		dispatch(getData())
+		dispatch(getSurveyData())
 	}, [])
 
 	useEffect(() => {
-		dispatch(suggestStretch(surveyData.pain_area))
+		if (Object.keys(surveyData).length !== 0) {
+			dispatch(suggestStretch(surveyData.pain_area))
+		}
 	}, [surveyData])
 
 	useEffect(() => {}, [modalShow])
