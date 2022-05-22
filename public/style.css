@@ -694,8 +694,8 @@ li a {
 }
 
 .modal-image {
-  width:450px;
-  height:450px;
+  width: 765px;
+  height: auto;
 }
 
 .image-button {
