@@ -79,7 +79,7 @@ const PostureTypePie = (props) => {
 					<h4>Posture Type Breakdown</h4>
 					<VictoryLegend
 						centerTitle
-						height={75}
+						height={125}
 						style={
 							({ border: { stroke: 'black' } }, { title: { fontSize: 25 } })
 						}

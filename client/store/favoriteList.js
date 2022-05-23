@@ -17,7 +17,7 @@ export const getFavoriteStretch = () => {
 	return async (dispatch, getState) => {
 		try {
 			const auth = getState().auth
-			const { data } = await axios.get(`/api/users/${auth.id}/favorites`, {
+			const { data } = await axios.get(`/api/users/favorites`, {
 				headers: {
 					authorization: auth.token,
 				},
