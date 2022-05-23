@@ -216,9 +216,6 @@ const PetPlant = (props) => {
 					<div>
 						<GameInstructions className="game-instructions" image={'pigeon'} />
 					</div>
-					<div>
-						<GameInstructions className="game-instructions" image={'fly'} />
-					</div>
 				</div>
 			</div>
 		)

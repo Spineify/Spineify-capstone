@@ -18,13 +18,7 @@ function LevelUp() {
 	return (
 		<div className="congrats">
 			<div className="message">
-				<img
-					src={'/gamification/fly.png'}
-					style={{ width: '50px', transform: 'scaleX(-1)' }}
-				/>
-				<span>
-					<h1>Congrats!</h1>
-				</span>
+				<h1>Congrats!</h1>
 				<h2>You leveled up!</h2>
 			</div>
 			<Confetti
