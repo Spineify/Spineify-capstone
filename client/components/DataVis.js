@@ -50,6 +50,12 @@ export default (props) => {
 						<PostureTypePie />
 					</>
 				)
+			case 'good_posture_trends':
+				return (
+					<>
+						<GoodPosturePercentLineGraph />
+					</>
+				)
 			default:
 				return (
 					<>
@@ -83,13 +89,14 @@ export default (props) => {
 
 	return (
 		<div className="data-viz-body">
-			<form>
+			<form className="graph_form">
 				<label>See charts : </label>
 				<select onChange={onChangeHandler}>
 					<option value="all"> All </option>
 					<option value="discomfort_level">Discomfort Levels</option>
 					<option value="discomfort_areas">Discomfort Areas</option>
 					<option value="posture_breakdown">Posture Breakdown</option>
+					<option value="good_posture_trends">Good Posture Trends</option>
 				</select>
 			</form>
 			<div className="graphs-container">{renderGraphs()}</div>

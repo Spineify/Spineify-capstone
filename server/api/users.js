@@ -85,7 +85,7 @@ router.post('/favorites', async (req, res, next) => {
 router.delete('/favorites/:stretchId', async (req, res, next) => {
 	try {
 		const user = await User.findByToken(req.headers.authorization)
-		const deletedFavorite = await UserStretch.destroy({
+		await UserStretch.destroy({
 			where: {
 				userId: user.id,
 				stretchId: req.params.stretchId,

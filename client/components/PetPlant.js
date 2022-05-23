@@ -87,7 +87,6 @@ const PetPlant = (props) => {
 		if (draggedItem === 'nutritiousWater' || draggedItem === 'water') {
 			setDropped(true)
 			setTimeout(() => setDropped(false), 4000)
-			// return <ReactRain numDrops="300" />;
 		}
 		setDraggedItem('')
 		//add animation when tree is fed

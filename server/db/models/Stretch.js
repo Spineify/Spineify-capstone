@@ -14,9 +14,7 @@ const Stretch = db.define("stretch", {
   category: {
     type: Sequelize.ARRAY(Sequelize.TEXT),
     allowNull: false,
-    // validate: {
-    //   isIn: [["neck", "upper-back", "lower-back", "shoulders", "hips"]],
-    // },
+    // values: [["neck", "upper-back", "lower-back", "shoulders", "hips"]],
   },
   imageURL: {
     type: Sequelize.STRING,

@@ -17,12 +17,11 @@ export const getFavoriteStretch = () => {
 	return async (dispatch, getState) => {
 		try {
 			const auth = getState().auth
-			const { data } = await axios.get(`/api/users/favorites`, {
+			const { data } = await axios.get(`/api/users/${auth.id}/favorites`, {
 				headers: {
 					authorization: auth.token,
 				},
 			})
-			console.log('CAUGHT IT', data)
 			dispatch(_getFavoriteStretch(data))
 		} catch (err) {
 			console.log(err)

@@ -83,7 +83,7 @@ const DiscomfortLevelLineGraph = (props) => {
 							data={[
 								{
 									name: '',
-									symbol: { fill: '#D9D9D9' },
+									symbol: { fill: '#E9EBE8' },
 								},
 							]}
 							style={({ data: { fontSize: 1 } }, { title: { fontSize: 25 } })}
@@ -101,14 +101,32 @@ const DiscomfortLevelLineGraph = (props) => {
 										return moment(x).format('MMM Do')
 								}
 							}}
+							style={{
+								axisLabel: { fontSize: 12, padding: 30, stroke: '#353535' },
+								tickLabels: {
+									fontSize: 12,
+									padding: 5,
+									textAnchor: 'end',
+									stroke: '#353535',
+								},
+								grid: { stroke: '#FFFFFF' },
+								axis: { stroke: '#353535' },
+							}}
 							fixLabelOverlap={true}
 						/>
 						<VictoryAxis
 							label={'Discomfort Level'}
 							dependentAxis
 							style={{
-								axisLabel: { fontSize: 12, padding: 30 },
-								tickLabels: { fontSize: 8, padding: 5, textAnchor: 'end' },
+								axisLabel: { fontSize: 12, padding: 30, stroke: '#353535' },
+								tickLabels: {
+									fontSize: 12,
+									padding: 5,
+									textAnchor: 'end',
+									stroke: '#353535',
+								},
+								grid: { stroke: '#FFFFFF' },
+								axis: { stroke: '#353535' },
 							}}
 							tickValues={[0.2, 0.4, 0.6, 0.8, 1]}
 							tickFormat={(t) => t * 10}
