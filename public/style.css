@@ -92,6 +92,7 @@ form div {
   border: solid #d1d1d0 1px;
   border-radius: 50% / 35%;
   position: relative;
+  overflow: hidden;
 }
 
 .gameFrame.morning {
@@ -111,6 +112,7 @@ form div {
   justify-content: center;
   align-items: center;
   margin-top: 55px;
+  position: relative;
 }
 
 .gameFrame .level {
@@ -188,9 +190,65 @@ form div {
 .gameFrame .congrats {
   height: 350px;
   width: 300px;
-  position: relative;
+  position: absolute;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.gameFrame .congrats .message {
+  position: absolute;
+  padding: 8px;
   z-index: 5;
-  top: 20%;
+  top: 50%;
+  border-radius: 5px;
+  background-color: #84a98c;
+  opacity: 93%;
+  color: white;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.gameFrame .message h1{
+  font-size: 35px
+}
+.gameFrame .message h2{
+  font-size: 25px;
+}
+
+/* .gameFrame .game-instructions {
+  align-self: flex-end;
+  margin-right: 50px;
+  position: absolute;
+  right: 7%;
+  bottom: 15%;
+} */
+
+.game-instructions-button-pigeon {
+  padding: 0;
+  align-self: flex-end;
+  position: absolute;
+  right: 15%;
+  bottom: 1%;
+  background-color: transparent;
+  border: none;
+}
+
+.game-instructions-button-fly {
+  padding: 0;
+  align-self: flex-end;
+  position: absolute;
+  right: 15%;
+  bottom: 85%;
+  background-color: transparent;
+  border: none;
+}
+
+.game-instructions-button img {
+  padding-top: 10px;
 }
 
 /*Login / Signup*/
@@ -225,12 +283,12 @@ form div {
 
 .signin-info.login {
   background-color: #deebdd;
-  background-image: linear-gradient(315deg, #deebdd 0%, #bbdbbe 74%);
+  background-image: linear-gradient(315deg, #e9f1e8 26%, #bddcc0 74%);
 }
 
 .signin-info.signup {
   background-color: #e4eee9;
-  background-image: linear-gradient(315deg, #e4eee9 0%, #93a5ce 74%);
+  background-image: linear-gradient(315deg, #e4eee9 26%, #93a5ce 74%);
 }
 
 .signin-info h1 {
@@ -312,17 +370,20 @@ form div {
   align-content: space-between;
   padding: 15px;
   height: 100%;
+  font-family: "clear_sans_thinregular";
 }
 #favorites-title {
   text-align: center;
   font-weight: bold;
   padding-bottom: 15px;
-  font-family: "Cormorant", serif;
+  font-family: "mercyregular";
+  font-size: 30px;
 }
 
 .favorites-remove-button {
   justify-self: flex-end;
   margin-top: auto;
+  font-family: "clear_sans_thinregular";
 }
 
 /*  Pie Chart Styling*/
@@ -338,12 +399,16 @@ form div {
   padding: 50px;
   height: 100vh;
   width: 100%;
+  font-family: "clear_sans_thinregular";
 }
 /* Main Data Visualization Page Styling */
 
 .data-viz-body {
   padding: 50px;
   width: 100%;
+}
+.data-viz-body form{
+  font-family: "clear_sans_thinregular";
 }
 
 .graphs-container {
@@ -545,6 +610,7 @@ li a {
   font-size: 60px;
   margin-bottom: -19px;
   margin-left: -15px;
+  padding: 20px;
 }
 
 .welcome-paragraph {
@@ -666,9 +732,10 @@ li a {
 
 .user-dash-container{
   position: absolute;
-  top: 19%;
+  top: 13%;
   display: flex;
   flex-direction: column;
+  width: 80%
 }
 
 .take-survey-btn{

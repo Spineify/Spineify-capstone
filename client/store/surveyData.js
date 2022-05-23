@@ -17,14 +17,19 @@ export const getLatestSurveyData = () => {
 	return async (dispatch, getState) => {
 		try {
 			const auth = getState().auth
-			const { data } = await axios.get('api/surveydata', {
+			let { data } = await axios.get('api/surveydata', {
 				headers: { authorization: auth.token },
 			})
-			let latestData
-			if (data.length === 0) {
-				latestData = {}
-			} else {
-				latestData = data[data.length - 1]
+			const today = new Date().toISOString()
+			let latestData = {}
+			if (data.length !== 0) {
+				data = data.filter((element) => {
+					let createdAtDate = element.createdAt
+					return createdAtDate.substr(0, 10) === today.substr(0, 10)
+				})
+				if (data.length !== 0) {
+					latestData = data[data.length - 1]
+				}
 			}
 			dispatch(_getLatestSurveyData(latestData))
 		} catch (err) {

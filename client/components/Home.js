@@ -19,11 +19,11 @@ import { getLatestSurveyData } from '../store/surveyData'
 export const Home = (props) => {
 	const { firstName } = props
 	const dispatch = useDispatch()
-	const [show, setShow] = useState(true)
-	const userId = useSelector((state) => state.auth.id)
 	const plant = useSelector((state) => state.plantReducer)
 	const surveyData = useSelector((state) => state.surveyReducer)
 	const stretchList = useSelector((state) => state.stretchList)
+	const [show, setShow] = useState(true)
+
 	//modalShow is used in PetPlant componenet so that home component does not rerender when user is taking survey. see line 27 of petplant component
 	const [modalShow, setModalShow] = useState(false)
 
@@ -37,6 +37,7 @@ export const Home = (props) => {
 	useEffect(() => {
 		if (Object.keys(surveyData).length !== 0) {
 			dispatch(suggestStretch(surveyData.pain_area))
+			setShow(false)
 		}
 	}, [surveyData])
 
@@ -45,22 +46,20 @@ export const Home = (props) => {
 	return (
 		<div id="home">
 			<div className="reminder">
-				{userId && (
-					<div>
-						{show && (
-							<Alert color="primary" variant="success" closeLabel="Close alert">
-								Don't forget to take your daily survey! 🌱
-								<button
-									className="reminder-button"
-									type="button"
-									onClick={() => setShow(false)}
-								>
-									X
-								</button>
-							</Alert>
-						)}
-					</div>
-				)}
+				<div>
+					{show && (
+						<Alert color="primary" variant="success" closeLabel="Close alert">
+							Don't forget to take your daily survey! 🌱
+							<button
+								className="reminder-button"
+								type="button"
+								onClick={() => setShow(false)}
+							>
+								X
+							</button>
+						</Alert>
+					)}
+				</div>
 			</div>
 			<div className="home-info">
 				<div className="welcome-info">

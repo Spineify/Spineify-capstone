@@ -11,7 +11,7 @@ export const addFavoriteStretch = (stretch) => {
 	return async (dispatch, getState) => {
 		try {
 			const auth = getState().auth
-			const { data } = await axios.post(`/api/users/favorites/`, stretch, {
+			const { data } = await axios.post(`/api/users/favorites`, stretch, {
 				headers: {
 					authorization: auth.token,
 				},

@@ -34,15 +34,11 @@ export const deleteFavoriteStretch = (stretch) => {
 	return async (dispatch, getState) => {
 		try {
 			const auth = getState().auth
-			const res = await axios.delete(
-				`/api/users/favorites/${stretch.id}`,
-				stretch,
-				{
-					headers: {
-						authorization: auth.token,
-					},
-				}
-			)
+			await axios.delete(`/api/users/favorites/${stretch.id}`, {
+				headers: {
+					authorization: auth.token,
+				},
+			})
 			dispatch(_deleteFavoriteStretch(stretch.id))
 		} catch (err) {
 			console.log(err)

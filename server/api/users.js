@@ -44,17 +44,6 @@ router.post('/pose', async (req, res, next) => {
 	}
 })
 
-//GET /users/plant (get single plant)
-router.get('/plant', async (req, res, next) => {
-	try {
-		const user = await User.findByToken(req.headers.authorization)
-		const petPlant = await PetPlant.findOne({ where: { userId: user.id } })
-		res.send(petPlant)
-	} catch (error) {
-		next(error)
-	}
-})
-
 router.get('/favorites', async (req, res, next) => {
 	try {
 		const user = await User.findByToken(req.headers.authorization)
@@ -83,7 +72,7 @@ router.post('/favorites', async (req, res, next) => {
 		})
 		if (!checkFavorite) {
 			const newFavorite = await UserStretch.create({
-				userId: req.params.id,
+				userId: user.id,
 				stretchId: req.body.id,
 			})
 			res.send(newFavorite)
@@ -108,6 +97,18 @@ router.delete('/favorites/:stretchId', async (req, res, next) => {
 	}
 })
 
+//GET /users/plant (get single plant)
+router.get('/plant', async (req, res, next) => {
+	try {
+		const user = await User.findByToken(req.headers.authorization)
+		const petPlant = await PetPlant.findOne({ where: { userId: user.id } })
+		res.send(petPlant)
+	} catch (error) {
+		next(error)
+	}
+})
+
+//PUT /api/users
 router.put('/plant', async (req, res, next) => {
 	try {
 		const user = await User.findByToken(req.headers.authorization)
@@ -123,8 +124,12 @@ router.put('/plant', async (req, res, next) => {
 		//update instance (inventory, points, level)
 		points = points + pointSystem[item]
 		if (points >= 12) {
-			level++
-			points = points - 12
+			if (level !== 15) {
+				level++
+				points = points - 12
+			} else {
+				points = 12
+			}
 		}
 		inventory = { ...inventory, [item]: inventory[item] - 1 }
 
