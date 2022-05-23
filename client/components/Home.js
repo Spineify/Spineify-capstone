@@ -59,8 +59,10 @@ export const Home = (props) => {
             <h3 className="welcome-name">Hello, {firstName}.</h3>
             <Clock />
             <UserHomeDash />
-            <SurveyModal setModalShow={setModalShow} modalShow={modalShow} />
-            {stretchList.length > 0 ? <StretchList /> : ""}
+            <div className="home-btns">
+              <SurveyModal setModalShow={setModalShow} modalShow={modalShow} />
+              {stretchList.length > 0 ? <StretchList /> : ""}
+            </div>
           </div>
         </div>
         <div className="homeContent">

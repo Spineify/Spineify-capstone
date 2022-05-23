@@ -46,7 +46,6 @@ const PostureTypePie = (props) => {
 	const checkArray = posturePieData.filter((entry) => entry.y !== 0)
 
 	const colors = {
-		pink: ['#CB5599', '#5E6063'],
 		teal: ["#3C6E71", "#284B63", "#FFFFFF"],
 	}
 
@@ -79,7 +78,6 @@ const PostureTypePie = (props) => {
 				<div className="pie-chart-container">
 					<h4>Posture Type Breakdown</h4>
 					<VictoryLegend
-						//title="Posture Type Breakdown"
 						centerTitle
 						height="auto"
 						style={
@@ -99,7 +97,6 @@ const PostureTypePie = (props) => {
 						style={{
 							labels: { fontSize: 35, padding: 35 },
 						}}
-						// labelRadius={({ outerRadius }) => outerRadius + 20}
 						labels={({ datum }) => `${((datum.y / count) * 100).toFixed(0)}% `}
 					/>
 				</div>
