@@ -38,7 +38,7 @@ function SuggestedStretchesGrid(props) {
               ) : (
                 stretchList.map((stretch) => {
                   return (
-                    <Col md={3} key={stretch.id}>
+                    <Col md={6} key={stretch.id}>
                       <Card className="stretchlist-card">
                         <Card.Img variant="top" src={stretch.imageURL} />
                         <Card.Title>{stretch.name}</Card.Title>
@@ -69,7 +69,7 @@ function SuggestedStretchesGrid(props) {
   );
 }
 
-const StretchList = (props) => {
+const StretchList = () => {
   const [modalShow, setModalShow] = useState(false);
 
   return (

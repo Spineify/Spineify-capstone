@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getPlant, updatePlant } from '../store/petPlant'
-
 import isElectron from 'is-electron'
+
 import ReactRain from 'react-rain-animation'
 import 'react-rain-animation/lib/style.css'
-
-import LevelUp from './Confetti'
+import LevelUp from './Game/LevelUp'
+import GameInstructions from './Game/GameInstructions'
 
 const PetPlant = (props) => {
 	const [chest, setChest] = useState('closed')
@@ -21,8 +21,7 @@ const PetPlant = (props) => {
 	const [prevPlant, setPrevPlant] = useState(plant)
 	const dispatch = useDispatch()
 	const [levelUp, setLevelUp] = useState(false)
-
-	const [dropped, setDropped] = useState(false)
+	const [dropped, setDropped] = useState('')
 
 	const inventoryTotal =
 		inventory.fertilizer + inventory.nutritiousWater + inventory.water
@@ -89,7 +88,6 @@ const PetPlant = (props) => {
 			setDropped(true)
 			setTimeout(() => setDropped(false), 4000)
 		}
-
 		setDraggedItem('')
 		//add animation when tree is fed
 	}
@@ -126,7 +124,7 @@ const PetPlant = (props) => {
 		return (
 			<div className={`gameFrame ${timeOfDay}`}>
 				{levelUp && <LevelUp />}
-				{dropped ? <ReactRain numDrops="500" /> : null}
+				{dropped && <ReactRain numDrops="200" />}
 
 				<div className="content">
 					<div className="level">
@@ -213,6 +211,9 @@ const PetPlant = (props) => {
 								</p>
 							) : null}
 						</div>
+					</div>
+					<div>
+						<GameInstructions className="game-instructions" image={'pigeon'} />
 					</div>
 				</div>
 			</div>

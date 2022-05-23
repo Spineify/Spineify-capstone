@@ -1,33 +1,23 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { logout } from '../store'
 import Tracker from './Tracker'
-import AppIntro from './AppIntroPopover'
 import AppIntroDots from './AppIntroPopoverDots'
+import { logout } from '../store'
 
-const Sidebar = ({ handleClick, isLoggedIn }) => {
+const Sidebar = ({ handleClick }) => {
 	return (
 		<>
 			<nav className="nav-menu active">
 				<ul className="nav-menu-items">
 					<li className="spineify-title">
-						<span>Spineify</span>
-						<span>
-							{' '}
-							{'  '}
-							<AppIntroDots />
-						</span>
+						Spineify{'  '}
+						<AppIntroDots />
 					</li>
 					<li>
 						<Link to="/home">
 							<span className="sidebar-span">Home</span>
 						</Link>
-					</li>
-					<li>
-						<span className="sidebar-span">
-							<AppIntro />
-						</span>
 					</li>
 					<li>
 						<Link to="/data">

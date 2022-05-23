@@ -17,7 +17,10 @@ const sgColors = [
 function LevelUp() {
 	return (
 		<div className="congrats">
-			<h1>Congrats! You have leveled up!</h1>
+			<div className="message">
+				<h1>Congrats!</h1>
+				<h2>You leveled up!</h2>
+			</div>
 			<Confetti
 				className="confetti"
 				colors={sgColors}

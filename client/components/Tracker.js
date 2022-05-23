@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Screenshot from './Screenshot'
 import { addPose, getPoses } from '../store/posture'
 import isElectron from 'is-electron'
-import ImageModal from './ImageModal'
+import GoodPostureModal from './GoodPostureModal'
 
 const GOOD_POSTURE = '/correct-posture.png'
 const COUNT_POSES = 3
@@ -159,7 +159,7 @@ function Tracker() {
 						</div>
 					) : null}
 					<div>
-						<ImageModal
+						<GoodPostureModal
 							pictureRef={pictureRef}
 							start={start}
 							imageSrc={imageSrc}

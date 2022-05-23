@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import { getPoses } from "../store/posture";
-import { Alert, ProgressBar } from "react-bootstrap";
+import { Button, Alert, ProgressBar } from "react-bootstrap";
 
 const UserHomeDash = () => {
   const dispatch = useDispatch();
@@ -62,7 +62,7 @@ const UserHomeDash = () => {
       "🚨 🚨 🚨 Seems like you had a rough posture day yesterday! Why don't we stretch out that back nice and tall to help reset for today with our suggested stretches. The more you protect your back with good posture, the better you'll feel and the more your plant friend will grow! You got this!! 😤 😤 😤 ";
   } else if (pOfGood >= 25 && pOfBad >= 25 && pOfOK >= 25) {
     tip =
-      "You had an OK posture day yesterday. Let's see if we can get that back sitting nice and tall today - you got this! We wanna make sure to earn some grub for our plant mate! (and also to prevent back pain 😉 ) ";
+      "You like to give equal love to all the postures, dontcha?! You had an OK posture day yesterday. Let's see if we can get that back sitting nice and tall today - you got this! We wanna make sure to earn some grub for our plant mate! (and also to prevent back pain 😉) ";
   }
   return (
     <div className="home-dash">
@@ -71,27 +71,24 @@ const UserHomeDash = () => {
           <div>
             <div className="stats-title">Yesterday's stats:</div>
             <div className="yest-progress-bar" style={{ width: "45%" }}>
-              <ProgressBar style={{ height: 40 }}>
+              <ProgressBar style={{ height: 30 }}>
                 <ProgressBar
-                  className="yest-progress-text"
                   now={pOfGood}
                   key={1}
                   label={`Good ${pOfGood}%`}
-                  style={{ backgroundColor: "#38a3a5", fontSize: "17px" }}
+                  style={{ backgroundColor: "#38a3a5" }}
                 />
                 <ProgressBar
-                  className="yest-progress-text"
                   now={pOfOK}
                   key={2}
                   label={`OK ${pOfOK}%`}
-                  style={{ backgroundColor: "#f6bd60", fontSize: "17px" }}
+                  style={{ backgroundColor: "#f6bd60" }}
                 />
                 <ProgressBar
-                  className="yest-progress-text"
                   now={pOfBad}
                   key={3}
                   label={`Bad ${pOfBad}%`}
-                  style={{ backgroundColor: "#e26d5c", fontSize: "17px" }}
+                  style={{ backgroundColor: "#e26d5c" }}
                 />
               </ProgressBar>
             </div>
@@ -103,7 +100,18 @@ const UserHomeDash = () => {
           <Alert.Heading>Tip of the day! </Alert.Heading>
           <p>{tip}</p>
           <hr />
+          {/* <div className="d-flex justify-content-end">
+            <Button onClick={() => setShow(false)} variant="outline-success">
+              Hide tip
+            </Button>
+          </div> */}
         </Alert>
+
+        {/* {!show && (
+          <Button variant="outline-success" onClick={() => setShow(true)}>
+            Show tip
+          </Button>
+        )} */}
       </div>
     </div>
   );

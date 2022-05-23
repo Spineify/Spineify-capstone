@@ -10,7 +10,7 @@ import { suggestStretch } from "../store/stretch";
 StylesManager.applyTheme("modern");
 
 const surveyJson = {
-  // title: "Spinefy",
+  title: "Spinefy",
   logoPosition: "right",
   pages: [
     {
@@ -71,9 +71,9 @@ function SurveyComponent(props) {
       if (userId) {
         dispatch(addData(results));
       }
-      if (results.pain_area) {
-        dispatch(suggestStretch(results.pain_area));
-      }
+      // if (results.pain_area) {
+      // 	dispatch(suggestStretch(results.pain_area))
+      // }
       props.onHide();
     },
     [userId]
@@ -84,22 +84,20 @@ function SurveyComponent(props) {
   return (
     <Modal
       {...props}
-      size="md"
+      size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Spineify Daily Check-In
+          Daily Check-In
         </Modal.Title>
       </Modal.Header>
-      <Modal.Body className="survey-modal">
+      <Modal.Body>
         <Survey model={survey} />
       </Modal.Body>
       <Modal.Footer>
-        <Button className="modal-button" onClick={props.onHide}>
-          Close
-        </Button>
+        <Button onClick={props.onHide}>Close</Button>
       </Modal.Footer>
     </Modal>
   );
