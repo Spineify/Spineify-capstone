@@ -5,19 +5,20 @@ const {
 
 module.exports = router
 
-router.get('/', async (req, res, next) => {
-	try {
-		const users = await User.findAll({
-			// explicitly select only the id and username fields - even though
-			// users' passwords are encrypted, it won't help if we just
-			// send everything to anyone who asks!
-			attributes: ['id', 'firstName', 'lastName', 'email'],
-		})
-		res.json(users)
-	} catch (err) {
-		next(err)
-	}
-})
+// do not need router to get all users
+// router.get('/', async (req, res, next) => {
+// 	try {
+// 		const users = await User.findAll({
+// 			// explicitly select only the id and username fields - even though
+// 			// users' passwords are encrypted, it won't help if we just
+// 			// send everything to anyone who asks!
+// 			attributes: ['id', 'firstName', 'lastName', 'email'],
+// 		})
+// 		res.json(users)
+// 	} catch (err) {
+// 		next(err)
+// 	}
+// })
 
 //GET /users/poses (get all)
 router.get('/poses', async (req, res, next) => {
@@ -43,22 +44,12 @@ router.post('/pose', async (req, res, next) => {
 	}
 })
 
-//GET /users/plant (get single plant)
-router.get('/plant', async (req, res, next) => {
+router.get('/favorites', async (req, res, next) => {
 	try {
 		const user = await User.findByToken(req.headers.authorization)
-		const petPlant = await PetPlant.findOne({ where: { userId: user.id } })
-		res.send(petPlant)
-	} catch (error) {
-		next(error)
-	}
-})
-
-router.get('/:id/favorites', async (req, res, next) => {
-	try {
 		const favorites = await UserStretch.findAll({
 			where: {
-				userId: req.params.id,
+				userId: user.id,
 			},
 			include: {
 				model: Stretch,
@@ -70,17 +61,18 @@ router.get('/:id/favorites', async (req, res, next) => {
 	}
 })
 
-router.post('/:id/favorites', async (req, res, next) => {
+router.post('/favorites', async (req, res, next) => {
 	try {
+		const user = await User.findByToken(req.headers.authorization)
 		const checkFavorite = await UserStretch.findOne({
 			where: {
-				userId: req.params.id,
+				userId: user.id,
 				stretchId: req.body.id,
 			},
 		})
 		if (!checkFavorite) {
 			const newFavorite = await UserStretch.create({
-				userId: req.params.id,
+				userId: user.id,
 				stretchId: req.body.id,
 			})
 			res.send(newFavorite)
@@ -90,11 +82,12 @@ router.post('/:id/favorites', async (req, res, next) => {
 	}
 })
 
-router.delete('/:userId/favorites/:stretchId', async (req, res, next) => {
+router.delete('/favorites/:stretchId', async (req, res, next) => {
 	try {
-		const deletedFavorite = await UserStretch.destroy({
+		const user = await User.findByToken(req.headers.authorization)
+		await UserStretch.destroy({
 			where: {
-				userId: req.params.userId,
+				userId: user.id,
 				stretchId: req.params.stretchId,
 			},
 		})
@@ -104,6 +97,18 @@ router.delete('/:userId/favorites/:stretchId', async (req, res, next) => {
 	}
 })
 
+//GET /users/plant (get single plant)
+router.get('/plant', async (req, res, next) => {
+	try {
+		const user = await User.findByToken(req.headers.authorization)
+		const petPlant = await PetPlant.findOne({ where: { userId: user.id } })
+		res.send(petPlant)
+	} catch (error) {
+		next(error)
+	}
+})
+
+//PUT /api/users
 router.put('/plant', async (req, res, next) => {
 	try {
 		const user = await User.findByToken(req.headers.authorization)
@@ -119,8 +124,12 @@ router.put('/plant', async (req, res, next) => {
 		//update instance (inventory, points, level)
 		points = points + pointSystem[item]
 		if (points >= 12) {
-			level++
-			points = points - 12
+			if (level !== 15) {
+				level++
+				points = points - 12
+			} else {
+				points = 12
+			}
 		}
 		inventory = { ...inventory, [item]: inventory[item] - 1 }
 

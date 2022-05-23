@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { Button, Modal } from 'react-bootstrap'
 
-function ImageModal(props) {
-	const [show, setShow] = useState(false)
+function GoodPostureModal(props) {
+	const [lgShow, setLgShow] = useState(false)
 
-	const handleClose = () => setShow(false)
-	const handleShow = () => setShow(true)
+	const handleClose = () => setLgShow(false)
+	const handleShow = () => setLgShow(true)
 
 	const { pictureRef, start, imageSrc } = props
 	return (
@@ -24,7 +24,7 @@ function ImageModal(props) {
 				/>
 			</button>
 
-			<Modal show={show} onHide={handleClose} animation={false}>
+			<Modal size="lg" show={lgShow} onHide={handleClose} animation={false}>
 				<Modal.Header closeButton>
 					<Modal.Title>Correct Sitting Posture</Modal.Title>
 				</Modal.Header>
@@ -36,4 +36,4 @@ function ImageModal(props) {
 	)
 }
 
-export default ImageModal
+export default GoodPostureModal

@@ -31,6 +31,14 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'balcony_signatureregular';
+  src: url('fonts/fontsfree-net-balcony-webfont.woff2') format('woff2');
+  src: url('fonts/fontsfree-net-balcony-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   font-family: "clear_sans_thinregular"
 }
@@ -84,6 +92,8 @@ form div {
   height: 525px;
   border: solid #d1d1d0 1px;
   border-radius: 50% / 35%;
+  position: relative;
+  overflow: hidden;
 }
 
 .gameFrame.morning {
@@ -103,6 +113,7 @@ form div {
   justify-content: center;
   align-items: center;
   margin-top: 55px;
+  position: relative;
 }
 
 .gameFrame .level {
@@ -177,13 +188,71 @@ form div {
   font-size: 9px;
 }
 
-.game .congrats {
-  height: 450px;
-  z-index: 5;
-
+.gameFrame .congrats {
+  height: 350px;
+  width: 300px;
+  position: absolute;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-/*Login / Signup*/
 
+.gameFrame .congrats .message {
+  position: absolute;
+  padding: 8px;
+  z-index: 5;
+  top: 50%;
+  border-radius: 5px;
+  background-color: #84a98c;
+  opacity: 93%;
+  color: white;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.gameFrame .message h1{
+  font-size: 35px
+}
+.gameFrame .message h2{
+  font-size: 25px;
+}
+
+/* .gameFrame .game-instructions {
+  align-self: flex-end;
+  margin-right: 50px;
+  position: absolute;
+  right: 7%;
+  bottom: 15%;
+} */
+
+.game-instructions-button-pigeon {
+  padding: 0;
+  align-self: flex-end;
+  position: absolute;
+  right: 15%;
+  bottom: 1%;
+  background-color: transparent;
+  border: none;
+}
+
+.game-instructions-button-fly {
+  padding: 0;
+  align-self: flex-end;
+  position: absolute;
+  right: 15%;
+  bottom: 85%;
+  background-color: transparent;
+  border: none;
+}
+
+.game-instructions-button img {
+  padding-top: 10px;
+}
+
+/*Login / Signup*/
 .body-content-signin {
   display: flex;
   justify-content: center;
@@ -215,12 +284,12 @@ form div {
 
 .signin-info.login {
   background-color: #deebdd;
-  background-image: linear-gradient(315deg, #deebdd 0%, #bbdbbe 74%);
+  background-image: linear-gradient(315deg, #e9f1e8 26%, #bddcc0 74%);
 }
 
 .signin-info.signup {
   background-color: #e4eee9;
-  background-image: linear-gradient(315deg, #e4eee9 0%, #93a5ce 74%);
+  background-image: linear-gradient(315deg, #e4eee9 26%, #93a5ce 74%);
 }
 
 .signin-info h1 {
@@ -302,6 +371,7 @@ form div {
   align-content: space-between;
   padding: 15px;
   height: 100%;
+  font-family: "clear_sans_thinregular";
 }
 #favorites-title {
   /* position: absolute;
@@ -311,7 +381,8 @@ form div {
   margin-left: -1em;
   font-weight: bold;
   padding-bottom: 15px;
-  font-family: "Cormorant", serif;
+  font-family: "mercyregular";
+  font-size: 30px;
 }
 
 .no-stretches{
@@ -324,6 +395,7 @@ form div {
 .favorites-remove-button {
   justify-self: flex-end;
   margin-top: auto;
+  font-family: "clear_sans_thinregular";
 }
 
 /*  Pie Chart Styling*/
@@ -340,6 +412,7 @@ form div {
   padding: 50px;
   height: 100vh;
   width: 77%;
+  font-family: "clear_sans_thinregular";
 }
 
 /* .container{
@@ -354,6 +427,9 @@ form div {
   /* overflow: hidden; */
   align-items: center;
   overflow-y:visible;
+}
+.data-viz-body form{
+  font-family: "clear_sans_thinregular";
 }
 
 .graphs-container {
@@ -553,10 +629,11 @@ li a {
 }
 
 .welcome-name {
-  font-family: "highvalleyregular";
+  font-family: "balcony_signatureregular";
   font-size: 60px;
   margin-bottom: -19px;
   margin-left: -15px;
+  padding: 20px;
 }
 
 .welcome-paragraph {
@@ -632,6 +709,7 @@ li a {
   border: 1px solid black;
   font-family: "clear_sans_thinregular";
   font-weight: 700;
+  margin: 3px;
 }
 
 #modal-button:hover {
@@ -666,6 +744,9 @@ li a {
 .user-dash-container{
   position: absolute;
   top: 13%;
+  display: flex;
+  flex-direction: column;
+  width: 80%
 }
 
 .take-survey-btn{
@@ -685,8 +766,8 @@ li a {
 
 #instructions-button-dots {
   background-color: transparent;
-  border: none;
-  height: 30px;
+  border:rgb(143, 143, 143) solid 2px;
+  height: 33px;
   width: 20px;
   position: relative;
 }
@@ -707,8 +788,8 @@ li a {
 }
 
 .modal-image {
-  width:450px;
-  height:450px;
+  width: 765px;
+  height: auto;
 }
 
 .image-button {

@@ -36,7 +36,7 @@ async function seed() {
 			level: 3,
 			points: 11,
 			userId: 1,
-			inventory: { fertilizer: 5, nutritiousWater: 5, water: 6 },
+			inventory: { fertilizer: 100, nutritiousWater: 100, water: 100 },
 		}),
 		PetPlant.create({
 			level: 11,

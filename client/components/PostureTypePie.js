@@ -46,25 +46,25 @@ const PostureTypePie = (props) => {
 	const checkArray = posturePieData.filter((entry) => entry.y !== 0)
 
 	const colors = {
-		teal: ["#3C6E71", "#284B63", "#FFFFFF"],
+		teal: ['#3C6E71', '#284B63', '#FFFFFF'],
 	}
 
-  let index = 0
-  const colorsArray = checkArray.map((category) => {
-    const colorObj = {
-      name: category.x,
-      symbol: {
-        fill: colors.teal[index]
-      }
-    }
-    index++
-    return colorObj
-  })
+	let index = 0
+	const colorsArray = checkArray.map((category) => {
+		const colorObj = {
+			name: category.x,
+			symbol: {
+				fill: colors.teal[index],
+			},
+		}
+		index++
+		return colorObj
+	})
 
-  let colorScaleArray = []
-  for (let i = 0; i < checkArray.length; i++) {
-    colorScaleArray.push(colors.teal[i])
-  }
+	let colorScaleArray = []
+	for (let i = 0; i < checkArray.length; i++) {
+		colorScaleArray.push(colors.teal[i])
+	}
 
 	return (
 		<div>
@@ -79,7 +79,7 @@ const PostureTypePie = (props) => {
 					<h4>Posture Type Breakdown</h4>
 					<VictoryLegend
 						centerTitle
-						height="auto"
+						height={75}
 						style={
 							({ border: { stroke: 'black' } }, { title: { fontSize: 25 } })
 						}
@@ -105,5 +105,4 @@ const PostureTypePie = (props) => {
 	)
 }
 
-export default PostureTypePie;
-
+export default PostureTypePie
