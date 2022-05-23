@@ -64,7 +64,7 @@ export default (props) => {
 								<Col className="graph-column">
 									<PainAreaChart dataSet={sortedSet} />
 								</Col>
-								<Col className="graph-column entire-posture-pie-container">
+								<Col className="graph-column">
 									<PostureTypePie />
 								</Col>
 							</Row>

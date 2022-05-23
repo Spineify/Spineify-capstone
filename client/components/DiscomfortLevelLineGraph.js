@@ -86,7 +86,12 @@ const DiscomfortLevelLineGraph = (props) => {
 									symbol: { fill: '#E9EBE8' },
 								},
 							]}
-							style={({ data: { fontSize: 1 } }, { title: { fontSize: 25 } })}
+							style={
+								({ data: { fontSize: 1 } },
+								{
+									title: { fontSize: 25, fontFamily: 'clear_sans_thinregular' },
+								})
+							}
 						/>
 						<VictoryAxis
 							tickFormat={(x) => {

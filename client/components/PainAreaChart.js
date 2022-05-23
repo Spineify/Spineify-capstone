@@ -78,7 +78,7 @@ export default (props) => {
 					<h4>Areas of Discomfort</h4>
 					<VictoryLegend
 						centerTitle
-						height="auto"
+						height={125}
 						style={
 							({ border: { stroke: 'black' } }, { title: { fontSize: 25 } })
 						}
