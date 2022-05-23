@@ -110,7 +110,6 @@ const SurveyModal = (props) => {
       <Button
         className="take-survey-btn"
         id="modal-button"
-        style={{ width: "45%" }}
         variant="primary"
         onClick={() => {
           props.setModalShow(true);

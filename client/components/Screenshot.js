@@ -5,7 +5,7 @@ function Screenshot({ webcamRef }) {
   const [webcamOn, setWebcamOn] = useState(false);
 
   return (
-    <div>
+    <div className="webcam">
       <label className="toggle">
         <input
           className="toggle-checkbox"
