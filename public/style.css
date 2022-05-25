@@ -436,6 +436,8 @@ form div {
   /* overflow: hidden; */
   align-items: center;
   overflow-y: visible;
+  margin-bottom: 70px;
+  margin-top: 30px;
 }
 .data-viz-body form {
   font-family: "clear_sans_thinregular";
