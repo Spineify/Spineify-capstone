@@ -32,9 +32,9 @@
 }
 
 @font-face {
-  font-family: 'balcony_signatureregular';
-  src: url('fonts/fontsfree-net-balcony-webfont.woff2') format('woff2');
-  src: url('fonts/fontsfree-net-balcony-webfont.woff') format('woff');
+  font-family: "balcony_signatureregular";
+  src: url("fonts/fontsfree-net-balcony-webfont.woff2") format("woff2");
+  src: url("fonts/fontsfree-net-balcony-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
@@ -66,7 +66,6 @@ form div {
   margin: 1em;
   display: inline-block;
 }
-
 
 .homeContent {
   display: flex;
@@ -192,7 +191,7 @@ form div {
   height: 350px;
   width: 300px;
   position: absolute;
-  display:flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -207,16 +206,16 @@ form div {
   background-color: #84a98c;
   opacity: 93%;
   color: white;
-  display:flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.gameFrame .message h1{
-  font-size: 35px
+.gameFrame .message h1 {
+  font-size: 35px;
 }
-.gameFrame .message h2{
+.gameFrame .message h2 {
   font-size: 25px;
 }
 
@@ -403,9 +402,15 @@ form div {
   display: flex;
   flex-direction: column;
   align-content: center;
+  text-align: center;
 }
 
-.pie-chart-container h4{
+.pie-chart-container svg {
+  max-width: 400px;
+  text-align: center;
+}
+
+.pie-chart-container h4 {
   font-family: "clear_sans_thinregular";
 }
 
@@ -426,20 +431,22 @@ form div {
 
 .data-viz-body {
   padding-right: 90px;
-  width: 90%;
-  height:max-content;
+  width: 85%;
+  height: max-content;
   /* overflow: hidden; */
   align-items: center;
-  overflow-y:visible;
+  overflow-y: visible;
 }
-.data-viz-body form{
+.data-viz-body form {
   font-family: "clear_sans_thinregular";
+  margin: 20px;
+  /* margin-bottom: 50px; */
 }
 
 .graphs-container {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 90%;
   text-align: center;
   padding-top: 20px;
   padding-right: 50px;
@@ -453,7 +460,8 @@ form div {
 }
 
 .graph-column {
-  width: 100%;
+  width: 80%;
+  max-width: 400px;
   padding-bottom: 20px;
 }
 .graph_form label {
@@ -479,6 +487,10 @@ form div {
 
 #discomfort-level-line-loading-message {
   text-align: center;
+}
+
+.time-period-filter {
+  margin-bottom: 25px;
 }
 
 /* Sidebar Styling */
@@ -750,7 +762,7 @@ li a {
   top: 13%;
   display: flex;
   flex-direction: column;
-  width: 80%
+  width: 80%;
 }
 
 .take-survey-btn {
@@ -764,13 +776,13 @@ li a {
   font-family: "FreeMono";
 }
 
-.home-dash{
-  width: 100%
+.home-dash {
+  width: 100%;
 }
 
 #instructions-button-dots {
   background-color: transparent;
-  border:rgb(143, 143, 143) solid 2px;
+  border: rgb(143, 143, 143) solid 2px;
   height: 33px;
   width: 20px;
   position: relative;
@@ -814,10 +826,10 @@ li a {
 
 .tip-for-today {
   font-family: "quicksandlight", serif;
-  width: 45%
+  width: 45%;
 }
 
-.no-tip-for-today{
+.no-tip-for-today {
   width: 27.2rem;
   margin-top: 5rem;
 }
@@ -828,7 +840,7 @@ li a {
   width: 27.2rem;
 }
 
-.toggle{
+.toggle {
   margin-left: 40px;
 }
 
@@ -842,8 +854,8 @@ li a {
   font-family: "quicksandlight", serif;
   font-size: 1.5rem;
   font-weight: bold;
+}
 
-
-.webcam{
+.webcam {
   margin-left: 6.5px;
 }

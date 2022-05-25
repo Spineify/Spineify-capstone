@@ -2,7 +2,7 @@ import React from "react";
 
 const TimePeriodFilter = (props) => {
   return (
-    <div>
+    <div className="time-period-filter">
       <label>Select Time Period: </label>
       <select
         name="status"
