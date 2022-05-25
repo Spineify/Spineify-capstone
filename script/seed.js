@@ -28,24 +28,6 @@ async function seed() {
 			email: 'jd@gmail.com',
 			password: '123',
 		}),
-		User.create({
-			firstName: 'Min Yi',
-			lastName: 'Yu-Cheng',
-			email: 'minyifish@gmail.com',
-			password: '123',
-		}),
-		User.create({
-			firstName: 'Olivia',
-			lastName: 'Liao',
-			email: 'ol64@cornell.edu',
-			password: '123',
-		}),
-		User.create({
-			firstName: 'Loyan',
-			lastName: 'Hashi',
-			email: 'lh@gmail.com',
-			password: '123',
-		}),
 	])
 
 	// Creating Plants
@@ -57,27 +39,9 @@ async function seed() {
 			inventory: { fertilizer: 100, nutritiousWater: 100, water: 100 },
 		}),
 		PetPlant.create({
-			level: 11,
+			level: 5,
 			points: 2,
 			userId: 2,
-			inventory: { fertilizer: 100, nutritiousWater: 100, water: 100 },
-		}),
-		PetPlant.create({
-			level: 3,
-			points: 2,
-			userId: 3,
-			inventory: { fertilizer: 100, nutritiousWater: 100, water: 100 },
-		}),
-		PetPlant.create({
-			level: 11,
-			points: 2,
-			userId: 4,
-			inventory: { fertilizer: 100, nutritiousWater: 100, water: 100 },
-		}),
-		PetPlant.create({
-			level: 4,
-			points: 2,
-			userId: 5,
 			inventory: { fertilizer: 100, nutritiousWater: 100, water: 100 },
 		}),
 	])
