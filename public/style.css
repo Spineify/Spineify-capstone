@@ -468,9 +468,10 @@ form div {
   padding: 20px;
 }
 
-/* .graph-row{
-  padding-bottom: px;
-} */
+.graph-row{
+  display: flex;
+  gap: 20px
+}
 
 .line-graph-container {
   margin: auto;
