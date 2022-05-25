@@ -1,46 +1,46 @@
 @font-face {
-  font-family: 'mercyregular';
-  src: url('fonts/fontsfree-net-mercy-regular-webfont.woff2') format('woff2');
-  src: url('fonts/fontsfree-net-mercy-regular-webfont.woff') format('woff');
+  font-family: "mercyregular";
+  src: url("fonts/fontsfree-net-mercy-regular-webfont.woff2") format("woff2");
+  src: url("fonts/fontsfree-net-mercy-regular-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
-  color:rgba(22, 22, 22, 0.22)
+  color: rgba(22, 22, 22, 0.22);
 }
 
 @font-face {
-  font-family: 'clear_sans_thinregular';
-  src: url('fonts/fontsfree-net-clearsans-thin-webfont.woff2') format('woff2');
-  src: url('fonts/fontsfree-net-clearsans-thin-webfont.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'quicksandlight';
-  src: url('/fonts/quicksand-variablefont_wght-webfont.woff2') format('woff2');
-  src: url('/fonts/quicksand-variablefont_wght-webfont.woff') format('woff');
+  font-family: "clear_sans_thinregular";
+  src: url("fonts/fontsfree-net-clearsans-thin-webfont.woff2") format("woff2");
+  src: url("fonts/fontsfree-net-clearsans-thin-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'highvalleyregular';
-  src: url('fonts/fontsfree-net-highvalley-webfont.woff2') format('woff2');
-  src: url('fonts/fontsfree-net-highvalley-webfont.woff') format('woff');
+  font-family: "quicksandlight";
+  src: url("/fonts/quicksand-variablefont_wght-webfont.woff2") format("woff2");
+  src: url("/fonts/quicksand-variablefont_wght-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'balcony_signatureregular';
-  src: url('fonts/fontsfree-net-balcony-webfont.woff2') format('woff2');
-  src: url('fonts/fontsfree-net-balcony-webfont.woff') format('woff');
+  font-family: "highvalleyregular";
+  src: url("fonts/fontsfree-net-highvalley-webfont.woff2") format("woff2");
+  src: url("fonts/fontsfree-net-highvalley-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "balcony_signatureregular";
+  src: url("fonts/fontsfree-net-balcony-webfont.woff2") format("woff2");
+  src: url("fonts/fontsfree-net-balcony-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
 body {
-  font-family: "clear_sans_thinregular"
+  font-family: "clear_sans_thinregular";
 }
 
 html,
@@ -67,20 +67,19 @@ form div {
   display: inline-block;
 }
 
-
 .homeContent {
   display: flex;
   flex-direction: row;
   height: 100%;
 }
 
-.reminder-button{
+.reminder-button {
   border-radius: 3px;
   padding: 5px 10px;
   background-color: #84a98c;
   color: white;
   border: none;
-  margin-left:12px;
+  margin-left: 12px;
 }
 
 /* Game */
@@ -192,7 +191,7 @@ form div {
   height: 350px;
   width: 300px;
   position: absolute;
-  display:flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -207,16 +206,16 @@ form div {
   background-color: #84a98c;
   opacity: 93%;
   color: white;
-  display:flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.gameFrame .message h1{
-  font-size: 35px
+.gameFrame .message h1 {
+  font-size: 35px;
 }
-.gameFrame .message h2{
+.gameFrame .message h2 {
   font-size: 25px;
 }
 
@@ -293,9 +292,9 @@ form div {
 }
 
 .signin-info h1 {
-  font-family: 'mercyregular';
+  font-family: "mercyregular";
   font-size: 60px;
-  color:rgba(0, 0, 0, 0.6);
+  color: rgba(0, 0, 0, 0.6);
   position: absolute;
   top: 60px;
 }
@@ -346,7 +345,7 @@ form div {
 }
 
 .signin-info h2 {
-  font-family: 'clear_sans_thinregular';
+  font-family: "clear_sans_thinregular";
   font-size: 30px;
   padding: 30px;
   z-index: 2;
@@ -385,12 +384,12 @@ form div {
   font-size: 30px;
 }
 
-.no-stretches{
+.no-stretches {
   /* position: absolute;
   top: 16%;
   left: 50%; */
   text-align: center;
-  margin-left: -0.8em
+  margin-left: -0.8em;
 }
 .favorites-remove-button {
   justify-self: flex-end;
@@ -403,9 +402,15 @@ form div {
   display: flex;
   flex-direction: column;
   align-content: center;
+  text-align: center;
 }
 
-.pie-chart-container h4{
+.pie-chart-container svg {
+  max-width: 400px;
+  text-align: center;
+}
+
+.pie-chart-container h4 {
   font-family: "clear_sans_thinregular";
 }
 
@@ -426,20 +431,22 @@ form div {
 
 .data-viz-body {
   padding-right: 90px;
-  width: 90%;
-  height:max-content;
+  width: 85%;
+  height: max-content;
   /* overflow: hidden; */
   align-items: center;
-  overflow-y:visible;
+  overflow-y: visible;
 }
-.data-viz-body form{
+.data-viz-body form {
   font-family: "clear_sans_thinregular";
+  margin: 20px;
+  /* margin-bottom: 50px; */
 }
 
 .graphs-container {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 90%;
   text-align: center;
   padding-top: 20px;
   padding-right: 50px;
@@ -453,7 +460,8 @@ form div {
 }
 
 .graph-column {
-  width: 100%;
+  width: 80%;
+  max-width: 400px;
   padding-bottom: 20px;
 }
 .graph_form label {
@@ -479,6 +487,10 @@ form div {
 
 #discomfort-level-line-loading-message {
   text-align: center;
+}
+
+.time-period-filter {
+  margin-bottom: 25px;
 }
 
 /* Sidebar Styling */
@@ -569,7 +581,7 @@ li a {
   color: teal;
 }
 
-.side-line{
+.side-line {
   text-decoration: none;
 }
 
@@ -577,7 +589,6 @@ li a {
   color: white;
   font-size: 2.3rem;
   font-family: "mercyregular", serif;
-
 }
 
 .app-container {
@@ -631,7 +642,7 @@ li a {
 .homeContent {
   height: 400px;
   align-self: center;
-  position:fixed;
+  position: fixed;
   top: 25%;
   left: 65%;
 }
@@ -702,8 +713,6 @@ li a {
   border-radius: 1rem;
 }
 
-
-
 .toggle-label {
   font-size: 12px;
   font-family: "Cormorant", serif;
@@ -731,50 +740,49 @@ li a {
   margin-left: 4px;
   font-size: 1.3rem;
   font-family: "quicksandlight";
-
 }
 
 #instructions-button:hover {
   color: teal;
 }
 
-.clock{
+.clock {
   font-size: 28px;
   font-family: "quicksandlight", serif;
 }
 
-.stats-title{
+.stats-title {
   font-size: 19px;
   padding-top: 25px;
   font-family: "quicksandlight", serif;
 }
 
-.user-dash-container{
+.user-dash-container {
   position: absolute;
   top: 13%;
   display: flex;
   flex-direction: column;
-  width: 80%
+  width: 80%;
 }
 
-.take-survey-btn{
-  position:static;
+.take-survey-btn {
+  position: static;
   top: 84%;
   margin-top: 32px;
   margin-bottom: 25px;
 }
 
-.stats-container{
+.stats-container {
   font-family: "FreeMono";
 }
 
-.home-dash{
-  width: 100%
+.home-dash {
+  width: 100%;
 }
 
 #instructions-button-dots {
   background-color: transparent;
-  border:rgb(143, 143, 143) solid 2px;
+  border: rgb(143, 143, 143) solid 2px;
   height: 33px;
   width: 20px;
   position: relative;
@@ -810,29 +818,29 @@ li a {
   border-radius: 1rem;
 }
 
-.yest-progress-bar{
+.yest-progress-bar {
   font-family: "quicksandlight", serif;
   margin-bottom: 17px;
   margin-top: 8px;
 }
 
-.tip-for-today{
+.tip-for-today {
   font-family: "quicksandlight", serif;
-  width: 45%
+  width: 45%;
 }
 
-.no-tip-for-today{
+.no-tip-for-today {
   width: 27.2rem;
   margin-top: 5rem;
 }
 
-.home-btns{
+.home-btns {
   display: flex;
   flex-direction: column;
   width: 27.2rem;
 }
 
-.toggle{
+.toggle {
   margin-left: 40px;
 }
 
@@ -842,8 +850,12 @@ li a {
   color: white;
   margin-left: 8px;
 }
+.survey-modal {
+  font-family: "quicksandlight", serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
 
-
-.webcam{
+.webcam {
   margin-left: 6.5px;
 }
