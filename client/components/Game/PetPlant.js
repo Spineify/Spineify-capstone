@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { getPlant, updatePlant } from '../store/petPlant'
+import { getPlant, updatePlant } from '../../store/petPlant'
 import isElectron from 'is-electron'
 
 import ReactRain from 'react-rain-animation'
 import 'react-rain-animation/lib/style.css'
-import LevelUp from './Game/LevelUp'
-import GameInstructions from './Game/GameInstructions'
+import LevelUp from './LevelUp'
+import GameInstructions from './GameInstructions'
 
 const PetPlant = (props) => {
 	const [chest, setChest] = useState('closed')

@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { connect, useDispatch, useSelector } from 'react-redux'
 //components
-import PetPlant from './PetPlant'
-import SurveyModal from './SurveyModal'
-import StretchList from './StretchList'
-import Clock from './Clock'
+import PetPlant from '../Game/PetPlant'
+import SurveyModal from '../SurveyModal'
+import StretchList from '../StretchList'
+import Clock from '../Clock'
 import UserHomeDash from './UserHomeDash'
 import { Alert } from 'react-bootstrap'
 //thunkcreators
-import { getPoses } from '../store/posture'
-import { getPlant } from '../store/petPlant'
-import { suggestStretch } from '../store/stretch'
-import { getLatestSurveyData } from '../store/surveyData'
+import { getPoses } from '../../store/posture'
+import { getPlant } from '../../store/petPlant'
+import { suggestStretch } from '../../store/stretch'
+import { getLatestSurveyData } from '../../store/surveyData'
 
 /**
  * COMPONENT

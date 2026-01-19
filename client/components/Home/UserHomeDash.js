@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { connect, useDispatch, useSelector } from "react-redux";
-import { getPoses } from "../store/posture";
+import { getPoses } from "../../store/posture";
 import { Button, Alert, ProgressBar } from "react-bootstrap";
 
 const UserHomeDash = () => {

@@ -19,9 +19,11 @@ Due to the pandemic, poor posture and back pain has become a common problem for 
 
 ## Installation
 
-In order to install the desktop app, please refer to the following link with the most recent release of the app: https://github.com/Spineify/Spineify-capstone/releases. First, download the "spineify-darwin-x64.zip" file. Then, open the zip file in Finder, right-click on the spineify app, and confirm you want to open (it is safe, trust me!).
+~In order to install the desktop app, please refer to the following link with the most recent release of the app: https://github.com/Spineify/Spineify-capstone/releases. First, download the "spineify-darwin-x64.zip" file. Then, open the zip file in Finder, right-click on the spineify app, and confirm you want to open (it is safe, trust me!).~
 
-We recommend downloading the app; however, there is a website that you can access (with missing features such as getting notifications and tracking system's idle state): http://spineify.herokuapp.com/
+~We recommend downloading the app; however, there is a website that you can access (with missing features such as getting notifications and tracking system's idle state): http://spineify.herokuapp.com/~
+
+1.18.2025 UPDATE: Since Heroku no longer allows free deploys, we have moved to *APP NAME HERE*. To launch, *ADD DIRECTIONS*
 
 ## Using the App
 

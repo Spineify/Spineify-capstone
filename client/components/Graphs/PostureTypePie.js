@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getPoses } from "../store/posture";
-import { VictoryPie, VictoryLegend, VictoryChart } from "victory";
+import { getPoses } from "../../store/posture";
+import { VictoryPie, VictoryLegend } from "victory";
+import { POSTURE_PIE_DATA, POSTURE_TYPE_COUNT } from "../consts";
 
 const PostureTypePie = (props) => {
   const dispatch = useDispatch();
@@ -18,18 +19,6 @@ const PostureTypePie = (props) => {
     };
     fetchPoses();
   }, [userId]);
-
-  const posturePieData = [
-    { x: "Good Posture", y: 0 },
-    { x: "Bad Posture", y: 0 },
-    { x: "OK Posture", y: 0 },
-  ];
-
-  const countObj = {
-    "Good Posture": 0,
-    "OK Posture": 0,
-    "Bad Posture": 0,
-  };
 
   let count = 0;
 
